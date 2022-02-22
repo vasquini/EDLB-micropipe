@@ -499,7 +499,7 @@ process flye {
 	script:
 	"""
 	set +eu
-	flye --nano-raw ${filtered} --genome-size ${genome_size} --threads ${params.flye_threads} --out-dir \$PWD ${params.flye_args}
+	flye --nano-corr ${filtered} --genome-size ${genome_size} --threads ${params.flye_threads} --out-dir \$PWD ${params.flye_args}
 	flye -v 2> flye_version.txt
 	"""
 }
