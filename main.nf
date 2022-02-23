@@ -483,6 +483,7 @@ process filtlong {
 }
 
 process flye {
+        errorStrategy 'ignore' //MV:Added this to try to get Flye to finish
 	cpus "${params.flye_threads}"
 	tag "${sample}"
 	label "cpu"
