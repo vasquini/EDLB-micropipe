@@ -483,6 +483,7 @@ process filtlong {
 }
 
 process flye {
+        errorStrategy 'ignore' //MV:Added this to try to get Flye to finish
 	cpus "${params.flye_threads}"
 	tag "${sample}"
 	label "cpu"
@@ -495,7 +496,7 @@ process flye {
 	output:
 	tuple val(barcode), path(filtered), val(sample), path("assembly.fasta"), path("assembly_info.txt"), path("assembly_graph.gfa"), path("assembly_graph.gv"), emit: assembly_out
 	path("flye.log")
-	path("flye_version.txt")
+	path("flye_version.txt") //MV: changed nano-corr to nano-hq
 	script:
 	"""
 	set +eu
@@ -921,7 +922,6 @@ workflow {
 		}
 	//assembly only workflow
 	} else if ( !params.basecalling && !params.demultiplexing ) {
-		//MV:This line is giving me issues
 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple(row.barcode_id, file(row.long_fastq, checkIfExists: true), row.sample_id, row.genome_size) }
