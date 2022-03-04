@@ -1,0 +1,71 @@
+WARNING: Skipping mount /usr/local/var/singularity/mnt/session/etc/resolv.conf [files]: /etc/resolv.conf doesn't exist in container
+[2022-01-19 14:00:59] INFO: Starting Flye 2.5-release
+[2022-01-19 14:00:59] INFO: >>>STAGE: configure
+[2022-01-19 14:00:59] INFO: Configuring run
+[2022-01-19 14:01:00] INFO: Total read length: 48639531
+[2022-01-19 14:01:00] INFO: Input genome size: 5500000
+[2022-01-19 14:01:00] INFO: Estimated coverage: 8
+[2022-01-19 14:01:00] INFO: Reads N50/N90: 11525 / 3537
+[2022-01-19 14:01:00] INFO: Minimum overlap set to 4000
+[2022-01-19 14:01:00] INFO: Selected k-mer size: 15
+[2022-01-19 14:01:00] INFO: >>>STAGE: assembly
+[2022-01-19 14:01:00] INFO: Assembling disjointigs
+[2022-01-19 14:01:00] INFO: Reading sequences
+[2022-01-19 14:01:01] INFO: Generating solid k-mer index
+[2022-01-19 14:01:14] INFO: Counting k-mers (1/2):
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:01:16] INFO: Counting k-mers (2/2):
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:01:21] INFO: Filling index table
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:01:31] INFO: Extending reads
+[2022-01-19 14:01:41] INFO: Overlap-based coverage: 7
+[2022-01-19 14:01:41] INFO: Median overlap divergence: 0.0947217
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:01:46] INFO: Assembled 24 disjointigs
+[2022-01-19 14:01:46] INFO: Generating sequence
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:02:15] INFO: >>>STAGE: consensus
+[2022-01-19 14:02:15] INFO: Running Minimap2
+[2022-01-19 14:02:22] INFO: Computing consensus
+[2022-01-19 14:02:40] INFO: Alignment error rate: 0.100961453396
+[2022-01-19 14:02:40] INFO: >>>STAGE: repeat
+[2022-01-19 14:02:40] INFO: Building and resolving repeat graph
+[2022-01-19 14:02:40] INFO: Reading sequences
+[2022-01-19 14:02:41] INFO: Building repeat graph
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:02:58] INFO: Median overlap divergence: 0.0441116
+[2022-01-19 14:02:58] INFO: Aligning reads to the graph
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:03:22] INFO: Aligned read sequence: 41895515 / 42658674 (0.98211)
+[2022-01-19 14:03:22] INFO: Median overlap divergence: 0.0271926
+[2022-01-19 14:03:22] INFO: Mean edge coverage: 8
+[2022-01-19 14:03:22] INFO: Resolving repeats
+[2022-01-19 14:03:22] INFO: >>>STAGE: trestle
+[2022-01-19 14:03:22] INFO: Simple unbridged repeats: 0
+[2022-01-19 14:03:22] INFO: Resolved: 0
+[2022-01-19 14:03:22] INFO: >>>STAGE: plasmids
+[2022-01-19 14:03:22] INFO: Recovering short unassembled sequences
+[2022-01-19 14:03:26] INFO: Added 0 extra contigs
+[2022-01-19 14:03:26] INFO: >>>STAGE: contigger
+[2022-01-19 14:03:26] INFO: Generating contigs
+[2022-01-19 14:03:26] INFO: Reading sequences
+[2022-01-19 14:03:27] INFO: Generated 17 contigs
+[2022-01-19 14:03:27] INFO: >>>STAGE: polishing
+[2022-01-19 14:03:27] INFO: Polishing genome (1/1)
+[2022-01-19 14:03:27] INFO: Running minimap2
+[2022-01-19 14:03:34] INFO: Separating alignment into bubbles
+[2022-01-19 14:03:52] INFO: Alignment error rate: 0.0624488791043
+[2022-01-19 14:03:52] INFO: Correcting bubbles
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2022-01-19 14:04:40] INFO: >>>STAGE: finalize
+[2022-01-19 14:04:40] INFO: Assembly statistics:
+
+	Total length:	5162695
+	Fragments:	17
+	Fragments N50:	406138
+	Largest frg:	672878
+	Scaffolds:	0
+	Mean coverage:	8
+
+[2022-01-19 14:04:40] INFO: Final assembly: /scicomp/home-pure/suj7/micropipe/work/b3/35d7dfb47b06677c4efccbf7e94dd5/assembly.fasta

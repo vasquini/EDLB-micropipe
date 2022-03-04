@@ -1,0 +1,1284 @@
+WARNING: Skipping mount /usr/local/var/singularity/mnt/session/etc/resolv.conf [files]: /etc/resolv.conf doesn't exist in container
+Checking program versions
+This is medaka 0.10.0
+Program    Version    Required   Pass     
+bgzip      1.9        1.9        True     
+minimap2   2.17       2.11       True     
+samtools   1.9        1.9        True     
+tabix      1.9        1.9        True     
+Warning: Output /scicomp/home-pure/suj7/micropipe/work/f5/90e1728d854f95c82bad96bba71d14 already exists, may use old results.
+Aligning basecalls to draft
+Removing previous index file /scicomp/home-pure/suj7/micropipe/work/1d/b9c6cce8ef872348b04bc13b6c92ad/flye_racon_4.fasta.mmi
+Constructing minimap index.
+[M::mm_idx_gen::0.153*1.01] collected minimizers
+[M::mm_idx_gen::0.209*1.52] sorted minimizers
+[M::main::0.296*1.37] loaded/built the index for 17 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 17
+[M::mm_idx_stat::0.320*1.34] distinct minimizers: 932778 (97.73% are singletons); average occurrences: 1.032; average spacing: 5.350
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -I 16G -x map-ont --MD -d /scicomp/home-pure/suj7/micropipe/work/1d/b9c6cce8ef872348b04bc13b6c92ad/flye_racon_4.fasta.mmi /scicomp/home-pure/suj7/micropipe/work/1d/b9c6cce8ef872348b04bc13b6c92ad/flye_racon_4.fasta
+[M::main] Real time: 0.372 sec; CPU: 0.444 sec; Peak RSS: 0.043 GB
+[samfaipath] build FASTA index...
+[M::main::0.124*1.00] loaded/built the index for 17 target sequence(s)
+[M::mm_mapopt_update::0.142*1.00] mid_occ = 8
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 17
+[M::mm_idx_stat::0.157*1.00] distinct minimizers: 932778 (97.73% are singletons); average occurrences: 1.032; average spacing: 5.350
+[M::worker_pipeline::3.052*4.77] mapped 6463 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -x map-ont --MD -t 8 -a /scicomp/home-pure/suj7/micropipe/work/1d/b9c6cce8ef872348b04bc13b6c92ad/flye_racon_4.fasta.mmi /scicomp/home-pure/suj7/micropipe/work/56/288892514417012502696d0c59bd7a/filtered.fastq.gz
+[M::main] Real time: 3.064 sec; CPU: 14.575 sec; Peak RSS: 0.285 GB
+[bam_sort_core] merging from 0 files and 8 in-memory blocks...
+Running medaka consensus
+[14:07:59 - Predict] Processing region(s): contig_1:0-551996 contig_10:0-434256 contig_11:0-272891 contig_12:0-294562 contig_13:0-270859 contig_14:0-405078 contig_15:0-114172 contig_16:0-282065 contig_17:0-671158 contig_2:0-340696 contig_3:0-59950 contig_4:0-73941 contig_5:0-65050 contig_6:0-398409 contig_7:0-184235 contig_8:0-104289 contig_9:0-624622
+[14:07:59 - Predict] Setting tensorflow threads to 8.
+[14:07:59 - Predict] Processing 17 long region(s) with batching.
+[14:07:59 - Predict] Using model: /usr/local/lib/python3.6/site-packages/medaka/data/r941_min_high_model.hdf5.
+[14:07:59 - ModelLoad] Building model with cudnn optimization: False
+OMP: Info #212: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #210: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-191
+OMP: Info #156: KMP_AFFINITY: 192 available OS procs
+OMP: Info #157: KMP_AFFINITY: Uniform topology
+OMP: Info #179: KMP_AFFINITY: 4 packages x 24 cores/pkg x 2 threads/core (96 total cores)
+OMP: Info #214: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to package 0 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 96 maps to package 0 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to package 0 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 104 maps to package 0 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to package 0 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 112 maps to package 0 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to package 0 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 120 maps to package 0 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to package 0 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 116 maps to package 0 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to package 0 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 108 maps to package 0 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to package 0 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 100 maps to package 0 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to package 0 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 128 maps to package 0 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to package 0 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 136 maps to package 0 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to package 0 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 144 maps to package 0 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to package 0 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 140 maps to package 0 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to package 0 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 132 maps to package 0 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to package 0 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 124 maps to package 0 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to package 0 core 16 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 152 maps to package 0 core 16 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 64 maps to package 0 core 17 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 160 maps to package 0 core 17 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 72 maps to package 0 core 18 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 168 maps to package 0 core 18 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 68 maps to package 0 core 19 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 164 maps to package 0 core 19 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to package 0 core 20 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 156 maps to package 0 core 20 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to package 0 core 21 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 148 maps to package 0 core 21 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 80 maps to package 0 core 25 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 176 maps to package 0 core 25 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 88 maps to package 0 core 26 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 184 maps to package 0 core 26 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 92 maps to package 0 core 27 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 188 maps to package 0 core 27 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 84 maps to package 0 core 28 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 180 maps to package 0 core 28 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 76 maps to package 0 core 29 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 172 maps to package 0 core 29 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to package 1 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 97 maps to package 1 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to package 1 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 105 maps to package 1 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to package 1 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 113 maps to package 1 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to package 1 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 121 maps to package 1 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to package 1 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 117 maps to package 1 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to package 1 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 109 maps to package 1 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to package 1 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 101 maps to package 1 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to package 1 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 129 maps to package 1 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to package 1 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 137 maps to package 1 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to package 1 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 145 maps to package 1 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to package 1 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 141 maps to package 1 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to package 1 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 133 maps to package 1 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to package 1 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 125 maps to package 1 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to package 1 core 16 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 153 maps to package 1 core 16 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 65 maps to package 1 core 17 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 161 maps to package 1 core 17 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 73 maps to package 1 core 18 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 169 maps to package 1 core 18 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 69 maps to package 1 core 19 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 165 maps to package 1 core 19 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to package 1 core 20 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 157 maps to package 1 core 20 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to package 1 core 21 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 149 maps to package 1 core 21 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 81 maps to package 1 core 25 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 177 maps to package 1 core 25 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 89 maps to package 1 core 26 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 185 maps to package 1 core 26 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 93 maps to package 1 core 27 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 189 maps to package 1 core 27 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 85 maps to package 1 core 28 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 181 maps to package 1 core 28 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 77 maps to package 1 core 29 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 173 maps to package 1 core 29 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to package 2 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 98 maps to package 2 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to package 2 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 106 maps to package 2 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to package 2 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 114 maps to package 2 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to package 2 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 122 maps to package 2 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to package 2 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 118 maps to package 2 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to package 2 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 110 maps to package 2 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to package 2 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 102 maps to package 2 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to package 2 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 130 maps to package 2 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to package 2 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 138 maps to package 2 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to package 2 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 146 maps to package 2 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to package 2 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 142 maps to package 2 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to package 2 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 134 maps to package 2 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to package 2 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 126 maps to package 2 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to package 2 core 16 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 154 maps to package 2 core 16 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 66 maps to package 2 core 17 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 162 maps to package 2 core 17 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 74 maps to package 2 core 18 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 170 maps to package 2 core 18 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 70 maps to package 2 core 19 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 166 maps to package 2 core 19 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to package 2 core 20 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 158 maps to package 2 core 20 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to package 2 core 21 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 150 maps to package 2 core 21 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 82 maps to package 2 core 25 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 178 maps to package 2 core 25 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 90 maps to package 2 core 26 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 186 maps to package 2 core 26 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 94 maps to package 2 core 27 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 190 maps to package 2 core 27 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 86 maps to package 2 core 28 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 182 maps to package 2 core 28 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 78 maps to package 2 core 29 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 174 maps to package 2 core 29 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to package 3 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 99 maps to package 3 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to package 3 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 107 maps to package 3 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to package 3 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 115 maps to package 3 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to package 3 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 123 maps to package 3 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to package 3 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 119 maps to package 3 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to package 3 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 111 maps to package 3 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to package 3 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 103 maps to package 3 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to package 3 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 131 maps to package 3 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to package 3 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 139 maps to package 3 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to package 3 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 147 maps to package 3 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to package 3 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 143 maps to package 3 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to package 3 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 135 maps to package 3 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to package 3 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 127 maps to package 3 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to package 3 core 16 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 155 maps to package 3 core 16 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 67 maps to package 3 core 17 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 163 maps to package 3 core 17 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 75 maps to package 3 core 18 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 171 maps to package 3 core 18 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 71 maps to package 3 core 19 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 167 maps to package 3 core 19 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to package 3 core 20 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 159 maps to package 3 core 20 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to package 3 core 21 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 151 maps to package 3 core 21 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 83 maps to package 3 core 25 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 179 maps to package 3 core 25 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 91 maps to package 3 core 26 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 187 maps to package 3 core 26 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 95 maps to package 3 core 27 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 191 maps to package 3 core 27 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 87 maps to package 3 core 28 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 183 maps to package 3 core 28 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 79 maps to package 3 core 29 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 175 maps to package 3 core 29 thread 1 
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220663 thread 0 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220663 thread 1 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220664 thread 2 bound to OS proc set 16
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220665 thread 3 bound to OS proc set 24
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220668 thread 4 bound to OS proc set 20
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220674 thread 5 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220677 thread 8 bound to OS proc set 40
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220675 thread 6 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220676 thread 7 bound to OS proc set 32
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220680 thread 11 bound to OS proc set 36
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220678 thread 9 bound to OS proc set 48
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220679 thread 10 bound to OS proc set 44
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220681 thread 12 bound to OS proc set 28
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220683 thread 14 bound to OS proc set 64
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220682 thread 13 bound to OS proc set 56
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220684 thread 15 bound to OS proc set 72
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220685 thread 16 bound to OS proc set 68
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220687 thread 18 bound to OS proc set 52
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220686 thread 17 bound to OS proc set 60
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220688 thread 19 bound to OS proc set 80
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220689 thread 20 bound to OS proc set 88
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220690 thread 21 bound to OS proc set 92
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220691 thread 22 bound to OS proc set 84
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220692 thread 23 bound to OS proc set 76
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220693 thread 24 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220694 thread 25 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220695 thread 26 bound to OS proc set 17
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220698 thread 29 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220697 thread 28 bound to OS proc set 21
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220696 thread 27 bound to OS proc set 25
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220699 thread 30 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220700 thread 31 bound to OS proc set 33
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220701 thread 32 bound to OS proc set 41
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220702 thread 33 bound to OS proc set 49
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220703 thread 34 bound to OS proc set 45
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220704 thread 35 bound to OS proc set 37
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220705 thread 36 bound to OS proc set 29
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220706 thread 37 bound to OS proc set 57
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220708 thread 39 bound to OS proc set 73
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220707 thread 38 bound to OS proc set 65
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220709 thread 40 bound to OS proc set 69
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220710 thread 41 bound to OS proc set 61
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220711 thread 42 bound to OS proc set 53
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220712 thread 43 bound to OS proc set 81
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220714 thread 45 bound to OS proc set 93
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220713 thread 44 bound to OS proc set 89
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220716 thread 47 bound to OS proc set 77
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220715 thread 46 bound to OS proc set 85
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220717 thread 48 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220719 thread 50 bound to OS proc set 18
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220718 thread 49 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220720 thread 51 bound to OS proc set 26
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220722 thread 53 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220721 thread 52 bound to OS proc set 22
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220723 thread 54 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220724 thread 55 bound to OS proc set 34
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220725 thread 56 bound to OS proc set 42
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220726 thread 57 bound to OS proc set 50
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220727 thread 58 bound to OS proc set 46
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220728 thread 59 bound to OS proc set 38
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220729 thread 60 bound to OS proc set 30
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220730 thread 61 bound to OS proc set 58
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220732 thread 63 bound to OS proc set 74
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220731 thread 62 bound to OS proc set 66
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220733 thread 64 bound to OS proc set 70
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220734 thread 65 bound to OS proc set 62
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220735 thread 66 bound to OS proc set 54
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220736 thread 67 bound to OS proc set 82
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220737 thread 68 bound to OS proc set 90
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220738 thread 69 bound to OS proc set 94
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220739 thread 70 bound to OS proc set 86
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220740 thread 71 bound to OS proc set 78
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220741 thread 72 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220742 thread 73 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220743 thread 74 bound to OS proc set 19
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220744 thread 75 bound to OS proc set 27
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220746 thread 77 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220745 thread 76 bound to OS proc set 23
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220747 thread 78 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220748 thread 79 bound to OS proc set 35
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220749 thread 80 bound to OS proc set 43
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220750 thread 81 bound to OS proc set 51
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220752 thread 83 bound to OS proc set 39
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220751 thread 82 bound to OS proc set 47
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220753 thread 84 bound to OS proc set 31
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220754 thread 85 bound to OS proc set 59
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220755 thread 86 bound to OS proc set 67
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220756 thread 87 bound to OS proc set 75
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220757 thread 88 bound to OS proc set 71
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220758 thread 89 bound to OS proc set 63
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220759 thread 90 bound to OS proc set 55
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220760 thread 91 bound to OS proc set 83
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220761 thread 92 bound to OS proc set 91
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220762 thread 93 bound to OS proc set 95
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220763 thread 94 bound to OS proc set 87
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220764 thread 95 bound to OS proc set 79
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220765 thread 96 bound to OS proc set 96
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220766 thread 97 bound to OS proc set 104
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220767 thread 98 bound to OS proc set 112
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220768 thread 99 bound to OS proc set 120
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220769 thread 100 bound to OS proc set 116
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220770 thread 101 bound to OS proc set 108
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220771 thread 102 bound to OS proc set 100
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220772 thread 103 bound to OS proc set 128
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220773 thread 104 bound to OS proc set 136
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220774 thread 105 bound to OS proc set 144
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220775 thread 106 bound to OS proc set 140
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220776 thread 107 bound to OS proc set 132
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220777 thread 108 bound to OS proc set 124
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220778 thread 109 bound to OS proc set 152
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220779 thread 110 bound to OS proc set 160
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220780 thread 111 bound to OS proc set 168
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220781 thread 112 bound to OS proc set 164
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220782 thread 113 bound to OS proc set 156
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220783 thread 114 bound to OS proc set 148
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220784 thread 115 bound to OS proc set 176
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220785 thread 116 bound to OS proc set 184
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220786 thread 117 bound to OS proc set 188
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220787 thread 118 bound to OS proc set 180
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220788 thread 119 bound to OS proc set 172
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220789 thread 120 bound to OS proc set 97
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220790 thread 121 bound to OS proc set 105
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220791 thread 122 bound to OS proc set 113
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220793 thread 124 bound to OS proc set 117
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220792 thread 123 bound to OS proc set 121
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220794 thread 125 bound to OS proc set 109
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220795 thread 126 bound to OS proc set 101
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220797 thread 128 bound to OS proc set 137
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220796 thread 127 bound to OS proc set 129
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220800 thread 131 bound to OS proc set 133
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220798 thread 129 bound to OS proc set 145
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220799 thread 130 bound to OS proc set 141
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220801 thread 132 bound to OS proc set 125
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220802 thread 133 bound to OS proc set 153
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220803 thread 134 bound to OS proc set 161
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220804 thread 135 bound to OS proc set 169
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220805 thread 136 bound to OS proc set 165
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220806 thread 137 bound to OS proc set 157
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220807 thread 138 bound to OS proc set 149
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220809 thread 140 bound to OS proc set 185
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220808 thread 139 bound to OS proc set 177
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220810 thread 141 bound to OS proc set 189
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220811 thread 142 bound to OS proc set 181
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220812 thread 143 bound to OS proc set 173
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220813 thread 144 bound to OS proc set 98
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220815 thread 146 bound to OS proc set 114
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220814 thread 145 bound to OS proc set 106
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220816 thread 147 bound to OS proc set 122
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220818 thread 149 bound to OS proc set 110
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220817 thread 148 bound to OS proc set 118
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220819 thread 150 bound to OS proc set 102
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220821 thread 152 bound to OS proc set 138
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220820 thread 151 bound to OS proc set 130
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220823 thread 154 bound to OS proc set 142
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220822 thread 153 bound to OS proc set 146
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220825 thread 156 bound to OS proc set 126
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220824 thread 155 bound to OS proc set 134
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220827 thread 158 bound to OS proc set 162
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220826 thread 157 bound to OS proc set 154
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220828 thread 159 bound to OS proc set 170
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220830 thread 161 bound to OS proc set 158
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220829 thread 160 bound to OS proc set 166
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220831 thread 162 bound to OS proc set 150
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220832 thread 163 bound to OS proc set 178
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220833 thread 164 bound to OS proc set 186
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220834 thread 165 bound to OS proc set 190
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220836 thread 167 bound to OS proc set 174
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220835 thread 166 bound to OS proc set 182
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220837 thread 168 bound to OS proc set 99
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220838 thread 169 bound to OS proc set 107
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220839 thread 170 bound to OS proc set 115
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220840 thread 171 bound to OS proc set 123
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220841 thread 172 bound to OS proc set 119
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220842 thread 173 bound to OS proc set 111
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220843 thread 174 bound to OS proc set 103
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220845 thread 176 bound to OS proc set 139
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220844 thread 175 bound to OS proc set 131
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220847 thread 178 bound to OS proc set 143
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220846 thread 177 bound to OS proc set 147
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220848 thread 179 bound to OS proc set 135
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220849 thread 180 bound to OS proc set 127
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220850 thread 181 bound to OS proc set 155
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220851 thread 182 bound to OS proc set 163
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220852 thread 183 bound to OS proc set 171
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220853 thread 184 bound to OS proc set 167
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220854 thread 185 bound to OS proc set 159
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220855 thread 186 bound to OS proc set 151
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220856 thread 187 bound to OS proc set 179
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220857 thread 188 bound to OS proc set 187
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220858 thread 189 bound to OS proc set 191
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220859 thread 190 bound to OS proc set 183
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220860 thread 191 bound to OS proc set 175
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220861 thread 192 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220862 thread 193 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220863 thread 194 bound to OS proc set 16
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220864 thread 195 bound to OS proc set 24
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220865 thread 196 bound to OS proc set 20
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220866 thread 197 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220867 thread 198 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220868 thread 199 bound to OS proc set 32
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220869 thread 200 bound to OS proc set 40
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220870 thread 201 bound to OS proc set 48
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220871 thread 202 bound to OS proc set 44
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220872 thread 203 bound to OS proc set 36
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220873 thread 204 bound to OS proc set 28
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220874 thread 205 bound to OS proc set 56
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220875 thread 206 bound to OS proc set 64
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220876 thread 207 bound to OS proc set 72
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220877 thread 208 bound to OS proc set 68
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220878 thread 209 bound to OS proc set 60
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220879 thread 210 bound to OS proc set 52
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220880 thread 211 bound to OS proc set 80
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220881 thread 212 bound to OS proc set 88
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220882 thread 213 bound to OS proc set 92
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220883 thread 214 bound to OS proc set 84
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220884 thread 215 bound to OS proc set 76
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220885 thread 216 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220886 thread 217 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220887 thread 218 bound to OS proc set 17
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220888 thread 219 bound to OS proc set 25
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220889 thread 220 bound to OS proc set 21
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220890 thread 221 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220892 thread 223 bound to OS proc set 33
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220891 thread 222 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220893 thread 224 bound to OS proc set 41
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220894 thread 225 bound to OS proc set 49
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220895 thread 226 bound to OS proc set 45
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220896 thread 227 bound to OS proc set 37
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220897 thread 228 bound to OS proc set 29
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220898 thread 229 bound to OS proc set 57
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220899 thread 230 bound to OS proc set 65
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220900 thread 231 bound to OS proc set 73
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220901 thread 232 bound to OS proc set 69
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220902 thread 233 bound to OS proc set 61
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220903 thread 234 bound to OS proc set 53
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220904 thread 235 bound to OS proc set 81
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220905 thread 236 bound to OS proc set 89
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220906 thread 237 bound to OS proc set 93
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220907 thread 238 bound to OS proc set 85
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220908 thread 239 bound to OS proc set 77
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220909 thread 240 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220910 thread 241 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220911 thread 242 bound to OS proc set 18
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220913 thread 244 bound to OS proc set 22
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220912 thread 243 bound to OS proc set 26
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220915 thread 246 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220914 thread 245 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220916 thread 247 bound to OS proc set 34
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220917 thread 248 bound to OS proc set 42
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220918 thread 249 bound to OS proc set 50
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220919 thread 250 bound to OS proc set 46
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220920 thread 251 bound to OS proc set 38
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220921 thread 252 bound to OS proc set 30
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220922 thread 253 bound to OS proc set 58
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220923 thread 254 bound to OS proc set 66
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220924 thread 255 bound to OS proc set 74
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220925 thread 256 bound to OS proc set 70
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220926 thread 257 bound to OS proc set 62
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220927 thread 258 bound to OS proc set 54
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220928 thread 259 bound to OS proc set 82
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220929 thread 260 bound to OS proc set 90
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220930 thread 261 bound to OS proc set 94
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220931 thread 262 bound to OS proc set 86
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220932 thread 263 bound to OS proc set 78
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220933 thread 264 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220934 thread 265 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220935 thread 266 bound to OS proc set 19
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220936 thread 267 bound to OS proc set 27
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220937 thread 268 bound to OS proc set 23
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220938 thread 269 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220939 thread 270 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220940 thread 271 bound to OS proc set 35
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220941 thread 272 bound to OS proc set 43
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220942 thread 273 bound to OS proc set 51
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220943 thread 274 bound to OS proc set 47
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220944 thread 275 bound to OS proc set 39
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220945 thread 276 bound to OS proc set 31
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220946 thread 277 bound to OS proc set 59
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220947 thread 278 bound to OS proc set 67
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220948 thread 279 bound to OS proc set 75
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220949 thread 280 bound to OS proc set 71
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220950 thread 281 bound to OS proc set 63
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220951 thread 282 bound to OS proc set 55
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220952 thread 283 bound to OS proc set 83
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220954 thread 285 bound to OS proc set 95
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220953 thread 284 bound to OS proc set 91
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220955 thread 286 bound to OS proc set 87
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220956 thread 287 bound to OS proc set 79
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220958 thread 289 bound to OS proc set 104
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220957 thread 288 bound to OS proc set 96
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220959 thread 290 bound to OS proc set 112
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220960 thread 291 bound to OS proc set 120
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220961 thread 292 bound to OS proc set 116
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220962 thread 293 bound to OS proc set 108
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220963 thread 294 bound to OS proc set 100
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220965 thread 296 bound to OS proc set 136
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220964 thread 295 bound to OS proc set 128
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220966 thread 297 bound to OS proc set 144
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220967 thread 298 bound to OS proc set 140
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220968 thread 299 bound to OS proc set 132
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220969 thread 300 bound to OS proc set 124
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220970 thread 301 bound to OS proc set 152
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220971 thread 302 bound to OS proc set 160
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220972 thread 303 bound to OS proc set 168
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220974 thread 305 bound to OS proc set 156
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220973 thread 304 bound to OS proc set 164
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220975 thread 306 bound to OS proc set 148
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220976 thread 307 bound to OS proc set 176
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220977 thread 308 bound to OS proc set 184
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220978 thread 309 bound to OS proc set 188
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220979 thread 310 bound to OS proc set 180
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220981 thread 312 bound to OS proc set 97
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220980 thread 311 bound to OS proc set 172
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220982 thread 313 bound to OS proc set 105
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220983 thread 314 bound to OS proc set 113
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220984 thread 315 bound to OS proc set 121
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220985 thread 316 bound to OS proc set 117
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220986 thread 317 bound to OS proc set 109
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220987 thread 318 bound to OS proc set 101
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220988 thread 319 bound to OS proc set 129
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220989 thread 320 bound to OS proc set 137
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220990 thread 321 bound to OS proc set 145
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220991 thread 322 bound to OS proc set 141
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220992 thread 323 bound to OS proc set 133
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220993 thread 324 bound to OS proc set 125
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220995 thread 326 bound to OS proc set 161
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220994 thread 325 bound to OS proc set 153
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220996 thread 327 bound to OS proc set 169
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220997 thread 328 bound to OS proc set 165
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220998 thread 329 bound to OS proc set 157
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220999 thread 330 bound to OS proc set 149
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221000 thread 331 bound to OS proc set 177
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221001 thread 332 bound to OS proc set 185
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221002 thread 333 bound to OS proc set 189
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221003 thread 334 bound to OS proc set 181
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221005 thread 336 bound to OS proc set 98
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221004 thread 335 bound to OS proc set 173
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221006 thread 337 bound to OS proc set 106
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221007 thread 338 bound to OS proc set 114
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221008 thread 339 bound to OS proc set 122
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221009 thread 340 bound to OS proc set 118
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221010 thread 341 bound to OS proc set 110
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221011 thread 342 bound to OS proc set 102
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221012 thread 343 bound to OS proc set 130
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221013 thread 344 bound to OS proc set 138
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221014 thread 345 bound to OS proc set 146
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221015 thread 346 bound to OS proc set 142
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221016 thread 347 bound to OS proc set 134
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221017 thread 348 bound to OS proc set 126
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221019 thread 350 bound to OS proc set 162
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221018 thread 349 bound to OS proc set 154
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221020 thread 351 bound to OS proc set 170
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221021 thread 352 bound to OS proc set 166
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221023 thread 354 bound to OS proc set 150
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221022 thread 353 bound to OS proc set 158
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221024 thread 355 bound to OS proc set 178
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221025 thread 356 bound to OS proc set 186
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221026 thread 357 bound to OS proc set 190
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221027 thread 358 bound to OS proc set 182
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221028 thread 359 bound to OS proc set 174
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221030 thread 361 bound to OS proc set 107
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221029 thread 360 bound to OS proc set 99
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221032 thread 363 bound to OS proc set 123
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221031 thread 362 bound to OS proc set 115
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221033 thread 364 bound to OS proc set 119
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221034 thread 365 bound to OS proc set 111
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221035 thread 366 bound to OS proc set 103
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221036 thread 367 bound to OS proc set 131
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221038 thread 369 bound to OS proc set 147
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221037 thread 368 bound to OS proc set 139
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221039 thread 370 bound to OS proc set 143
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221040 thread 371 bound to OS proc set 135
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221041 thread 372 bound to OS proc set 127
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221042 thread 373 bound to OS proc set 155
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221043 thread 374 bound to OS proc set 163
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221044 thread 375 bound to OS proc set 171
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221045 thread 376 bound to OS proc set 167
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221046 thread 377 bound to OS proc set 159
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221048 thread 379 bound to OS proc set 179
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221047 thread 378 bound to OS proc set 151
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221049 thread 380 bound to OS proc set 187
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221050 thread 381 bound to OS proc set 191
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221051 thread 382 bound to OS proc set 183
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221053 thread 384 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221052 thread 383 bound to OS proc set 175
+[14:08:00 - DLoader] Initializing data loader
+[14:08:00 - PWorker] Running inference for 5.1M draft bases.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_1:0-551996.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_10:0-434256.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_11:0-272891.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_12:0-294562.
+[14:08:00 - Feature] Processed contig_12:0.0-294561.0 (median depth 10.0)
+[14:08:00 - Sampler] Took 0.37s to make features.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_13:0-270859.
+[14:08:00 - Feature] Processed contig_11:0.0-272890.0 (median depth 9.0)
+[14:08:00 - Sampler] Took 0.45s to make features.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_14:0-405078.
+[14:08:00 - Feature] Processed contig_10:0.0-434255.0 (median depth 8.0)
+[14:08:00 - Sampler] Took 0.50s to make features.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_15:0-114172.
+[14:08:00 - Feature] Processed contig_1:0.0-551995.0 (median depth 10.0)
+[14:08:00 - Sampler] Took 0.59s to make features.
+[14:08:00 - Sampler] Initializing sampler for consensus of region contig_16:0-282065.
+[14:08:01 - Feature] Processed contig_15:0.0-114171.0 (median depth 9.0)
+[14:08:01 - Sampler] Took 0.30s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_17:0-671158.
+[14:08:01 - Feature] Processed contig_13:0.0-270858.0 (median depth 10.0)
+[14:08:01 - Sampler] Took 0.45s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_2:0-340696.
+[14:08:01 - Feature] Processed contig_16:0.0-282064.0 (median depth 9.0)
+[14:08:01 - Sampler] Took 0.39s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_3:0-59950.
+[14:08:01 - Feature] Processed contig_14:0.0-405077.0 (median depth 11.0)
+[14:08:01 - Sampler] Took 0.66s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_4:0-73941.
+[14:08:01 - Feature] Processed contig_3:0.0-59949.0 (median depth 6.0)
+[14:08:01 - Sampler] Took 0.22s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_5:0-65050.
+[14:08:01 - Feature] Processed contig_2:0.0-340695.0 (median depth 10.0)
+[14:08:01 - Sampler] Took 0.50s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_6:0-398409.
+[14:08:01 - Feature] Processed contig_4:0.0-73940.0 (median depth 11.0)
+[14:08:01 - Sampler] Took 0.30s to make features.
+[14:08:01 - Feature] Processed contig_5:0.0-65049.0 (median depth 8.0)
+[14:08:01 - Sampler] Took 0.22s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_7:0-184235.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_8:0-104289.
+[14:08:01 - Feature] Processed contig_17:0.0-671157.0 (median depth 9.0)
+[14:08:01 - Sampler] Took 0.74s to make features.
+[14:08:01 - Sampler] Initializing sampler for consensus of region contig_9:0-624622.
+[14:08:01 - Feature] Processed contig_8:0.0-104288.0 (median depth 10.0)
+[14:08:01 - Sampler] Took 0.14s to make features.
+[14:08:01 - Feature] Processed contig_7:0.0-184234.0 (median depth 10.0)
+[14:08:01 - Sampler] Took 0.17s to make features.
+[14:08:01 - Feature] Processed contig_6:0.0-398408.0 (median depth 11.0)
+[14:08:01 - Sampler] Took 0.32s to make features.
+[14:08:02 - Feature] Processed contig_9:0.0-624621.0 (median depth 8.0)
+[14:08:02 - Sampler] Took 0.30s to make features.
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221118 thread 385 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221119 thread 386 bound to OS proc set 16
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221121 thread 388 bound to OS proc set 20
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221120 thread 387 bound to OS proc set 24
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221122 thread 389 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221123 thread 390 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221124 thread 391 bound to OS proc set 32
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221125 thread 392 bound to OS proc set 40
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221126 thread 393 bound to OS proc set 48
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221127 thread 394 bound to OS proc set 44
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221128 thread 395 bound to OS proc set 36
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221129 thread 396 bound to OS proc set 28
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221131 thread 398 bound to OS proc set 64
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221130 thread 397 bound to OS proc set 56
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221132 thread 399 bound to OS proc set 72
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221133 thread 400 bound to OS proc set 68
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221134 thread 401 bound to OS proc set 60
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221135 thread 402 bound to OS proc set 52
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221137 thread 404 bound to OS proc set 88
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221136 thread 403 bound to OS proc set 80
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221138 thread 405 bound to OS proc set 92
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221139 thread 406 bound to OS proc set 84
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221140 thread 407 bound to OS proc set 76
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221141 thread 408 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221142 thread 409 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221143 thread 410 bound to OS proc set 17
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221144 thread 411 bound to OS proc set 25
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221145 thread 412 bound to OS proc set 21
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221146 thread 413 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221147 thread 414 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221149 thread 416 bound to OS proc set 41
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221148 thread 415 bound to OS proc set 33
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221151 thread 418 bound to OS proc set 45
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221150 thread 417 bound to OS proc set 49
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221152 thread 419 bound to OS proc set 37
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221153 thread 420 bound to OS proc set 29
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221154 thread 421 bound to OS proc set 57
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221155 thread 422 bound to OS proc set 65
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221156 thread 423 bound to OS proc set 73
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221157 thread 424 bound to OS proc set 69
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221158 thread 425 bound to OS proc set 61
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221159 thread 426 bound to OS proc set 53
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221160 thread 427 bound to OS proc set 81
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221161 thread 428 bound to OS proc set 89
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221162 thread 429 bound to OS proc set 93
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221163 thread 430 bound to OS proc set 85
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221164 thread 431 bound to OS proc set 77
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221165 thread 432 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221166 thread 433 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221167 thread 434 bound to OS proc set 18
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221168 thread 435 bound to OS proc set 26
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221169 thread 436 bound to OS proc set 22
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221170 thread 437 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221171 thread 438 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221172 thread 439 bound to OS proc set 34
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221173 thread 440 bound to OS proc set 42
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221174 thread 441 bound to OS proc set 50
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221175 thread 442 bound to OS proc set 46
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221176 thread 443 bound to OS proc set 38
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221177 thread 444 bound to OS proc set 30
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221178 thread 445 bound to OS proc set 58
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221179 thread 446 bound to OS proc set 66
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221180 thread 447 bound to OS proc set 74
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221181 thread 448 bound to OS proc set 70
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221182 thread 449 bound to OS proc set 62
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221183 thread 450 bound to OS proc set 54
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221185 thread 452 bound to OS proc set 90
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221184 thread 451 bound to OS proc set 82
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221186 thread 453 bound to OS proc set 94
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221187 thread 454 bound to OS proc set 86
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221188 thread 455 bound to OS proc set 78
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221189 thread 456 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221190 thread 457 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221191 thread 458 bound to OS proc set 19
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221192 thread 459 bound to OS proc set 27
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221193 thread 460 bound to OS proc set 23
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221194 thread 461 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221195 thread 462 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221196 thread 463 bound to OS proc set 35
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221197 thread 464 bound to OS proc set 43
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221198 thread 465 bound to OS proc set 51
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221199 thread 466 bound to OS proc set 47
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221200 thread 467 bound to OS proc set 39
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221201 thread 468 bound to OS proc set 31
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221202 thread 469 bound to OS proc set 59
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221203 thread 470 bound to OS proc set 67
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221204 thread 471 bound to OS proc set 75
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221205 thread 472 bound to OS proc set 71
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221206 thread 473 bound to OS proc set 63
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221207 thread 474 bound to OS proc set 55
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221208 thread 475 bound to OS proc set 83
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221209 thread 476 bound to OS proc set 91
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221210 thread 477 bound to OS proc set 95
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221211 thread 478 bound to OS proc set 87
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221212 thread 479 bound to OS proc set 79
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221213 thread 480 bound to OS proc set 96
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220669 thread 481 bound to OS proc set 104
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220666 thread 482 bound to OS proc set 112
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221214 thread 483 bound to OS proc set 120
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221215 thread 484 bound to OS proc set 116
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221216 thread 485 bound to OS proc set 108
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221217 thread 486 bound to OS proc set 100
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221218 thread 487 bound to OS proc set 128
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221219 thread 488 bound to OS proc set 136
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221220 thread 489 bound to OS proc set 144
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221221 thread 490 bound to OS proc set 140
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221222 thread 491 bound to OS proc set 132
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221223 thread 492 bound to OS proc set 124
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221224 thread 493 bound to OS proc set 152
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221225 thread 494 bound to OS proc set 160
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221226 thread 495 bound to OS proc set 168
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221227 thread 496 bound to OS proc set 164
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221228 thread 497 bound to OS proc set 156
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221229 thread 498 bound to OS proc set 148
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221230 thread 499 bound to OS proc set 176
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221231 thread 500 bound to OS proc set 184
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221232 thread 501 bound to OS proc set 188
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221233 thread 502 bound to OS proc set 180
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221234 thread 503 bound to OS proc set 172
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221235 thread 504 bound to OS proc set 97
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221236 thread 505 bound to OS proc set 105
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221237 thread 506 bound to OS proc set 113
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221239 thread 508 bound to OS proc set 117
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221238 thread 507 bound to OS proc set 121
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221240 thread 509 bound to OS proc set 109
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221241 thread 510 bound to OS proc set 101
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221242 thread 511 bound to OS proc set 129
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221243 thread 512 bound to OS proc set 137
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221244 thread 513 bound to OS proc set 145
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221245 thread 514 bound to OS proc set 141
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221246 thread 515 bound to OS proc set 133
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221247 thread 516 bound to OS proc set 125
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221248 thread 517 bound to OS proc set 153
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221249 thread 518 bound to OS proc set 161
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221250 thread 519 bound to OS proc set 169
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221251 thread 520 bound to OS proc set 165
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221252 thread 521 bound to OS proc set 157
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221253 thread 522 bound to OS proc set 149
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221254 thread 523 bound to OS proc set 177
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221255 thread 524 bound to OS proc set 185
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221257 thread 526 bound to OS proc set 181
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221256 thread 525 bound to OS proc set 189
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221258 thread 527 bound to OS proc set 173
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221260 thread 529 bound to OS proc set 106
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221259 thread 528 bound to OS proc set 98
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221261 thread 530 bound to OS proc set 114
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221262 thread 531 bound to OS proc set 122
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221263 thread 532 bound to OS proc set 118
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221264 thread 533 bound to OS proc set 110
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221265 thread 534 bound to OS proc set 102
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221266 thread 535 bound to OS proc set 130
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221267 thread 536 bound to OS proc set 138
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221269 thread 538 bound to OS proc set 142
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221268 thread 537 bound to OS proc set 146
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221270 thread 539 bound to OS proc set 134
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221271 thread 540 bound to OS proc set 126
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221272 thread 541 bound to OS proc set 154
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221274 thread 543 bound to OS proc set 170
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221273 thread 542 bound to OS proc set 162
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221275 thread 544 bound to OS proc set 166
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221276 thread 545 bound to OS proc set 158
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221277 thread 546 bound to OS proc set 150
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221278 thread 547 bound to OS proc set 178
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221279 thread 548 bound to OS proc set 186
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221281 thread 550 bound to OS proc set 182
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221280 thread 549 bound to OS proc set 190
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221282 thread 551 bound to OS proc set 174
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221284 thread 553 bound to OS proc set 107
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221283 thread 552 bound to OS proc set 99
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221286 thread 555 bound to OS proc set 123
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221285 thread 554 bound to OS proc set 115
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221287 thread 556 bound to OS proc set 119
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221288 thread 557 bound to OS proc set 111
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221289 thread 558 bound to OS proc set 103
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221290 thread 559 bound to OS proc set 131
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221291 thread 560 bound to OS proc set 139
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221292 thread 561 bound to OS proc set 147
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221293 thread 562 bound to OS proc set 143
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221294 thread 563 bound to OS proc set 135
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221295 thread 564 bound to OS proc set 127
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221296 thread 565 bound to OS proc set 155
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221297 thread 566 bound to OS proc set 163
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221298 thread 567 bound to OS proc set 171
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221299 thread 568 bound to OS proc set 167
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221300 thread 569 bound to OS proc set 159
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221301 thread 570 bound to OS proc set 151
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221302 thread 571 bound to OS proc set 179
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221303 thread 572 bound to OS proc set 187
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221304 thread 573 bound to OS proc set 191
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221305 thread 574 bound to OS proc set 183
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221306 thread 575 bound to OS proc set 175
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221307 thread 576 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221308 thread 577 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221310 thread 579 bound to OS proc set 24
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221309 thread 578 bound to OS proc set 16
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221311 thread 580 bound to OS proc set 20
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221312 thread 581 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221313 thread 582 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221314 thread 583 bound to OS proc set 32
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221315 thread 584 bound to OS proc set 40
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221316 thread 585 bound to OS proc set 48
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221317 thread 586 bound to OS proc set 44
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221318 thread 587 bound to OS proc set 36
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221319 thread 588 bound to OS proc set 28
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221320 thread 589 bound to OS proc set 56
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221321 thread 590 bound to OS proc set 64
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221322 thread 591 bound to OS proc set 72
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221324 thread 593 bound to OS proc set 60
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221323 thread 592 bound to OS proc set 68
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221325 thread 594 bound to OS proc set 52
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221326 thread 595 bound to OS proc set 80
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221327 thread 596 bound to OS proc set 88
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221328 thread 597 bound to OS proc set 92
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221329 thread 598 bound to OS proc set 84
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221330 thread 599 bound to OS proc set 76
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221331 thread 600 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221332 thread 601 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221333 thread 602 bound to OS proc set 17
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221334 thread 603 bound to OS proc set 25
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221335 thread 604 bound to OS proc set 21
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221336 thread 605 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221337 thread 606 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221338 thread 607 bound to OS proc set 33
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221339 thread 608 bound to OS proc set 41
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221340 thread 609 bound to OS proc set 49
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221341 thread 610 bound to OS proc set 45
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221342 thread 611 bound to OS proc set 37
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221343 thread 612 bound to OS proc set 29
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221344 thread 613 bound to OS proc set 57
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221345 thread 614 bound to OS proc set 65
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221346 thread 615 bound to OS proc set 73
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221347 thread 616 bound to OS proc set 69
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221348 thread 617 bound to OS proc set 61
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221349 thread 618 bound to OS proc set 53
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221350 thread 619 bound to OS proc set 81
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221351 thread 620 bound to OS proc set 89
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221352 thread 621 bound to OS proc set 93
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221353 thread 622 bound to OS proc set 85
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221354 thread 623 bound to OS proc set 77
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221355 thread 624 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221356 thread 625 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221357 thread 626 bound to OS proc set 18
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221358 thread 627 bound to OS proc set 26
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221359 thread 628 bound to OS proc set 22
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221360 thread 629 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221361 thread 630 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221363 thread 632 bound to OS proc set 42
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221362 thread 631 bound to OS proc set 34
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221364 thread 633 bound to OS proc set 50
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221366 thread 635 bound to OS proc set 38
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221365 thread 634 bound to OS proc set 46
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221367 thread 636 bound to OS proc set 30
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221368 thread 637 bound to OS proc set 58
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221369 thread 638 bound to OS proc set 66
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221370 thread 639 bound to OS proc set 74
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221371 thread 640 bound to OS proc set 70
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221372 thread 641 bound to OS proc set 62
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221373 thread 642 bound to OS proc set 54
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221374 thread 643 bound to OS proc set 82
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221375 thread 644 bound to OS proc set 90
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221376 thread 645 bound to OS proc set 94
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221377 thread 646 bound to OS proc set 86
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221378 thread 647 bound to OS proc set 78
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221379 thread 648 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221380 thread 649 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221381 thread 650 bound to OS proc set 19
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221382 thread 651 bound to OS proc set 27
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221383 thread 652 bound to OS proc set 23
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221384 thread 653 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221385 thread 654 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221386 thread 655 bound to OS proc set 35
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221387 thread 656 bound to OS proc set 43
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221389 thread 658 bound to OS proc set 47
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221388 thread 657 bound to OS proc set 51
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221390 thread 659 bound to OS proc set 39
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221391 thread 660 bound to OS proc set 31
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221392 thread 661 bound to OS proc set 59
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221393 thread 662 bound to OS proc set 67
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221394 thread 663 bound to OS proc set 75
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221395 thread 664 bound to OS proc set 71
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221396 thread 665 bound to OS proc set 63
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221397 thread 666 bound to OS proc set 55
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221398 thread 667 bound to OS proc set 83
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221399 thread 668 bound to OS proc set 91
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221400 thread 669 bound to OS proc set 95
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221401 thread 670 bound to OS proc set 87
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221403 thread 672 bound to OS proc set 96
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221402 thread 671 bound to OS proc set 79
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220667 thread 673 bound to OS proc set 104
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 220670 thread 674 bound to OS proc set 112
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221404 thread 675 bound to OS proc set 120
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221405 thread 676 bound to OS proc set 116
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221406 thread 677 bound to OS proc set 108
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221407 thread 678 bound to OS proc set 100
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221408 thread 679 bound to OS proc set 128
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221409 thread 680 bound to OS proc set 136
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221410 thread 681 bound to OS proc set 144
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221411 thread 682 bound to OS proc set 140
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221412 thread 683 bound to OS proc set 132
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221413 thread 684 bound to OS proc set 124
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221414 thread 685 bound to OS proc set 152
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221415 thread 686 bound to OS proc set 160
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221416 thread 687 bound to OS proc set 168
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221417 thread 688 bound to OS proc set 164
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221418 thread 689 bound to OS proc set 156
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221419 thread 690 bound to OS proc set 148
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221420 thread 691 bound to OS proc set 176
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221421 thread 692 bound to OS proc set 184
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221422 thread 693 bound to OS proc set 188
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221423 thread 694 bound to OS proc set 180
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221424 thread 695 bound to OS proc set 172
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221425 thread 696 bound to OS proc set 97
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221426 thread 697 bound to OS proc set 105
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221427 thread 698 bound to OS proc set 113
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221428 thread 699 bound to OS proc set 121
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221429 thread 700 bound to OS proc set 117
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221430 thread 701 bound to OS proc set 109
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221431 thread 702 bound to OS proc set 101
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221432 thread 703 bound to OS proc set 129
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221433 thread 704 bound to OS proc set 137
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221434 thread 705 bound to OS proc set 145
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221435 thread 706 bound to OS proc set 141
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221436 thread 707 bound to OS proc set 133
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221437 thread 708 bound to OS proc set 125
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221438 thread 709 bound to OS proc set 153
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221439 thread 710 bound to OS proc set 161
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221440 thread 711 bound to OS proc set 169
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221441 thread 712 bound to OS proc set 165
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221442 thread 713 bound to OS proc set 157
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221443 thread 714 bound to OS proc set 149
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221444 thread 715 bound to OS proc set 177
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221445 thread 716 bound to OS proc set 185
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221446 thread 717 bound to OS proc set 189
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221447 thread 718 bound to OS proc set 181
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221448 thread 719 bound to OS proc set 173
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221449 thread 720 bound to OS proc set 98
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221450 thread 721 bound to OS proc set 106
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221451 thread 722 bound to OS proc set 114
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221452 thread 723 bound to OS proc set 122
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221453 thread 724 bound to OS proc set 118
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221454 thread 725 bound to OS proc set 110
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221455 thread 726 bound to OS proc set 102
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221456 thread 727 bound to OS proc set 130
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221457 thread 728 bound to OS proc set 138
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221458 thread 729 bound to OS proc set 146
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221459 thread 730 bound to OS proc set 142
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221460 thread 731 bound to OS proc set 134
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221461 thread 732 bound to OS proc set 126
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221462 thread 733 bound to OS proc set 154
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221463 thread 734 bound to OS proc set 162
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221464 thread 735 bound to OS proc set 170
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221465 thread 736 bound to OS proc set 166
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221466 thread 737 bound to OS proc set 158
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221467 thread 738 bound to OS proc set 150
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221468 thread 739 bound to OS proc set 178
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221469 thread 740 bound to OS proc set 186
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221470 thread 741 bound to OS proc set 190
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221471 thread 742 bound to OS proc set 182
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221472 thread 743 bound to OS proc set 174
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221473 thread 744 bound to OS proc set 99
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221474 thread 745 bound to OS proc set 107
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221475 thread 746 bound to OS proc set 115
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221476 thread 747 bound to OS proc set 123
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221477 thread 748 bound to OS proc set 119
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221478 thread 749 bound to OS proc set 111
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221479 thread 750 bound to OS proc set 103
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221480 thread 751 bound to OS proc set 131
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221481 thread 752 bound to OS proc set 139
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221482 thread 753 bound to OS proc set 147
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221483 thread 754 bound to OS proc set 143
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221484 thread 755 bound to OS proc set 135
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221485 thread 756 bound to OS proc set 127
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221486 thread 757 bound to OS proc set 155
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221487 thread 758 bound to OS proc set 163
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221488 thread 759 bound to OS proc set 171
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221489 thread 760 bound to OS proc set 167
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221490 thread 761 bound to OS proc set 159
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221491 thread 762 bound to OS proc set 151
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221492 thread 763 bound to OS proc set 179
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221493 thread 764 bound to OS proc set 187
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221494 thread 765 bound to OS proc set 191
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221495 thread 766 bound to OS proc set 183
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221496 thread 767 bound to OS proc set 175
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221497 thread 768 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221527 thread 769 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221528 thread 770 bound to OS proc set 16
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221529 thread 771 bound to OS proc set 24
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221530 thread 772 bound to OS proc set 20
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221531 thread 773 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221532 thread 774 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221533 thread 775 bound to OS proc set 32
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221534 thread 776 bound to OS proc set 40
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221535 thread 777 bound to OS proc set 48
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221536 thread 778 bound to OS proc set 44
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221537 thread 779 bound to OS proc set 36
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221538 thread 780 bound to OS proc set 28
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221539 thread 781 bound to OS proc set 56
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221540 thread 782 bound to OS proc set 64
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221541 thread 783 bound to OS proc set 72
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221543 thread 785 bound to OS proc set 60
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221542 thread 784 bound to OS proc set 68
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221544 thread 786 bound to OS proc set 52
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221545 thread 787 bound to OS proc set 80
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221547 thread 789 bound to OS proc set 92
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221546 thread 788 bound to OS proc set 88
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221548 thread 790 bound to OS proc set 84
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221550 thread 792 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221549 thread 791 bound to OS proc set 76
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221551 thread 793 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221552 thread 794 bound to OS proc set 17
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221553 thread 795 bound to OS proc set 25
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221554 thread 796 bound to OS proc set 21
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221555 thread 797 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221556 thread 798 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221557 thread 799 bound to OS proc set 33
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221558 thread 800 bound to OS proc set 41
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221559 thread 801 bound to OS proc set 49
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221560 thread 802 bound to OS proc set 45
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221561 thread 803 bound to OS proc set 37
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221562 thread 804 bound to OS proc set 29
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221563 thread 805 bound to OS proc set 57
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221564 thread 806 bound to OS proc set 65
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221565 thread 807 bound to OS proc set 73
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221566 thread 808 bound to OS proc set 69
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221567 thread 809 bound to OS proc set 61
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221568 thread 810 bound to OS proc set 53
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221569 thread 811 bound to OS proc set 81
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221570 thread 812 bound to OS proc set 89
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221571 thread 813 bound to OS proc set 93
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221572 thread 814 bound to OS proc set 85
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221573 thread 815 bound to OS proc set 77
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221574 thread 816 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221575 thread 817 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221576 thread 818 bound to OS proc set 18
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221577 thread 819 bound to OS proc set 26
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221578 thread 820 bound to OS proc set 22
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221579 thread 821 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221580 thread 822 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221581 thread 823 bound to OS proc set 34
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221582 thread 824 bound to OS proc set 42
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221583 thread 825 bound to OS proc set 50
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221584 thread 826 bound to OS proc set 46
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221585 thread 827 bound to OS proc set 38
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221586 thread 828 bound to OS proc set 30
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221587 thread 829 bound to OS proc set 58
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221588 thread 830 bound to OS proc set 66
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221589 thread 831 bound to OS proc set 74
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221591 thread 833 bound to OS proc set 62
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221603 thread 845 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221595 thread 837 bound to OS proc set 94
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221594 thread 836 bound to OS proc set 90
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221600 thread 842 bound to OS proc set 19
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221590 thread 832 bound to OS proc set 70
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221601 thread 843 bound to OS proc set 27
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221605 thread 847 bound to OS proc set 35
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221592 thread 834 bound to OS proc set 54
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221593 thread 835 bound to OS proc set 82
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221604 thread 846 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221596 thread 838 bound to OS proc set 86
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221607 thread 849 bound to OS proc set 51
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221597 thread 839 bound to OS proc set 78
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221598 thread 840 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221602 thread 844 bound to OS proc set 23
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221606 thread 848 bound to OS proc set 43
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221609 thread 851 bound to OS proc set 39
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221599 thread 841 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221608 thread 850 bound to OS proc set 47
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221610 thread 852 bound to OS proc set 31
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221611 thread 853 bound to OS proc set 59
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221612 thread 854 bound to OS proc set 67
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221613 thread 855 bound to OS proc set 75
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221614 thread 856 bound to OS proc set 71
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221615 thread 857 bound to OS proc set 63
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221616 thread 858 bound to OS proc set 55
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221617 thread 859 bound to OS proc set 83
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221618 thread 860 bound to OS proc set 91
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221619 thread 861 bound to OS proc set 95
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221620 thread 862 bound to OS proc set 87
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221621 thread 863 bound to OS proc set 79
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221622 thread 864 bound to OS proc set 96
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221623 thread 865 bound to OS proc set 104
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221625 thread 867 bound to OS proc set 120
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221624 thread 866 bound to OS proc set 112
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221626 thread 868 bound to OS proc set 116
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221627 thread 869 bound to OS proc set 108
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221629 thread 871 bound to OS proc set 128
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221628 thread 870 bound to OS proc set 100
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221630 thread 872 bound to OS proc set 136
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221631 thread 873 bound to OS proc set 144
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221632 thread 874 bound to OS proc set 140
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221633 thread 875 bound to OS proc set 132
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221634 thread 876 bound to OS proc set 124
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221635 thread 877 bound to OS proc set 152
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221636 thread 878 bound to OS proc set 160
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221637 thread 879 bound to OS proc set 168
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221638 thread 880 bound to OS proc set 164
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221639 thread 881 bound to OS proc set 156
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221640 thread 882 bound to OS proc set 148
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221641 thread 883 bound to OS proc set 176
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221642 thread 884 bound to OS proc set 184
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221644 thread 886 bound to OS proc set 180
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221645 thread 887 bound to OS proc set 172
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221643 thread 885 bound to OS proc set 188
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221646 thread 888 bound to OS proc set 97
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221647 thread 889 bound to OS proc set 105
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221648 thread 890 bound to OS proc set 113
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221649 thread 891 bound to OS proc set 121
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221650 thread 892 bound to OS proc set 117
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221651 thread 893 bound to OS proc set 109
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221652 thread 894 bound to OS proc set 101
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221653 thread 895 bound to OS proc set 129
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221654 thread 896 bound to OS proc set 137
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221655 thread 897 bound to OS proc set 145
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221656 thread 898 bound to OS proc set 141
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221657 thread 899 bound to OS proc set 133
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221658 thread 900 bound to OS proc set 125
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221659 thread 901 bound to OS proc set 153
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221660 thread 902 bound to OS proc set 161
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221661 thread 903 bound to OS proc set 169
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221662 thread 904 bound to OS proc set 165
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221663 thread 905 bound to OS proc set 157
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221664 thread 906 bound to OS proc set 149
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221665 thread 907 bound to OS proc set 177
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221666 thread 908 bound to OS proc set 185
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221667 thread 909 bound to OS proc set 189
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221668 thread 910 bound to OS proc set 181
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221669 thread 911 bound to OS proc set 173
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221670 thread 912 bound to OS proc set 98
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221671 thread 913 bound to OS proc set 106
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221672 thread 914 bound to OS proc set 114
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221673 thread 915 bound to OS proc set 122
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221674 thread 916 bound to OS proc set 118
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221675 thread 917 bound to OS proc set 110
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221676 thread 918 bound to OS proc set 102
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221677 thread 919 bound to OS proc set 130
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221678 thread 920 bound to OS proc set 138
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221679 thread 921 bound to OS proc set 146
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221680 thread 922 bound to OS proc set 142
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221681 thread 923 bound to OS proc set 134
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221682 thread 924 bound to OS proc set 126
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221683 thread 925 bound to OS proc set 154
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221684 thread 926 bound to OS proc set 162
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221685 thread 927 bound to OS proc set 170
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221686 thread 928 bound to OS proc set 166
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221687 thread 929 bound to OS proc set 158
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221688 thread 930 bound to OS proc set 150
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221689 thread 931 bound to OS proc set 178
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221690 thread 932 bound to OS proc set 186
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221691 thread 933 bound to OS proc set 190
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221692 thread 934 bound to OS proc set 182
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221693 thread 935 bound to OS proc set 174
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221694 thread 936 bound to OS proc set 99
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221695 thread 937 bound to OS proc set 107
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221696 thread 938 bound to OS proc set 115
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221697 thread 939 bound to OS proc set 123
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221698 thread 940 bound to OS proc set 119
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221699 thread 941 bound to OS proc set 111
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221700 thread 942 bound to OS proc set 103
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221701 thread 943 bound to OS proc set 131
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221702 thread 944 bound to OS proc set 139
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221703 thread 945 bound to OS proc set 147
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221704 thread 946 bound to OS proc set 143
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221705 thread 947 bound to OS proc set 135
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221706 thread 948 bound to OS proc set 127
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221707 thread 949 bound to OS proc set 155
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221708 thread 950 bound to OS proc set 163
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221709 thread 951 bound to OS proc set 171
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221710 thread 952 bound to OS proc set 167
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221711 thread 953 bound to OS proc set 159
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221712 thread 954 bound to OS proc set 151
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221713 thread 955 bound to OS proc set 179
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221714 thread 956 bound to OS proc set 187
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221715 thread 957 bound to OS proc set 191
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221716 thread 958 bound to OS proc set 183
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221717 thread 959 bound to OS proc set 175
+OMP: Info #250: KMP_AFFINITY: pid 220296 tid 221718 thread 960 bound to OS proc set 0
+[14:08:14 - PWorker] 15.6% Done (0.8/5.1 Mbases) in 14.2s
+[14:08:14 - PWorker] Samples in cache: 300.
+[14:08:27 - PWorker] 31.2% Done (1.6/5.1 Mbases) in 27.0s
+[14:08:27 - PWorker] Samples in cache: 350.
+[14:08:40 - PWorker] 46.7% Done (2.4/5.1 Mbases) in 39.7s
+[14:08:40 - PWorker] Samples in cache: 250.
+[14:08:52 - PWorker] 62.2% Done (3.2/5.1 Mbases) in 52.4s
+[14:08:52 - PWorker] Samples in cache: 150.
+[14:09:05 - PWorker] 77.8% Done (4.0/5.1 Mbases) in 65.2s
+[14:09:05 - PWorker] Samples in cache: 50.
+[14:09:18 - PWorker] 93.3% Done (4.8/5.1 Mbases) in 77.9s
+[14:09:18 - PWorker] Samples in cache: 0.
+[14:09:29 - PWorker] 100.0% Done (5.1/5.1 Mbases) in 89.6s
+[14:09:30 - PWorker] All done, 0 remainder regions.
+[14:09:30 - Predict] Finished processing all regions.
+Running medaka stitch
+[14:09:32 - DataIndex] Loaded 1/1 (100.00%) sample files.
+[14:09:32 - Stitch] Processing contig_1:0-.
+[14:09:33 - Stitch] Processing contig_10:0-.
+[14:09:34 - Stitch] Processing contig_11:0-.
+[14:09:34 - Stitch] Processing contig_12:0-.
+[14:09:35 - Stitch] Processing contig_13:0-.
+[14:09:35 - Stitch] Processing contig_14:0-.
+[14:09:36 - Stitch] Processing contig_15:0-.
+[14:09:36 - Stitch] Processing contig_16:0-.
+[14:09:37 - Stitch] Processing contig_17:0-.
+[14:09:39 - Stitch] Processing contig_2:0-.
+[14:09:40 - Stitch] Processing contig_3:0-.
+[14:09:40 - Stitch] Processing contig_4:0-.
+[14:09:40 - Stitch] Processing contig_5:0-.
+[14:09:40 - Stitch] Processing contig_6:0-.
+[14:09:41 - Stitch] Processing contig_7:0-.
+[14:09:41 - Stitch] Processing contig_8:0-.
+[14:09:41 - Stitch] Processing contig_9:0-.
+Polished assembly written to /scicomp/home-pure/suj7/micropipe/work/f5/90e1728d854f95c82bad96bba71d14/consensus.fasta, have a nice day.

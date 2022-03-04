@@ -1,0 +1,1 @@
+Repeat_ID     Path          Template      Cov           #Conf_Pos     Max_Pos_Gap   Bridged?      Support       Against       Avg_Div       Resolution    Sequences    

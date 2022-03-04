@@ -1,0 +1,4 @@
+/scicomp/home-pure/suj7/micropipe/work/de/f7c448c7661a34660bdb654da24ec2/.command.sh: line 3: /scratch/ont-guppy/bin/guppy_barcoder: No such file or directory
+cat: barc*//*.fastq.gz: No such file or directory
+cat: uncl*//*.fastq.gz: No such file or directory
+/scicomp/home-pure/suj7/micropipe/work/de/f7c448c7661a34660bdb654da24ec2/.command.sh: line 9: /scratch/ont-guppy/bin/guppy_barcoder: No such file or directory

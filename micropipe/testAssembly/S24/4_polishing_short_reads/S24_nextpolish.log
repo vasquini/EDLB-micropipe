@@ -1,0 +1,134 @@
+[INFO] 2022-01-19 14:10:26,150 start...
+[INFO] 2022-01-19 14:10:26,151 logfile: pid223874.log.info
+[WARNING] 2022-01-19 14:10:26,152 Re-write workdir
+[INFO] 2022-01-19 14:10:26,169 scheduled tasks:
+[1, 2, 1, 2]
+[INFO] 2022-01-19 14:10:26,169 options: 
+[INFO] 2022-01-19 14:10:26,169 {'polish_options': ' -p 4', 'rewrite': 1, 'job_prefix': 'nextPolish', 'job_type': 'local', 'cluster_options': '', 'snp_valid': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/%02d.snp_valid', 'kmer_count': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/%02d.kmer_count', 'sgs_max_depth': '100', 'align_threads': '4', 'sgs_block_size': 85858200L, 'lgs_max_read_len': '150k', 'parallel_jobs': '6', 'multithread_jobs': '4', 'snp_phase': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/%02d.snp_phase', 'genome': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/consensus.fasta', 'genome_size': 5151492L, 'workdir': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e', 'cleantmp': 0, 'sgs_align_options': 'bwa mem -p  -t 4', 'sgs_unpaired': '0', 'sgs_fofn': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/sgs.fofn', 'lgs_polish': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/%02d.lgs_polish', 'sgs_use_duplicate_reads': 0, 'score_chain': '/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/%02d.score_chain', 'task': [1, 2, 1, 2], 'lgs_max_depth': '60', 'lgs_block_size': '500M', 'lgs_minimap2_options': '-x map-ont', 'rerun': 3, 'lgs_min_read_len': '1k'}
+[INFO] 2022-01-19 14:10:26,169 step 0 and task 1 start:
+[INFO] 2022-01-19 14:10:26,179 analysis tasks done
+[INFO] 2022-01-19 14:10:26,194 total jobs: 3
+[INFO] 2022-01-19 14:10:26,195 Throw jobID:[223927] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/01.db_split.sh.work/db_split0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:26,697 Throw jobID:[223939] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/01.db_split.sh.work/db_split1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:27,201 Throw jobID:[223947] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/01.db_split.sh.work/db_split2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:29,444 db_split done
+[INFO] 2022-01-19 14:10:29,449 analysis tasks done
+[INFO] 2022-01-19 14:10:29,479 total jobs: 6
+[INFO] 2022-01-19 14:10:29,481 Throw jobID:[224352] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/02.map.ref.sh.work/map_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:29,983 Throw jobID:[224369] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/02.map.ref.sh.work/map_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:30,485 Throw jobID:[224685] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/02.map.ref.sh.work/map_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:30,987 Throw jobID:[224743] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/02.map.ref.sh.work/map_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:31,490 Throw jobID:[224814] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/02.map.ref.sh.work/map_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:31,992 Throw jobID:[224979] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/02.map.ref.sh.work/map_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:35,014 align_genome done
+[INFO] 2022-01-19 14:10:35,025 analysis tasks done
+[INFO] 2022-01-19 14:10:35,033 total jobs: 1
+[INFO] 2022-01-19 14:10:35,034 Throw jobID:[225295] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/03.merge.bam.sh.work/merge_bam0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:36,306 merge_bam done
+[INFO] 2022-01-19 14:10:36,313 analysis tasks done
+[INFO] 2022-01-19 14:10:36,345 total jobs: 6
+[INFO] 2022-01-19 14:10:36,346 Throw jobID:[225533] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/04.polish.ref.sh.work/polish_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:36,849 Throw jobID:[225551] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/04.polish.ref.sh.work/polish_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:37,352 Throw jobID:[225852] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/04.polish.ref.sh.work/polish_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:37,855 Throw jobID:[225865] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/04.polish.ref.sh.work/polish_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:38,358 Throw jobID:[225883] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/04.polish.ref.sh.work/polish_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:38,860 Throw jobID:[226260] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/00.score_chain/04.polish.ref.sh.work/polish_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:41,885 polish_genome done
+[INFO] 2022-01-19 14:10:41,886 step 1 and task 2 start:
+[INFO] 2022-01-19 14:10:41,891 analysis tasks done
+[INFO] 2022-01-19 14:10:41,898 total jobs: 1
+[INFO] 2022-01-19 14:10:41,899 Throw jobID:[226408] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/01.merge.ref.sh.work/merge_ref0/merge_ref.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:42,914 merge_ref done
+[INFO] 2022-01-19 14:10:42,918 analysis tasks done
+[INFO] 2022-01-19 14:10:42,930 total jobs: 2
+[INFO] 2022-01-19 14:10:42,931 Throw jobID:[226417] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/02.index.ref.sh.work/index_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:43,434 Throw jobID:[226423] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/02.index.ref.sh.work/index_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:45,083 index_genome done
+[INFO] 2022-01-19 14:10:45,087 analysis tasks done
+[INFO] 2022-01-19 14:10:45,120 total jobs: 6
+[INFO] 2022-01-19 14:10:45,121 Throw jobID:[226433] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/03.map.ref.sh.work/map_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:45,623 Throw jobID:[226706] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/03.map.ref.sh.work/map_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:46,126 Throw jobID:[226790] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/03.map.ref.sh.work/map_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:46,628 Throw jobID:[226839] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/03.map.ref.sh.work/map_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:47,131 Throw jobID:[226877] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/03.map.ref.sh.work/map_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:47,634 Throw jobID:[226914] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/03.map.ref.sh.work/map_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:50,660 align_genome done
+[INFO] 2022-01-19 14:10:50,672 analysis tasks done
+[INFO] 2022-01-19 14:10:50,680 total jobs: 1
+[INFO] 2022-01-19 14:10:50,681 Throw jobID:[226968] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/04.merge.bam.sh.work/merge_bam0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:51,956 merge_bam done
+[INFO] 2022-01-19 14:10:51,963 analysis tasks done
+[INFO] 2022-01-19 14:10:51,993 total jobs: 6
+[INFO] 2022-01-19 14:10:51,994 Throw jobID:[227200] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/05.polish.ref.sh.work/polish_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:52,498 Throw jobID:[227213] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/05.polish.ref.sh.work/polish_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:53,001 Throw jobID:[227226] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/05.polish.ref.sh.work/polish_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:53,503 Throw jobID:[227239] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/05.polish.ref.sh.work/polish_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:54,006 Throw jobID:[227252] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/05.polish.ref.sh.work/polish_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:10:54,510 Throw jobID:[227265] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/01.kmer_count/05.polish.ref.sh.work/polish_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:07,980 polish_genome done
+[INFO] 2022-01-19 14:11:07,980 step 2 and task 1 start:
+[INFO] 2022-01-19 14:11:07,986 analysis tasks done
+[INFO] 2022-01-19 14:11:07,992 total jobs: 1
+[INFO] 2022-01-19 14:11:07,993 Throw jobID:[229527] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/01.merge.ref.sh.work/merge_ref0/merge_ref.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:09,006 merge_ref done
+[INFO] 2022-01-19 14:11:09,010 analysis tasks done
+[INFO] 2022-01-19 14:11:09,021 total jobs: 2
+[INFO] 2022-01-19 14:11:09,022 Throw jobID:[229594] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/02.index.ref.sh.work/index_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:09,525 Throw jobID:[229600] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/02.index.ref.sh.work/index_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:11,112 index_genome done
+[INFO] 2022-01-19 14:11:11,116 analysis tasks done
+[INFO] 2022-01-19 14:11:11,148 total jobs: 6
+[INFO] 2022-01-19 14:11:11,149 Throw jobID:[229611] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/03.map.ref.sh.work/map_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:11,652 Throw jobID:[229626] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/03.map.ref.sh.work/map_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:12,155 Throw jobID:[229686] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/03.map.ref.sh.work/map_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:12,658 Throw jobID:[229734] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/03.map.ref.sh.work/map_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:13,161 Throw jobID:[229772] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/03.map.ref.sh.work/map_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:13,664 Throw jobID:[229809] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/03.map.ref.sh.work/map_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:16,688 align_genome done
+[INFO] 2022-01-19 14:11:16,700 analysis tasks done
+[INFO] 2022-01-19 14:11:16,707 total jobs: 1
+[INFO] 2022-01-19 14:11:16,708 Throw jobID:[230032] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/04.merge.bam.sh.work/merge_bam0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:17,966 merge_bam done
+[INFO] 2022-01-19 14:11:17,973 analysis tasks done
+[INFO] 2022-01-19 14:11:18,004 total jobs: 6
+[INFO] 2022-01-19 14:11:18,005 Throw jobID:[230062] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/05.polish.ref.sh.work/polish_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:18,507 Throw jobID:[230079] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/05.polish.ref.sh.work/polish_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:19,009 Throw jobID:[230093] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/05.polish.ref.sh.work/polish_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:19,512 Throw jobID:[230110] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/05.polish.ref.sh.work/polish_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:20,014 Throw jobID:[230384] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/05.polish.ref.sh.work/polish_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:20,517 Throw jobID:[230398] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/02.score_chain/05.polish.ref.sh.work/polish_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:23,539 polish_genome done
+[INFO] 2022-01-19 14:11:23,540 step 3 and task 2 start:
+[INFO] 2022-01-19 14:11:23,545 analysis tasks done
+[INFO] 2022-01-19 14:11:23,552 total jobs: 1
+[INFO] 2022-01-19 14:11:23,553 Throw jobID:[230425] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/01.merge.ref.sh.work/merge_ref0/merge_ref.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:24,566 merge_ref done
+[INFO] 2022-01-19 14:11:24,570 analysis tasks done
+[INFO] 2022-01-19 14:11:24,581 total jobs: 2
+[INFO] 2022-01-19 14:11:24,582 Throw jobID:[230436] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/02.index.ref.sh.work/index_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:25,085 Throw jobID:[230448] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/02.index.ref.sh.work/index_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:26,880 index_genome done
+[INFO] 2022-01-19 14:11:26,884 analysis tasks done
+[INFO] 2022-01-19 14:11:26,915 total jobs: 6
+[INFO] 2022-01-19 14:11:26,916 Throw jobID:[230747] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/03.map.ref.sh.work/map_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:27,418 Throw jobID:[230762] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/03.map.ref.sh.work/map_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:27,920 Throw jobID:[230822] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/03.map.ref.sh.work/map_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:28,423 Throw jobID:[230870] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/03.map.ref.sh.work/map_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:28,925 Throw jobID:[230908] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/03.map.ref.sh.work/map_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:29,428 Throw jobID:[230945] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/03.map.ref.sh.work/map_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:32,448 align_genome done
+[INFO] 2022-01-19 14:11:32,460 analysis tasks done
+[INFO] 2022-01-19 14:11:32,467 total jobs: 1
+[INFO] 2022-01-19 14:11:32,468 Throw jobID:[231124] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/04.merge.bam.sh.work/merge_bam0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:33,727 merge_bam done
+[INFO] 2022-01-19 14:11:33,734 analysis tasks done
+[INFO] 2022-01-19 14:11:33,765 total jobs: 6
+[INFO] 2022-01-19 14:11:33,766 Throw jobID:[231170] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/05.polish.ref.sh.work/polish_genome0/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:34,269 Throw jobID:[231190] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/05.polish.ref.sh.work/polish_genome1/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:34,771 Throw jobID:[231215] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/05.polish.ref.sh.work/polish_genome2/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:35,274 Throw jobID:[231232] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/05.polish.ref.sh.work/polish_genome3/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:35,777 Throw jobID:[231253] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/05.polish.ref.sh.work/polish_genome4/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:36,278 Throw jobID:[231467] jobCmd:[/scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/05.polish.ref.sh.work/polish_genome5/nextPolish.sh] in the local_cycle.
+[INFO] 2022-01-19 14:11:49,461 polish_genome done
+[INFO] 2022-01-19 14:11:49,461 nextPolish has finished, and final polished genome files:
+[INFO] 2022-01-19 14:11:49,462 [35m /scicomp/home-pure/suj7/micropipe/work/9b/7900a3d6026f4fc51e4736b757715e/03.kmer_count/*polish.ref.sh.work/polish_genome*/genome.nextpolish.part*.fasta [0m

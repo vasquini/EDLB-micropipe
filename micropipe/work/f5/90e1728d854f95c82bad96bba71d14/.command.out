@@ -1,0 +1,13 @@
+Checking program versions
+This is medaka 0.10.0
+Program    Version    Required   Pass     
+bgzip      1.9        1.9        True     
+minimap2   2.17       2.11       True     
+samtools   1.9        1.9        True     
+tabix      1.9        1.9        True     
+Warning: Output /scicomp/home-pure/suj7/micropipe/work/f5/90e1728d854f95c82bad96bba71d14 already exists, may use old results.
+Aligning basecalls to draft
+Removing previous index file /scicomp/home-pure/suj7/micropipe/work/1d/b9c6cce8ef872348b04bc13b6c92ad/flye_racon_4.fasta.mmi
+Running medaka consensus
+Running medaka stitch
+Polished assembly written to /scicomp/home-pure/suj7/micropipe/work/f5/90e1728d854f95c82bad96bba71d14/consensus.fasta, have a nice day.
