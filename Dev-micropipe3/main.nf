@@ -393,8 +393,8 @@ process pycoqc {
 	"""
 }
 
-//Assembly-only Fastqc process
-process fastqc {
+//Assembly-only Fastqc process. Not working
+/*process fastqc {
     cpus 1
     tag "${sample}"
     label "cpu"
@@ -415,33 +415,8 @@ process fastqc {
     cp .command.log fastqc.log
     fastqc --version > fastqc_version.txt
     """
-}
+}*/
 
-process fastqc_simple {
-    publishDir "${params.outdir}", mode: 'copy'
-    tag "$sample"
-    echo false
-    cpus 4
-    container 'staphb/fastqc:0.11.9'
-input:
-    //set val(sample), file(raw), val(type) from fastqc_reads
-    tuple val(barcode), file(long_reads), val(sample), val(genome_size)
-
-output:
-    tuple val(barcode), val(sample), file("*.html"), emit: fastqc_output
-	path("fastqc.log")
-    path("fastqc_version.txt")
-when:
-    !params.skip_qc & !params.basecalling
-
-script:
-'''
-mkdir -p $sample/0_fastqc
-fastqc --outdir ${sample}/0_fastqc ${long_reads}
-cp .command.log fastqc.log
-fastqc --version > fastqc_version.txt
-'''
-}
 
 process rasusa {
 	cpus 1
@@ -753,10 +728,9 @@ workflow assembly {
 	ch_samplesheet
 	ch_samplesheet_illumina
 	main:
-	if (!params.skip_qc) {
+	/*if (!params.skip_qc) {
 		fastqc(ch_samplesheet)
-		//fastqc_simple(ch_samplesheet)
-	}
+	}*/
 
 	if (!params.skip_porechop & !params.skip_filtering) {
 		if (!params.skip_rasusa) {
