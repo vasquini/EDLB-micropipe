@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-nextflow.preview.dsl=2
+nextflow.enable.dsl=2
 
 /*
 ========================================================================================
@@ -53,7 +53,7 @@ def helpMessage() {
 
 	Quality control:
 		--skip_pycoqc				Skip the pycoQC step to generate a quality control html report (when --basecalling)
-        --skip_qc					Skip the fastqc and multiqc steps to generate qc reports.
+                --skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
 	Demultiplexing:
 		--demultiplexing			Flag to run the demultiplexing (default=false)
 		--fastq					Path to the directory containing the ONT fastq files (gzip compressed)
@@ -393,55 +393,48 @@ process pycoqc {
 	"""
 }
 
-//Assembly-only Fastqc process
-process fastqc {
-    cpus 1
-    tag "${sample}"
-    label "cpu"
-    publishDir "$params.outdir/$sample/0_fastqc", mode: 'copy'
+//Fastqc process
+process FASTQC {
+    tag "$sample"
+    publishDir( "${params.outdir}/${sample}/0_fastqc", mode: 'copy' ) 
+    publishDir "$params.outdir/$sample",  mode: 'copy', pattern: "*.log"
+
     input:
         tuple val(barcode), file(long_reads), val(sample), val(genome_size)
     output:
-        tuple val(barcode), file(long_reads), val(sample), val(genome_size),file("*.html"), emit: fastqc_output
-	    path("fastqc.log")
-        path("fastqc_version.txt")
-    when:
-        !params.skip_qc & !params.basecalling
+    path( "*fastqc*" ), emit: fastqc_out
+    
+	when:
+        !params.skip_qc
+
     script:
     """
-    set +eu
-    mkdir -p $sample/0_fastqc
-    fastqc -o $sample/0_fastqc  ${long_reads}
-    cp .command.log fastqc.log
-    fastqc --version > fastqc_version.txt
+    fastqc -t 4 ${long_reads} 
+    cp .command.log ${sample}_fastqc.log
     """
 }
 
-process fastqc_simple {
-    publishDir "${params.outdir}", mode: 'copy'
-    tag "$sample"
-    echo false
-    cpus 4
-    container 'staphb/fastqc:0.11.9'
-input:
-    //set val(sample), file(raw), val(type) from fastqc_reads
-    tuple val(barcode), file(long_reads), val(sample), val(genome_size)
+process MULTIQC {
 
-output:
-    tuple val(barcode), val(sample), file("*.html"), emit: fastqc_output
-	path("fastqc.log")
-    path("fastqc_version.txt")
-when:
-    !params.skip_qc & !params.basecalling
+    // where to store the results and in which way
+    publishDir("${params.outdir}/multiqc_output", mode: 'copy')
+    
+    // show in the log which input file is analysed
+    tag( "${inputfiles}" )
 
-script:
-'''
-mkdir -p $sample/0_fastqc
-fastqc --outdir ${sample}/0_fastqc ${long_reads}
-cp .command.log fastqc.log
-fastqc --version > fastqc_version.txt
-'''
+    input:
+    path( inputfiles )
+
+    output:
+    path "multiqc_report.html", emit: multiqc_report
+
+    script:
+    """
+         multiqc .
+         cp .command.log  multiqc.log
+    """
 }
+
 
 process rasusa {
 	cpus 1
@@ -754,8 +747,8 @@ workflow assembly {
 	ch_samplesheet_illumina
 	main:
 	if (!params.skip_qc) {
-		fastqc(ch_samplesheet)
-		//fastqc_simple(ch_samplesheet)
+		FASTQC(ch_samplesheet) | collect | MULTIQC 
+		MULTIQC.out.view()
 	}
 
 	if (!params.skip_porechop & !params.skip_filtering) {
@@ -885,7 +878,6 @@ workflow {
 			ch_fastq.view()
 			ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
 			ch_data.view()
-                  //MV: FIXME: Potentially need to change to guppy_barcoder
 		} else if (params.demultiplexer == "guppy") {
 			if( params.gpu ) {
 				basecalling_demultiplexing_guppy(fast5)
