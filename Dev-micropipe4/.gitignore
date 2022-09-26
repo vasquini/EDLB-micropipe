@@ -1,2 +1,2 @@
-*/modules/local/.nextflow/cache/*
-*/modules/local/.nf-test/*
+**/modules/local/.nextflow/cache/*
+**/modules/local/.nf-test/*

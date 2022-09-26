@@ -848,6 +848,8 @@ workflow assembly {
 	}
 }
 
+//Workflow testing 
+
 workflow {
 	//basecalling, demultiplexing and assembly workflow
 	if( params.basecalling && params.demultiplexing) {
