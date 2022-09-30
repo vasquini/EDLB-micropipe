@@ -1,0 +1,52 @@
+Checking program versions
+This is medaka 1.6.0
+Program    Version    Required   Pass     
+bcftools   1.15       1.11       True     
+bgzip      1.15       1.11       True     
+minimap2   2.24       2.11       True     
+samtools   1.15       1.11       True     
+tabix      1.15       1.11       True     
+Warning: Output /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/14/d507b88a6ed6e64ac5a5824235a5e9 already exists, may use old results.
+Aligning basecalls to draft
+Creating fai index file /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/26/1e36bbb371af165a4f15bf51947b99/flye_racon_4.fasta.fai
+Creating mmi index file /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/26/1e36bbb371af165a4f15bf51947b99/flye_racon_4.fasta.map-ont.mmi
+[M::mm_idx_gen::0.004*0.98] collected minimizers
+[M::mm_idx_gen::0.006*1.43] sorted minimizers
+[M::main::0.007*1.33] loaded/built the index for 2 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 2
+[M::mm_idx_stat::0.008*1.32] distinct minimizers: 6405 (99.98% are singletons); average occurrences: 1.000; average spacing: 5.331; total length: 34148
+[M::main] Version: 2.24-r1122
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/26/1e36bbb371af165a4f15bf51947b99/flye_racon_4.fasta.map-ont.mmi /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/26/1e36bbb371af165a4f15bf51947b99/flye_racon_4.fasta
+[M::main] Real time: 0.012 sec; CPU: 0.011 sec; Peak RSS: 0.003 GB
+[M::main::0.005*1.11] loaded/built the index for 2 target sequence(s)
+[M::mm_mapopt_update::0.005*1.10] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 2
+[M::mm_idx_stat::0.005*1.09] distinct minimizers: 6405 (99.98% are singletons); average occurrences: 1.000; average spacing: 5.331; total length: 34148
+[M::worker_pipeline::0.071*2.37] mapped 426 sequences
+[M::main] Version: 2.24-r1122
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 8 -a /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/26/1e36bbb371af165a4f15bf51947b99/flye_racon_4.fasta.map-ont.mmi /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/29/9fc0a87be97cebdf4e09dea8d8ffc4/filtered.fastq.gz
+[M::main] Real time: 0.073 sec; CPU: 0.170 sec; Peak RSS: 0.029 GB
+Running medaka consensus
+[14:22:03 - Predict] Reducing threads to 2, anymore is a waste.
+[14:22:03 - Predict] It looks like you are running medaka without a GPU and attempted to set a high number of threads. We have scaled this down to an optimal number. If you wish to improve performance please see https://nanoporetech.github.io/medaka/installation.html#improving-parallelism.
+[14:22:03 - Predict] Setting tensorflow inter/intra-op threads to 2/1.
+[14:22:03 - Predict] Processing region(s): contig_1:0-18749 contig_2:0-15399
+[14:22:03 - Predict] Using model: /usr/local/lib/python3.8/site-packages/medaka/data/r941_min_sup_g507_model.tar.gz.
+[14:22:03 - Predict] Processing 2 long region(s) with batching.
+[14:22:04 - MdlStrTF] Model <tensorflow.python.keras.engine.sequential.Sequential object at 0x2b3c8b8675b0>
+[14:22:04 - MdlStrTF] loading weights from /tmp/11138928.1.gpu.q/tmp1gji__zq/model/variables/variables
+[14:22:04 - BAMFile] Creating pool of 16 BAM file sets.
+[14:22:04 - Sampler] Initializing sampler for consensus of region contig_1:0-18749.
+[14:22:04 - Sampler] Initializing sampler for consensus of region contig_2:0-15399.
+[14:22:04 - PWorker] Running inference for 0.0M draft bases.
+[14:22:05 - Feature] Processed contig_2:0.0-15398.0 (median depth 3.0)
+[14:22:05 - Sampler] Took 0.22s to make features.
+[14:22:05 - Feature] Processed contig_1:0.0-18748.0 (median depth 3.0)
+[14:22:05 - Sampler] Took 0.26s to make features.
+[14:22:09 - PWorker] Processed 1 batches
+[14:22:09 - PWorker] All done, 0 remainder regions.
+[14:22:09 - Predict] Finished processing all regions.
+[14:22:11 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[14:22:11 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[14:22:11 - DataIndx] Loaded 1/1 (100.00%) sample files.
+Polished assembly written to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/14/d507b88a6ed6e64ac5a5824235a5e9/consensus.fasta, have a nice day.

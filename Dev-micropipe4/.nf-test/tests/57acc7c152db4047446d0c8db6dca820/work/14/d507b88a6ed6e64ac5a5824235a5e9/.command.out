@@ -1,0 +1,12 @@
+Checking program versions
+This is medaka 1.6.0
+Program    Version    Required   Pass     
+bcftools   1.15       1.11       True     
+bgzip      1.15       1.11       True     
+minimap2   2.24       2.11       True     
+samtools   1.15       1.11       True     
+tabix      1.15       1.11       True     
+Warning: Output /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/14/d507b88a6ed6e64ac5a5824235a5e9 already exists, may use old results.
+Aligning basecalls to draft
+Running medaka consensus
+Polished assembly written to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/14/d507b88a6ed6e64ac5a5824235a5e9/consensus.fasta, have a nice day.

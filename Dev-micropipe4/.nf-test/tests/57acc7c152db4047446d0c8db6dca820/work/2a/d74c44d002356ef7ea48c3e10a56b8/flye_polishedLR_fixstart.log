@@ -1,0 +1,3 @@
+[fixstart]	id	break_point	gene_name	gene_reversed	new_name	skipped
+[fixstart]	contig_1	9690	prodigal	yes	-	-
+[fixstart]	contig_2	7635	prodigal	no	-	-

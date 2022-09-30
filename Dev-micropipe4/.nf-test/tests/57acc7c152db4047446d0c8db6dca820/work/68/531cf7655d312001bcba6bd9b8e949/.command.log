@@ -1,0 +1,154 @@
+WARNING: Skipping mount /usr/local/var/singularity/mnt/session/etc/resolv.conf [files]: /etc/resolv.conf doesn't exist in container
+
+[1m[4mLoading reads[0m
+GXB01322_20181217_FAK35493_GA10000.fastq.gz
+426 reads loaded
+
+
+[1m[4mLooking for known adapter sets[0m
+0 / 426 (0.0%)10 / 426 (2.3%)20 / 426 (4.7%)30 / 426 (7.0%)40 / 426 (9.4%)50 / 426 (11.7%)60 / 426 (14.1%)70 / 426 (16.4%)80 / 426 (18.8%)90 / 426 (21.1%)100 / 426 (23.5%)110 / 426 (25.8%)120 / 426 (28.2%)130 / 426 (30.5%)140 / 426 (32.9%)150 / 426 (35.2%)160 / 426 (37.6%)170 / 426 (39.9%)180 / 426 (42.3%)190 / 426 (44.6%)200 / 426 (46.9%)210 / 426 (49.3%)220 / 426 (51.6%)230 / 426 (54.0%)240 / 426 (56.3%)250 / 426 (58.7%)260 / 426 (61.0%)270 / 426 (63.4%)280 / 426 (65.7%)290 / 426 (68.1%)300 / 426 (70.4%)310 / 426 (72.8%)320 / 426 (75.1%)330 / 426 (77.5%)340 / 426 (79.8%)350 / 426 (82.2%)360 / 426 (84.5%)370 / 426 (86.9%)380 / 426 (89.2%)390 / 426 (91.5%)400 / 426 (93.9%)410 / 426 (96.2%)420 / 426 (98.6%)426 / 426 (100.0%)426 / 426 (100.0%)
+                                        Best               [0m
+                                        read       Best    [0m
+                                        start      read end[0m
+  [4mSet                                   %ID        %ID     [0m
+  SQK-NSK007                                82.8       70.8
+  [32mRapid                                    100.0        0.0[0m
+  SQK-MAP006                                73.3       73.9
+  SQK-MAP006 Short                          85.2       73.1
+  PCR adapters 1                            73.9       75.0
+  PCR tail 1                                69.7       71.0
+  PCR tail 2                                67.7       70.0
+  1D^2 part 1                               70.0       70.0
+  1D^2 part 2                               76.5       71.0
+  Barcode 1 (reverse)                       72.0       73.1
+  Barcode 2 (reverse)                       70.8       74.1
+  Barcode 3 (reverse)                       73.1       75.0
+  Barcode 4 (reverse)                       70.4       70.8
+  Barcode 5 (reverse)                       73.1       74.1
+  Barcode 6 (reverse)                       73.1       75.0
+  Barcode 7 (reverse)                       73.1       70.8
+  Barcode 8 (reverse)                       68.0       72.4
+  Barcode 9 (reverse)                       70.8       75.0
+  Barcode 10 (reverse)                      74.1       70.8
+  Barcode 11 (reverse)                      72.4       73.1
+  Barcode 12 (reverse)                      74.1       72.0
+  Barcode 1 (forward)                       71.4       75.0
+  Barcode 2 (forward)                       76.9       73.1
+  Barcode 3 (forward)                       73.1       75.0
+  [32mBarcode 4 (forward)                      100.0       72.0[0m
+  Barcode 5 (forward)                       76.9       73.1
+  Barcode 6 (forward)                       68.0       76.9
+  Barcode 7 (forward)                       71.4       73.1
+  Barcode 8 (forward)                       69.2       75.0
+  Barcode 9 (forward)                       69.2       74.1
+  Barcode 10 (forward)                      72.0       73.1
+  Barcode 11 (forward)                      69.2       76.0
+  Barcode 12 (forward)                      70.8       72.0
+  Barcode 13 (forward)                      72.0       75.0
+  Barcode 14 (forward)                      69.2       72.0
+  Barcode 15 (forward)                      70.4       76.0
+  Barcode 16 (forward)                      69.2       72.0
+  Barcode 17 (forward)                      75.0       72.0
+  Barcode 18 (forward)                      68.0       72.0
+  Barcode 19 (forward)                      75.0       74.1
+  Barcode 20 (forward)                      79.2       76.9
+  Barcode 21 (forward)                      70.8       75.0
+  Barcode 22 (forward)                      73.1       72.0
+  Barcode 23 (forward)                      70.8       73.1
+  Barcode 24 (forward)                      72.0       71.4
+  Barcode 25 (forward)                      70.8       71.4
+  Barcode 26 (forward)                      76.0       73.1
+  Barcode 27 (forward)                      68.0       76.9
+  Barcode 28 (forward)                      70.8       72.0
+  Barcode 29 (forward)                      70.4       76.0
+  Barcode 30 (forward)                      74.1       72.0
+  Barcode 31 (forward)                      74.1       72.0
+  Barcode 32 (forward)                      70.8       76.9
+  Barcode 33 (forward)                      70.8       71.4
+  Barcode 34 (forward)                      70.4       76.9
+  Barcode 35 (forward)                      70.8       75.0
+  Barcode 36 (forward)                      68.0       72.0
+  Barcode 37 (forward)                      75.0       76.0
+  Barcode 38 (forward)                      72.4       75.0
+  Barcode 39 (forward)                      70.8       73.1
+  Barcode 40 (forward)                      70.8       76.0
+  Barcode 41 (forward)                      72.0       76.0
+  Barcode 42 (forward)                      68.0       73.1
+  Barcode 43 (forward)                      74.1       76.9
+  Barcode 44 (forward)                      70.0       76.0
+  Barcode 45 (forward)                      69.2       75.0
+  Barcode 46 (forward)                      79.2       72.4
+  Barcode 47 (forward)                      76.0       72.0
+  Barcode 48 (forward)                      73.1       76.9
+  Barcode 49 (forward)                      74.1       72.0
+  Barcode 50 (forward)                      74.1       72.4
+  Barcode 51 (forward)                      69.2       73.1
+  Barcode 52 (forward)                      69.2       72.0
+  Barcode 53 (forward)                      73.1       76.9
+  Barcode 54 (forward)                      72.0       75.0
+  Barcode 55 (forward)                      70.4       73.1
+  Barcode 56 (forward)                      69.2       77.8
+  Barcode 57 (forward)                      73.1       74.1
+  Barcode 58 (forward)                      75.0       74.1
+  Barcode 59 (forward)                      72.0       72.0
+  Barcode 60 (forward)                      72.0       72.0
+  Barcode 61 (forward)                      70.4       74.1
+  Barcode 62 (forward)                      68.0       76.0
+  Barcode 63 (forward)                      76.0       75.0
+  Barcode 64 (forward)                      77.8       75.0
+  Barcode 65 (forward)                      75.0       75.0
+  Barcode 66 (forward)                      71.4       76.0
+  Barcode 67 (forward)                      71.4       72.0
+  Barcode 68 (forward)                      66.7       70.8
+  Barcode 69 (forward)                      71.4       73.1
+  Barcode 70 (forward)                      72.0       75.0
+  Barcode 71 (forward)                      70.8       76.0
+  Barcode 72 (forward)                      72.0       76.0
+  Barcode 73 (forward)                      69.0       84.6
+  Barcode 74 (forward)                      73.1       73.1
+  Barcode 75 (forward)                      72.0       72.0
+  Barcode 76 (forward)                      72.0       76.0
+  Barcode 77 (forward)                      70.8       70.4
+  Barcode 78 (forward)                      69.0       73.3
+  Barcode 79 (forward)                      72.0       74.1
+  Barcode 80 (forward)                      72.0       70.8
+  Barcode 81 (forward)                      71.4       73.1
+  Barcode 82 (forward)                      70.8       75.0
+  Barcode 83 (forward)                      72.0       73.3
+  Barcode 84 (forward)                      70.8       76.0
+  Barcode 85 (forward)                      70.4       76.9
+  Barcode 86 (forward)                      70.4       73.1
+  Barcode 87 (forward)                      72.0       69.0
+  Barcode 88 (forward)                      69.2       73.1
+  Barcode 89 (forward)                      70.8       73.1
+  Barcode 90 (forward)                      72.0       72.0
+  Barcode 91 (forward)                      68.0       73.1
+  Barcode 92 (forward)                      72.0       80.0
+  Barcode 93 (forward)                      79.2       70.8
+  Barcode 94 (forward)                      70.4       70.4
+  Barcode 95 (forward)                      70.4       73.1
+  Barcode 96 (forward)                      70.4       75.0
+
+
+[1m[4mTrimming adapters from read ends[0m
+  Rapid_adapter: [31mGTTTTCGCATTTATCGTGAAACGCTTTCGCGTTTTTCGTGCGCCGCTTCA[0m
+           BC04: [31mTTCGGATTCTATCGTGTTTCCCTA[0m
+       BC04_rev: [31mTAGGGAAACACGATAGAATCCGAA[0m
+
+0 / 426 (0.0%)10 / 426 (2.3%)20 / 426 (4.7%)30 / 426 (7.0%)40 / 426 (9.4%)50 / 426 (11.7%)60 / 426 (14.1%)70 / 426 (16.4%)80 / 426 (18.8%)90 / 426 (21.1%)100 / 426 (23.5%)110 / 426 (25.8%)120 / 426 (28.2%)130 / 426 (30.5%)140 / 426 (32.9%)150 / 426 (35.2%)160 / 426 (37.6%)170 / 426 (39.9%)180 / 426 (42.3%)190 / 426 (44.6%)200 / 426 (46.9%)210 / 426 (49.3%)220 / 426 (51.6%)230 / 426 (54.0%)240 / 426 (56.3%)250 / 426 (58.7%)260 / 426 (61.0%)270 / 426 (63.4%)280 / 426 (65.7%)290 / 426 (68.1%)300 / 426 (70.4%)310 / 426 (72.8%)320 / 426 (75.1%)330 / 426 (77.5%)340 / 426 (79.8%)350 / 426 (82.2%)360 / 426 (84.5%)370 / 426 (86.9%)380 / 426 (89.2%)390 / 426 (91.5%)400 / 426 (93.9%)410 / 426 (96.2%)420 / 426 (98.6%)426 / 426 (100.0%)426 / 426 (100.0%)
+
+423 / 426 reads had adapters trimmed from their start (46,743 bp removed)
+  9 / 426 reads had adapters trimmed from their end (69 bp removed)
+
+
+[1m[4mSplitting reads containing middle adapters[0m
+0 / 426 (0.0%)10 / 426 (2.3%)20 / 426 (4.7%)30 / 426 (7.0%)40 / 426 (9.4%)50 / 426 (11.7%)60 / 426 (14.1%)70 / 426 (16.4%)80 / 426 (18.8%)90 / 426 (21.1%)100 / 426 (23.5%)110 / 426 (25.8%)120 / 426 (28.2%)130 / 426 (30.5%)140 / 426 (32.9%)150 / 426 (35.2%)160 / 426 (37.6%)170 / 426 (39.9%)180 / 426 (42.3%)190 / 426 (44.6%)200 / 426 (46.9%)210 / 426 (49.3%)220 / 426 (51.6%)230 / 426 (54.0%)240 / 426 (56.3%)250 / 426 (58.7%)260 / 426 (61.0%)270 / 426 (63.4%)280 / 426 (65.7%)290 / 426 (68.1%)300 / 426 (70.4%)310 / 426 (72.8%)320 / 426 (75.1%)330 / 426 (77.5%)340 / 426 (79.8%)350 / 426 (82.2%)360 / 426 (84.5%)370 / 426 (86.9%)380 / 426 (89.2%)390 / 426 (91.5%)400 / 426 (93.9%)410 / 426 (96.2%)420 / 426 (98.6%)426 / 426 (100.0%)426 / 426 (100.0%)
+
+5 / 426 reads were split based on middle adapters
+
+
+[1m[4mSaving trimmed reads to file[0m
+pigz not found - using gzip to compress
+
+Saved result to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/68/531cf7655d312001bcba6bd9b8e949/trimmed.fastq.gz
+

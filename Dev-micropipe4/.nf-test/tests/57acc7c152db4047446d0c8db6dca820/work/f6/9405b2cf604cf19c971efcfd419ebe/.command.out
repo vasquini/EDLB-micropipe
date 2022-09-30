@@ -1,0 +1,61 @@
+/usr/local/bin/quast.py -o /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe -t 1 -l GXB01322_20181217_FAK35493_GA10000 flye_polishedLR_fixstart.fasta
+
+Version: 5.0.2
+
+System information:
+  OS: Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-debian-8.11 (linux_64)
+  Python version: 3.7.6
+  CPUs number: 20
+
+Started: 2022-09-29 14:22:19
+
+Logging to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/quast.log
+
+CWD: /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe
+Main parameters: 
+  MODE: default, threads: 1, minimum contig length: 500, minimum alignment length: 65, \
+  ambiguity: one, threshold for extensive misassembly size: 1000
+
+Contigs:
+  Pre-processing...
+  flye_polishedLR_fixstart.fasta ==> GXB01322_20181217_FAK35493_GA10000
+
+2022-09-29 14:22:20
+Running Basic statistics processor...
+  Contig files: 
+    GXB01322_20181217_FAK35493_GA10000
+  Calculating N50 and L50...
+    GXB01322_20181217_FAK35493_GA10000, N50 = 18775, L50 = 1, Total length = 34204, GC % = 61.29, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/basic_stats/GC_content_plot.pdf
+  Drawing GXB01322_20181217_FAK35493_GA10000 GC content plot...
+    saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/basic_stats/GXB01322_20181217_FAK35493_GA10000_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2022-09-29 14:22:21
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating Icarus viewers...
+  2 of 2: Creating PDF with all tables and plots...
+Done
+
+2022-09-29 14:22:22
+RESULTS:
+  Text versions of total report are saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/report.html
+  PDF version (tables and plots) is saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/report.pdf
+  Icarus (contig browser) is saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/icarus.html
+  Log is saved to /scicomp/home-pure/suj7/Dev-micropipe4/.nf-test/tests/57acc7c152db4047446d0c8db6dca820/work/f6/9405b2cf604cf19c971efcfd419ebe/quast.log
+
+Finished: 2022-09-29 14:22:22
+Elapsed time: 0:00:02.459936
+NOTICEs: 1; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
