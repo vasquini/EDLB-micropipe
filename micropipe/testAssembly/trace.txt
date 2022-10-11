@@ -1,9 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	59/8d3fd8	198507	assembly:porechop (S24)	COMPLETED	0	2022-01-19 13:50:56.486	8m 45s	8m 43s	355.8%	1.2 MB	11 MB	151.8 MB	144.1 MB
-2	56/288892	204446	assembly:japsa (S24)	COMPLETED	0	2022-01-19 14:00:31.837	14.5s	13.7s	104.7%	166.3 MB	18.4 GB	62.1 MB	48.6 MB
-3	b3/35d7df	206482	assembly:flye (S24)	COMPLETED	0	2022-01-19 14:00:58.060	3m 44s	3m 42s	293.7%	1.2 MB	11 MB	1.7 GB	1.2 GB
-4	1d/b9c6cc	216919	assembly:racon_cpu (S24)	COMPLETED	0	2022-01-19 14:05:54.294	1m 1s	59.8s	377.7%	250.4 MB	545.9 MB	893.7 MB	457.9 MB
-5	f5/90e172	219450	assembly:medaka_cpu (S24)	COMPLETED	0	2022-01-19 14:07:46.342	1m 58s	1m 57s	2319.5%	1.2 MB	11 MB	687.8 MB	361.1 MB
-6	9b/7900a3	223780	assembly:nextpolish (S24)	COMPLETED	0	2022-01-19 14:10:25.267	1m 25s	1m 25s	302.4%	1.2 GB	2.7 GB	12.7 GB	372 MB
-7	24/7a2a02	234664	assembly:fixstart (S24)	COMPLETED	0	2022-01-19 14:13:20.648	30.5s	29s	106.7%	1.2 MB	11 MB	283 MB	259.6 MB
-8	3e/448202	236404	assembly:quast (S24)	COMPLETED	0	2022-01-19 14:15:03.030	4.3s	3.3s	947.2%	76.5 MB	5.2 GB	78.4 MB	9.1 MB

@@ -1,7 +1,0 @@
-2022-01-19 13:43:29	4.2s	festering_mccarthy	ERR	064d528fa3031df0adeea16c3efadcc3	96f1b556-30d8-4e8b-9aa5-06f13df8c53e	nextflow main.nf --samplesheet ../samples_1.csv --outdir ../testAssembly
-2022-01-19 13:46:59	3.8s	ridiculous_lamarck	ERR	064d528fa3031df0adeea16c3efadcc3	1760a577-2640-479f-847f-c1f7b19e8da6	nextflow main.nf --samplesheet test_data/samples_1.csv --outdir testAssembly
-2022-01-19 13:50:34	24m 34s	nice_wright	OK	064d528fa3031df0adeea16c3efadcc3	e74ad584-478d-408b-83a7-b13d54e4ed64	nextflow main.nf --samplesheet test_data/samples_1.csv --outdir testAssembly
-2022-01-27 13:19:29	5.3s	desperate_turing	ERR	064d528fa3031df0adeea16c3efadcc3	24030920-19a4-4ba6-8b0f-c00ad5195120	nextflow main.nf --demultiplexing --samplesheet ../samplesheet.csv --fastq ../test_data/ --datadir /path/to/datadir/ --outdir DemuxAndAssemblyTest
-2022-01-27 13:20:20	4.7s	serene_descartes	ERR	064d528fa3031df0adeea16c3efadcc3	07cbf500-e962-4a64-8e5c-321730c98e8b	nextflow main.nf --demultiplexing --samplesheet ../samplesheet.csv --fastq ../test_data/fq/ --datadir /path/to/datadir/ --outdir DemuxAndAssemblyTest
-2022-01-27 13:36:46	5.9s	stupefied_fermat	ERR	064d528fa3031df0adeea16c3efadcc3	8c50fb47-4307-42d1-a380-a6b448ef425e	nextflow main.nf --demultiplexing --samplesheet ../samples_1_basecalling.csv --fastq ../test_data/fq/ --datadir /test_data/ --outdir DemuxAndAssemblyTest
-2022-01-31 09:45:41	4.6s	high_newton	ERR	064d528fa3031df0adeea16c3efadcc3	1243abc4-da08-40e1-8072-5f7d6480965b	nextflow main.nf --samplesheet 12c.txt --outdir microout

@@ -1,1 +1,0 @@
-@PG	ID:minimap2	PN:minimap2	VN:2.17-r941	CL:minimap2 -x map-ont -t 4 -a -p 0.7 -N 10 /scicomp/home-pure/suj7/micropipe/work/b3/35d7dfb47b06677c4efccbf7e94dd5/22-plasmids/chunks_1.fasta /scicomp/home-pure/suj7/micropipe/work/b3/35d7dfb47b06677c4efccbf7e94dd5/22-plasmids/unmapped_reads.fasta
