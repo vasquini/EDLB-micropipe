@@ -1,76 +1,0 @@
-[M::mm_idx_gen::0.004*4.95] collected minimizers
-[M::mm_idx_gen::0.006*4.58] sorted minimizers
-[M::main::0.006*4.56] loaded/built the index for 2 target sequence(s)
-[M::mm_mapopt_update::0.006*4.37] mid_occ = 3
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 2
-[M::mm_idx_stat::0.006*4.23] distinct minimizers: 6452 (99.97% are singletons); average occurrences: 1.000; average spacing: 5.308; total length: 34259
-[M::worker_pipeline::0.079*2.15] mapped 426 sequences
-[M::main] Version: 2.17-r974-dirty
-[M::main] CMD: minimap2 -t 4 -ax map-ont flye_racon_0.fasta filtered.fastq.gz
-[M::main] Real time: 0.081 sec; CPU: 0.171 sec; Peak RSS: 0.020 GB
-[racon::Polisher::initialize] loaded target sequences 0.000228 s
-[racon::Polisher::initialize] loaded sequences 0.047047 s
-[racon::Polisher::initialize] loaded overlaps 0.013558 s
-[racon::Polisher::initialize] aligned overlaps 0.002900 s
-[racon::Polisher::initialize] transformed data into windows 0.000180 s
-[racon::Polisher::polish] generating consensus [=>                  ] 0.002005 s[racon::Polisher::polish] generating consensus [==>                 ] 0.003201 s[racon::Polisher::polish] generating consensus [===>                ] 0.004476 s[racon::Polisher::polish] generating consensus [====>               ] 0.004979 s[racon::Polisher::polish] generating consensus [=====>              ] 0.006220 s[racon::Polisher::polish] generating consensus [======>             ] 0.007446 s[racon::Polisher::polish] generating consensus [=======>            ] 0.008188 s[racon::Polisher::polish] generating consensus [========>           ] 0.008847 s[racon::Polisher::polish] generating consensus [=========>          ] 0.010047 s[racon::Polisher::polish] generating consensus [==========>         ] 0.010396 s[racon::Polisher::polish] generating consensus [===========>        ] 0.010431 s[racon::Polisher::polish] generating consensus [============>       ] 0.010451 s[racon::Polisher::polish] generating consensus [=============>      ] 0.011337 s[racon::Polisher::polish] generating consensus [==============>     ] 0.011695 s[racon::Polisher::polish] generating consensus [===============>    ] 0.012666 s[racon::Polisher::polish] generating consensus [================>   ] 0.013938 s[racon::Polisher::polish] generating consensus [=================>  ] 0.015112 s[racon::Polisher::polish] generating consensus [==================> ] 0.015536 s[racon::Polisher::polish] generating consensus [===================>] 0.016460 s[racon::Polisher::polish] generating consensus [====================] 0.019375 s
-[racon::Polisher::] total = 0.083531 s
-python3: can't open file '/scicomp/home-pure/suj7/Dev-micropipe4/bin/rotate_circular_fasta.py': [Errno 2] No such file or directory
-cp: cannot stat 'flye_racon_1.tmp.fasta': No such file or directory
-[M::mm_idx_gen::0.004*1.23] collected minimizers
-[M::mm_idx_gen::0.006*2.09] sorted minimizers
-[M::main::0.006*2.09] loaded/built the index for 2 target sequence(s)
-[M::mm_mapopt_update::0.006*2.02] mid_occ = 2
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 2
-[M::mm_idx_stat::0.006*1.98] distinct minimizers: 6406 (99.98% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 34149
-[M::worker_pipeline::0.078*1.93] mapped 426 sequences
-[M::main] Version: 2.17-r974-dirty
-[M::main] CMD: minimap2 -t 4 -ax map-ont flye_racon_1.fasta filtered.fastq.gz
-[M::main] Real time: 0.081 sec; CPU: 0.151 sec; Peak RSS: 0.011 GB
-[racon::Polisher::initialize] loaded target sequences 0.000230 s
-[racon::Polisher::initialize] loaded sequences 0.047105 s
-[racon::Polisher::initialize] loaded overlaps 0.013104 s
-[racon::Polisher::initialize] aligned overlaps 0.003156 s
-[racon::Polisher::initialize] transformed data into windows 0.000185 s
-[racon::Polisher::polish] generating consensus [=>                  ] 0.001817 s[racon::Polisher::polish] generating consensus [==>                 ] 0.003096 s[racon::Polisher::polish] generating consensus [===>                ] 0.004373 s[racon::Polisher::polish] generating consensus [====>               ] 0.004840 s[racon::Polisher::polish] generating consensus [=====>              ] 0.005849 s[racon::Polisher::polish] generating consensus [======>             ] 0.007326 s[racon::Polisher::polish] generating consensus [=======>            ] 0.008443 s[racon::Polisher::polish] generating consensus [========>           ] 0.008651 s[racon::Polisher::polish] generating consensus [=========>          ] 0.009882 s[racon::Polisher::polish] generating consensus [==========>         ] 0.010358 s[racon::Polisher::polish] generating consensus [===========>        ] 0.010391 s[racon::Polisher::polish] generating consensus [============>       ] 0.010407 s[racon::Polisher::polish] generating consensus [=============>      ] 0.011119 s[racon::Polisher::polish] generating consensus [==============>     ] 0.011643 s[racon::Polisher::polish] generating consensus [===============>    ] 0.012605 s[racon::Polisher::polish] generating consensus [================>   ] 0.013747 s[racon::Polisher::polish] generating consensus [=================>  ] 0.014918 s[racon::Polisher::polish] generating consensus [==================> ] 0.015443 s[racon::Polisher::polish] generating consensus [===================>] 0.016311 s[racon::Polisher::polish] generating consensus [====================] 0.019286 s
-[racon::Polisher::] total = 0.083331 s
-python3: can't open file '/scicomp/home-pure/suj7/Dev-micropipe4/bin/rotate_circular_fasta.py': [Errno 2] No such file or directory
-cp: cannot stat 'flye_racon_2.tmp.fasta': No such file or directory
-[M::mm_idx_gen::0.004*1.17] collected minimizers
-[M::mm_idx_gen::0.006*2.15] sorted minimizers
-[M::main::0.006*2.14] loaded/built the index for 2 target sequence(s)
-[M::mm_mapopt_update::0.006*2.07] mid_occ = 2
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 2
-[M::mm_idx_stat::0.006*2.03] distinct minimizers: 6405 (99.98% are singletons); average occurrences: 1.000; average spacing: 5.331; total length: 34148
-[M::worker_pipeline::0.079*1.90] mapped 426 sequences
-[M::main] Version: 2.17-r974-dirty
-[M::main] CMD: minimap2 -t 4 -ax map-ont flye_racon_2.fasta filtered.fastq.gz
-[M::main] Real time: 0.081 sec; CPU: 0.152 sec; Peak RSS: 0.018 GB
-[racon::Polisher::initialize] loaded target sequences 0.000217 s
-[racon::Polisher::initialize] loaded sequences 0.046959 s
-[racon::Polisher::initialize] loaded overlaps 0.013406 s
-[racon::Polisher::initialize] aligned overlaps 0.003035 s
-[racon::Polisher::initialize] transformed data into windows 0.000184 s
-[racon::Polisher::polish] generating consensus [=>                  ] 0.002168 s[racon::Polisher::polish] generating consensus [==>                 ] 0.003161 s[racon::Polisher::polish] generating consensus [===>                ] 0.004430 s[racon::Polisher::polish] generating consensus [====>               ] 0.004921 s[racon::Polisher::polish] generating consensus [=====>              ] 0.006041 s[racon::Polisher::polish] generating consensus [======>             ] 0.007401 s[racon::Polisher::polish] generating consensus [=======>            ] 0.008209 s[racon::Polisher::polish] generating consensus [========>           ] 0.008723 s[racon::Polisher::polish] generating consensus [=========>          ] 0.010050 s[racon::Polisher::polish] generating consensus [==========>         ] 0.010151 s[racon::Polisher::polish] generating consensus [===========>        ] 0.010184 s[racon::Polisher::polish] generating consensus [============>       ] 0.010200 s[racon::Polisher::polish] generating consensus [=============>      ] 0.011206 s[racon::Polisher::polish] generating consensus [==============>     ] 0.011445 s[racon::Polisher::polish] generating consensus [===============>    ] 0.012666 s[racon::Polisher::polish] generating consensus [================>   ] 0.013958 s[racon::Polisher::polish] generating consensus [=================>  ] 0.015014 s[racon::Polisher::polish] generating consensus [==================> ] 0.015261 s[racon::Polisher::polish] generating consensus [===================>] 0.016424 s[racon::Polisher::polish] generating consensus [====================] 0.019329 s
-[racon::Polisher::] total = 0.083381 s
-python3: can't open file '/scicomp/home-pure/suj7/Dev-micropipe4/bin/rotate_circular_fasta.py': [Errno 2] No such file or directory
-cp: cannot stat 'flye_racon_3.tmp.fasta': No such file or directory
-[M::mm_idx_gen::0.004*1.26] collected minimizers
-[M::mm_idx_gen::0.005*2.13] sorted minimizers
-[M::main::0.005*2.13] loaded/built the index for 2 target sequence(s)
-[M::mm_mapopt_update::0.006*2.06] mid_occ = 2
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 2
-[M::mm_idx_stat::0.006*2.01] distinct minimizers: 6406 (99.98% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 34151
-[M::worker_pipeline::0.079*1.92] mapped 426 sequences
-[M::main] Version: 2.17-r974-dirty
-[M::main] CMD: minimap2 -t 4 -ax map-ont flye_racon_3.fasta filtered.fastq.gz
-[M::main] Real time: 0.081 sec; CPU: 0.153 sec; Peak RSS: 0.019 GB
-[racon::Polisher::initialize] loaded target sequences 0.000234 s
-[racon::Polisher::initialize] loaded sequences 0.047184 s
-[racon::Polisher::initialize] loaded overlaps 0.008749 s
-[racon::Polisher::initialize] aligned overlaps 0.002611 s
-[racon::Polisher::initialize] transformed data into windows 0.000179 s
-[racon::Polisher::polish] generating consensus [=>                  ] 0.002177 s[racon::Polisher::polish] generating consensus [==>                 ] 0.003037 s[racon::Polisher::polish] generating consensus [===>                ] 0.004192 s[racon::Polisher::polish] generating consensus [====>               ] 0.004888 s[racon::Polisher::polish] generating consensus [=====>              ] 0.005860 s[racon::Polisher::polish] generating consensus [======>             ] 0.007269 s[racon::Polisher::polish] generating consensus [=======>            ] 0.007952 s[racon::Polisher::polish] generating consensus [========>           ] 0.008613 s[racon::Polisher::polish] generating consensus [=========>          ] 0.009900 s[racon::Polisher::polish] generating consensus [==========>         ] 0.010108 s[racon::Polisher::polish] generating consensus [===========>        ] 0.010142 s[racon::Polisher::polish] generating consensus [============>       ] 0.010165 s[racon::Polisher::polish] generating consensus [=============>      ] 0.011026 s[racon::Polisher::polish] generating consensus [==============>     ] 0.011403 s[racon::Polisher::polish] generating consensus [===============>    ] 0.012466 s[racon::Polisher::polish] generating consensus [================>   ] 0.013699 s[racon::Polisher::polish] generating consensus [=================>  ] 0.014820 s[racon::Polisher::polish] generating consensus [==================> ] 0.015229 s[racon::Polisher::polish] generating consensus [===================>] 0.016248 s[racon::Polisher::polish] generating consensus [====================] 0.019150 s
-[racon::Polisher::] total = 0.078364 s
-python3: can't open file '/scicomp/home-pure/suj7/Dev-micropipe4/bin/rotate_circular_fasta.py': [Errno 2] No such file or directory
-cp: cannot stat 'flye_racon_4.tmp.fasta': No such file or directory
