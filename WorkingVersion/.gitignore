@@ -1,0 +1,5 @@
+**/modules/local/.nextflow/*
+**/modules/local/.nf-test/*
+**/.nf-test/**
+**/.nextflow/**
+
