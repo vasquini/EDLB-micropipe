@@ -2,4 +2,4 @@
 **/modules/local/.nf-test/*
 **/.nf-test/**
 **/.nextflow/**
-
+**/ModuleTestResults/**
