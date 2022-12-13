@@ -3,4 +3,5 @@
 **/modules/local/.nextflow/cache/*
 **/modules/local/.nf-test/*
 **/ModuleTestResults/*timeline.html.*/**
-
+~/.conda/envs/**
+~/.cache/**
