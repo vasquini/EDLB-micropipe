@@ -1,6 +1,0 @@
-**/ModuleTestResults/**
-**/.nf-test/tests/**
-**/modules/local/.nextflow/cache/*
-**/modules/local/.nf-test/*
-**/ModuleTestResults/*timeline.html.*/**
-

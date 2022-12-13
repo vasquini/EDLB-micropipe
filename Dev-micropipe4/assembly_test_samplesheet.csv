@@ -1,2 +1,0 @@
-barcode_id,sample_id,long_fastq,genome_size
-barcode01,GXB01322,/scicomp/home-pure/suj7/Dev-micropipe4/test_data/GXB01322_20181217_FAK35493_GA10000_filtered.fastq.gz,1m
