@@ -1,3 +1,0 @@
-No suitable promer matches found
-Using the following prodigal predictions to circularize contigs:
-contig_1	Prodigal_v2.6.3	CDS	11157	11849	49.7	-	0	ID=1_26;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.616;conf=100.00;score=49.66;cscore=42.94;sscore=6.72;rscore=-1.40;uscore=7.32;tscore=1.45;
