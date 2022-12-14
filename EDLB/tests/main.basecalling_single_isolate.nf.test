@@ -27,7 +27,7 @@ nextflow_process {
                 guppy_gpu_device = "auto"
                 guppy_num_callers = 8
                 guppy_cpu_threads_per_caller = 1
-                guppy_basecaller_args = "--recursive --trim_barcodes -q 0 --disable_qscore_filtering"
+                guppy_basecaller_args = "--recursive -q 0 --disable_qscore_filtering"
                 guppy_barcode_kits= "SQK-RBK004"
                 guppy_barcoder_threads = 2
             }
