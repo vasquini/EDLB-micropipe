@@ -6,5 +6,5 @@
 **/ModuleTestResults/*timeline.html.*/**
 ~/.conda/envs/**
 ~/.cache/**
-.nextflow/**
+**/.nextflow/**
 .nf-test/**
