@@ -606,6 +606,7 @@ process medaka_cpu {
 	script:
 	"""
 	set +eu
+        medaka tools list_models
 	medaka_consensus -i ${filtered} -d ${draft} -o \$PWD -t ${params.medaka_threads} -m ${params.medaka_model}
 	rm consensus_probs.hdf calls_to_draft.bam calls_to_draft.bam.bai
 	cp .command.log medaka.log

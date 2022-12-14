@@ -12,7 +12,7 @@ nextflow_process {
                 samplesheet="/scicomp/home-pure/suj7/EDLB/medaka_test_samplesheet.csv"
                 outdir = "ModuleTestResults"
                 polisher = "medaka"
-                medaka_model = "r941_min_sup_g638"
+                medaka_model = "r941_min_sup_g507"
                 medaka_threads = 8
             }
             process {
