@@ -10,7 +10,7 @@ To build microPIPE we evaluated the performance of several tools at each step of
 
 The workflow below summarises the different steps of the pipeline (with each selected tool) and the approximate run time (using GPU basecalling, averaged over 12 *E. coli* isolates sequenced on a R9.4 MinION flow cell). Dashed boxes correspond to optional steps in the pipeline. 
 
-Micropipe has been written in Nextflow and uses Singularity containers. It can use both GPU and CPU resources. 
+Micropipe has been written in Nextflow and uses Singularity containers. It can use both GPU and CPU resources. But this specific version of the workflow has only been tested on the Aspen cluster.
 
 For more information please see our publication here: https://doi.org/10.1186/s12864-021-07767-z.
 
@@ -50,7 +50,7 @@ Please note that this pipeline does not perform extensive quality assessment of 
 
 microPIPE has been built using Nextflow and Singularity to enable ease of use and installation across different platforms. 
 
-NOTE: Make sure that you change the required paths to your paths. A quick way is to use :s/patternToReplace/OldPattern/g on vim editor.
+NOTE: Make sure that you change the required paths to your paths. A quick way is to use :%s/patternToReplace/OldPattern/g on vim editor and then save with :wq.
 
 **0. Requirements**
 
@@ -74,6 +74,12 @@ In versions greater than Guppy v4.5.2, the default Guppy parameters have changed
 ``` 
 params {
         guppy_basecaller_args = "--recursive --trim_barcodes -q 0 --disable_qscore_filtering"
+}
+```
+If using Guppy v6+,  the default Guppy parameters have changed. If you wish to use Guppy > v4.5.2, please modify the `nexflow.config` to run Guppy without the "--trim_barcodes" flag: 
+``` 
+params {
+        guppy_basecaller_args = "--recursive -q 0 --disable_qscore_filtering"
 }
 ```
 * Nf-test
