@@ -92,7 +92,8 @@ cd ~/EDLB
 source ~./bashrc
 ```
 * Bash script example
-This is an example of the bash script I use to submit the test to the pipeline
+This is an example of the bash script I use to submit the test to the pipeline:
+```
 #!/usr/bin/bash -l
 # Assign Job-Name instead of defauly which is the name of job-script
 #$ -N Nf-test
