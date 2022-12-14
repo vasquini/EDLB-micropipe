@@ -1,7 +1,10 @@
 **/ModuleTestResults/**
+**/WholePipelineTestResults/**
 **/.nf-test/tests/**
 **/modules/local/.nextflow/cache/*
 **/modules/local/.nf-test/*
 **/ModuleTestResults/*timeline.html.*/**
 ~/.conda/envs/**
 ~/.cache/**
+.nextflow/**
+.nf-test/**
