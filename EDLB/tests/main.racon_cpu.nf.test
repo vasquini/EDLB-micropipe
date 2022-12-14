@@ -10,7 +10,7 @@ nextflow_process {
             params {
                 // define parameters here. Example:
                 outdir = "ModuleTestResults"
-                samplesheet="/scicomp/home-pure/suj7/Dev-micropipe4/racon_test_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/racon_test_samplesheet.csv"
                 racon_nb = 4
                 racon_args = "-m 8 -x -6 -g -8 -w 500"
                 racon_threads = 4
@@ -22,8 +22,7 @@ nextflow_process {
                 // define inputs of the process here. Example:
                 input[0] =  Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
                 .splitCsv(header:true, sep:',')
-		        //.map { row -> tuple val(barcode), path(filtered), val(sample), path(assembly), path(info), path(gfa), path(gv)}
-		        input[0].view()
+		input[0].view()
                 """
             }
         }

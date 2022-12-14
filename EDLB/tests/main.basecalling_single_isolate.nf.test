@@ -10,17 +10,17 @@ nextflow_process {
             params {
                 // define parameters here. Example:
                 outdir = "ModuleTestResults"
-                samplesheet="/scicomp/home-pure/suj7/test_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_samplesheet.csv"
                 basecalling = true
                 demultiplexing = false
                 gpu = true
-                fast5 = "/scicomp/home-pure/suj7/data/fast5_tiny"
+                fast5 = "/scicomp/home-pure/suj7/EDLB/test_data/fast5_tiny"
                 fastq = false
-	            datadir = false
+	        datadir = false
                 demultiplexer = 'guppy'
-                guppy_gpu_folder = "/apps/x86_64/guppy/5.0.7/bin/"
-                guppy_cpu_folder = "/apps/x86_64/guppy/5.0.7/bin/" 
-	            guppy_config_gpu = "dna_r9.4.1_450bps_sup.cfg"
+                guppy_gpu_folder = "/apps/x86_64/guppy/6.3.8-gpu/bin/"
+                guppy_cpu_folder = "/apps/x86_64/guppy/6.3.8-gpu/bin/" 
+	        guppy_config_gpu = "dna_r9.4.1_450bps_sup.cfg"
                 guppy_config_cpu = "dna_r9.4.1_450bps_fast.cfg"
                 kit = false
                 flowcell = false

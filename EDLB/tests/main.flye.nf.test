@@ -19,7 +19,7 @@ nextflow_process {
                 basecalling = true
                 demultiplexing = false
                 gpu = true
-                samplesheet="/scicomp/home-pure/suj7/Dev-micropipe4/assembly_test_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/assembly_test_samplesheet.csv"
             }
             process {
                 """

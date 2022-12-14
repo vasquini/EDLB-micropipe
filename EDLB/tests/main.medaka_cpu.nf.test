@@ -9,10 +9,10 @@ nextflow_process {
         when {
             params {
                 // define parameters here. Example:
-                samplesheet="/scicomp/home-pure/suj7/Dev-micropipe4/medaka_test_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/medaka_test_samplesheet.csv"
                 outdir = "ModuleTestResults"
                 polisher = "medaka"
-                medaka_model = "r941_min_sup_g507"
+                medaka_model = "r941_min_sup_g638"
                 medaka_threads = 8
             }
             process {
@@ -20,7 +20,6 @@ nextflow_process {
                 // define inputs of the process here. Example:
                 input[0] = Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
                 .splitCsv(header:true, sep:',')
-                //tuple val(barcode), path(filtered), val(sample), path(draft)
                 input[0].view()
                 """
             }
