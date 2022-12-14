@@ -50,6 +50,8 @@ Please note that this pipeline does not perform extensive quality assessment of 
 
 microPIPE has been built using Nextflow and Singularity to enable ease of use and installation across different platforms. 
 
+NOTE: Make sure that you change the required paths to your paths. A quick way is to use :s/patternToReplace/OldPattern/g on vim editor.
+
 **0. Requirements**
 
 * [Nextflow](https://www.nextflow.io/) >= 20.10.0
@@ -64,7 +66,7 @@ It will create the nextflow main executable file in the current directory. Optio
 
 * [Singularity](https://singularity.lbl.gov/install-linux) >= 2.3 (microPIPE has been tested with version 3.4.1, 3.5.0 and 3.6.3)
 
-* Guppy (4.4.1 was the latest working version)
+* Guppy (6.3.8 is the latest working version)
  
 Due to the Oxford Nanopore Technologies terms and conditions, we are not allowed to redistribute the Guppy software either in its binary form or packaged form e.g. Docker or Singularity images. Therefore users will have to either install Guppy, provide a container image or start the pipeline from the basecalled fastq files.  See [Usage](#usage) section below for instructions. 
 
@@ -74,8 +76,10 @@ params {
         guppy_basecaller_args = "--recursive --trim_barcodes -q 0 --disable_qscore_filtering"
 }
 ```
+* Nf-test
+
 For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located here: https://code.askimed.com/nf-test/getting-started/
-It's recommended that nf-test be installed on a folder called ~/bin. And create that folder if non-existent.  I included an example .bashrc file you can use the source command to add the ~/bin folder to the path. And an example script to test the pipeline in run_test.sh.
+It's recommended that nf-test be installed on a folder called ~/bin. Create that folder if non-existent.  I included an example .bashrc file you can use the source command to add the ~/bin folder to the path. And an example script to test the pipeline in run_test.sh.
 
 **1. Installing microPIPE**
 
@@ -298,7 +302,7 @@ Basecalling
 
 Quality control:
 * `--skip_pycoqc`: skip the pycoQC step to generate a quality control html report, when --basecalling (default=false)
-
+* `--skip_qc`: skip the Fastqc and Multiqc steps to generate a quality control html report
 Demultiplexing:
 * `--demultiplexer`: demultiplexing tool: "qcat" or "guppy" (default=`--demultiplexer "guppy"`)
 * `--qcat_args`: qcat optional parameters (default=""), see [details](https://github.com/nanoporetech/qcat#full-usage)
