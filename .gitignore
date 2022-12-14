@@ -1,2 +1,4 @@
-~/.conda/envs/**
-~/.cache/**
+.nextflow/cache/**
+.conda/**
+.cache/**
+.*/**
