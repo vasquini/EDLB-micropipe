@@ -8,7 +8,7 @@ nextflow_pipeline {
         when {
             params {
                 // define parameters here. MAKE SURE PATHS MATCH YOUR OWN!!!
-                outdir = "ModuleTestResults"
+                outdir = "WholePipelineTestResults"
                 samplesheet="/scicomp/home-pure/suj7/EDLB/test_samplesheet.csv"
                 basecalling = true
                 demultiplexing = false
