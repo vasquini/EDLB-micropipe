@@ -2,3 +2,5 @@
 .conda/**
 .cache/**
 .*/**
+EDLB/.nf-test/**
+EDLB/.nextflow/**
