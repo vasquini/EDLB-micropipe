@@ -151,7 +151,7 @@ process basecalling_single_isolate {
 		path("*.log")
 		path("guppy_basecaller_version.txt")
 	when:
-	params.basecalling & params.gpu & !params.demultiplexing
+	params.basecalling & params.gpu & !params.demultiplexing & params.single_sample
 	script:
 	"""
 	set +eu
@@ -166,6 +166,45 @@ process basecalling_single_isolate {
 	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
 	"""
 }
+
+process basecall_demultiplexed {
+	cpus "${params.guppy_num_callers}"
+	label "gpu"
+	label "guppy_gpu"
+	containerOptions '--nv'
+	//publishDir "$params.outdir/0_demultiplexing", mode: 'copy'
+	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*fastq.gz'
+	input:
+		path(fast5_dir)
+	output:
+		path "sequencing_summary.txt", emit: sequencing_summary
+		path "*fastq.gz", emit: basecalled_fastq
+		path("*log")
+		path("guppy_basecaller_version.txt")
+	when:
+	params.basecalling & params.gpu & !params.demultiplexing & !params.single_sample
+	script:
+	"""
+	set +eu
+	for dir in $(ls ${fast5_dir}); do
+		barcode_id=\${dir%*/}
+		echo $barcode_id
+		if [[ "${params.guppy_config_gpu}" != "false" ]]; then
+		    ${params.guppy_gpu_folder}guppy_basecaller -i ${fast5_dir}/${barcode_id} -s \$PWD  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
+		elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
+			${params.guppy_gpu_folder}guppy_basecaller -i ${fast5_dir}/${barcode_id} -s \$PWD --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
+		fi
+		cat \${dir}/*.fastq.gz > \${barcode_id}.fastq.gz
+	done
+	
+	cp .command.log guppy_basecaller.log
+
+	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
+	"""
+}
+
 
 process basecalling_cpu {
     cpus "${params.guppy_num_callers}"
@@ -210,7 +249,7 @@ process basecalling_cpu_single_isolate {
 		path("*.log")
 		path("guppy_basecaller_version.txt")
 	when:
-	params.basecalling & !params.gpu & !params.demultiplexing
+	params.basecalling & !params.gpu & !params.demultiplexing & params.single_sample
 	script:
 	"""
 	set +eu
@@ -408,7 +447,7 @@ process FASTQC {
 
     script:
     """
-    fastqc -t 4 ${long_reads} 
+    fastqc -t ${params.fastqc_threads} ${long_reads} 
     cp .command.log ${sample}_fastqc.log
     """
 }
@@ -422,10 +461,13 @@ process MULTIQC {
     tag( "${inputfiles}" )
 
     input:
-    path( inputfiles )
+    	path( inputfiles )
 
     output:
-    path "multiqc_report.html", emit: multiqc_report
+    	path "multiqc_report.html", emit: multiqc_report
+
+	when:
+		!params.skip_qc
 
     script:
     """
