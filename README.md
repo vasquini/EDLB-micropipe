@@ -86,7 +86,36 @@ params {
 
 For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located here: https://code.askimed.com/nf-test/getting-started/
 It's recommended that nf-test be installed on a folder called ~/bin. Create that folder if non-existent.  I included an example .bashrc file you can use the source command to add the ~/bin folder to the path. And an example script to test the pipeline in run_test.sh.
+```
+mkdir ~/bin
+cd ~/EDLB
+source ~./bashrc
+```
+* Bash script example
+This is an example of the bash script I use to submit the test to the pipeline:
+```
+#!/usr/bin/bash -l
+# Assign Job-Name instead of defauly which is the name of job-script
+#$ -N Nf-test
+# Start the script in the current working directory
+#$ -V -cwd
+# Send to GPU queue
+#$ -q gpu.q
+# Specify where standard output and error are stored
+#$ -o nftest.out
+#$ -e nftest.err
 
+echo "-------------------------------------------------------------------------"
+module load guppy
+which guppy_basecaller
+source ~/.bashrc
+which nf-test
+echo "-------------------------------------------------------------------------"
+cd ~/EDLB/
+nf-test test
+# You may add the micropipe commands here:
+# nextflow EDLB/main.nf --basecalling --demultiplexing --samplesheet path/to/samplesheet --outdir /path/to/output --skip_illumina --fast5 /path/to/fast5/ --guppy_barcode_kits "EXP-NBD114" --flye_args "--asm-coverage 100"
+```
 **1. Installing microPIPE**
 
 Download the microPIPE repository using the command:
