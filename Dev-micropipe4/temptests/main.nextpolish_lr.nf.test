@@ -1,19 +1,18 @@
 nextflow_process {
 
-    name "Test Process medaka_cpu"
+    name "Test Process nextpolish_LR"
     script "main.nf"
-    process "medaka_cpu"
+    process "nextpolish_LR"
 
     test("Should run without failures") {
 
         when {
             params {
                 // define parameters here. Example:
-                samplesheet="/scicomp/home-pure/suj7/EDLB/medaka_test_samplesheet.csv"
                 outdir = "ModuleTestResults"
-                polisher = "medaka"
-                medaka_model = "r941_min_sup_g507"
-                medaka_threads = 8
+                nextpolish_threads = 4
+	            nextpolish_task_SR = "1212"
+	            nextpolish_task_LR = "55"
             }
             process {
                 """
@@ -27,7 +26,7 @@ nextflow_process {
 
         then {
             assert process.success
-            //assert snapshot(process.out).match()
+            assert snapshot(process.out).match()
         }
 
     }
