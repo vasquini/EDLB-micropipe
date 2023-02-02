@@ -1,0 +1,4 @@
+barcode_id,sample_id,long_fastq,genome_size
+barcode06,Sample1,,1m
+barcode07,Sample2,,1m
+barcode08,Sample3,,1m
