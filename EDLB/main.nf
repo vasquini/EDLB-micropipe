@@ -116,8 +116,7 @@ process basecall_demultiplexed {
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
 	input:
-		each barcode_id //sample_dir //from ch_sample_collected
-		//tuple val(barcode_id), val(sample_id), path(long_fastq), path(sample_dir) val(genome_size)
+		each barcode_id 
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary
 		//path "*_test.txt", emit: basecalled_fastq
@@ -901,8 +900,7 @@ workflow {
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
 		.set { ch_samplesheet_basecall_demuxed }
-		//ch_samplesheet_basecall_demuxed.view()
-		//basecall_demultiplexed(ch_samplesheet_basecall_demuxed)
+
 		if ( !params.skip_illumina ) {
 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 			.splitCsv(header:true, sep:',')          
@@ -910,34 +908,17 @@ workflow {
 			.set { ch_samplesheet_illumina }
 			ch_samplesheet_illumina.view()
 		}
-		//fast5 = Channel.fromPath("${params.fast5}/*/", type: 'dir', checkIfExists: true )
-		//file("${params.fast5}/**/", checkIfExists: true)
-		
 		ch_sample = ch_samplesheet_basecall_demuxed.map { it[0] }
-		//ch_sample.view()
+
 		ch_sl=ch_sample.toList()
-		//ch_sl.view()
 		
 		if( params.gpu ) {
-			// ch_test=Channel.of('a.txt','b.txt','c.txt')// { println "value: $it" }//-> tuple(it.simpleName, it) }//.transpose()
-			// ch_test.view { tuple("file: $it",it) }.transpose()//{ println "value: $it" }
-			// //ch_test.subscribe { println "value: $it" }
-			// ch_test.view()
-			//map { file -> tuple(file.baseName, file) }
-			//FIXME: Switch to multiple channels instead
-			basecall_demultiplexed(ch_sl)//.out
-			//bdx.view()
+			basecall_demultiplexed(ch_sl)
 			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			//FIXME: I need to collect the output here
-			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			//FIXME: Fix the tuple!
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-			// ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )//.collect()
-			// ch_data.view()
-		} else {
+		} else { //FIXME: What is the difference?
+		//FIXME: Where I add or remove gpu flag
 			basecalling_demultiplexed(ch_sl)
-			//bdx_collected.view()
-			//pycoqc(bdx_collected.out.sequencing_summary)
 			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_bdxfq = Channel.of( basecall_demultiplexed.out.basecalled_fastq )
 			//ch_bdxfq.view()
@@ -953,8 +934,7 @@ workflow {
 			ch_data.view()
 			assembly( ch_data, ch_samplesheet_illumina )
 		} else {
-			//ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
-			ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )//.collect()
+			ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
 			ch_data.view()
 			assembly( ch_data, Channel.empty() )
 		}
@@ -1178,7 +1158,7 @@ workflow {
 			assembly( ch_data, ch_samplesheet_illumina )
 		} else {
 			ch_data = ch_fastq.concat( ch_samplesheet_basecalling ).collect()
-			ch_data.view()
+		ch_data.view()
 			assembly( ch_data, Channel.empty() )
 		}
 	//demultiplexing and assembly workflow
