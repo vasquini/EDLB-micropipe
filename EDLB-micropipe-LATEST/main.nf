@@ -53,13 +53,13 @@ def helpMessage() {
 
 	Quality control:
 		--skip_pycoqc				Skip the pycoQC step to generate a quality control html report (when --basecalling)
-        --skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
+                --skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
 	Demultiplexing:
 		--demultiplexing			Flag to run the demultiplexing (default=false)
 		--fastq					Path to the directory containing the ONT fastq files (gzip compressed)
 		--demultiplexer 			Demultiplexing tool: "qcat" or "guppy" (default="qcat")
 		--qcat_args 				Qcat optional parameters (default="")
-		--guppy_barcoder_args 			Guppy barcoder parameters (default="--recursive --trim_barcodes -q 0")
+		--guppy_barcoder_args 			Guppy barcoder parameters (default="--recursive -q 0")
 		--guppy_barcode_kits 			Space separated list of barcoding kit(s) to detect against (default="SQK-RBK004")
 		--guppy_barcoder_threads 		Number of worker threads to spawn for Guppy barcoder to use. Increasing this number will allow Guppy barcoder to make better use of multi-core CPU systems, but may impact overall system performance (default=2)
 
@@ -106,45 +106,6 @@ if (params.help){
     exit 0
 }
 
-process basecall_demultiplexed {
-	cpus "${params.guppy_num_callers}"
-	label "gpu"
-	label "guppy_gpu"
-	containerOptions '--nv'
-	// update the published directory: add sample_id to it?
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
-	input:
-		each barcode_id 
-	output:
-		path "sequencing_summary.txt", emit: sequencing_summary
-		//path "*_test.txt", emit: basecalled_fastq
-		path "*fastq.gz", emit: basecalled_fastq
-		path("*log")
-		path("guppy_basecaller_version.txt")
-	when:
-		params.basecalling & params.gpu & !params.demultiplexing & !params.single_sample
-	script:
-	"""
-	set +eu
-	echo "Barcode: ${barcode_id}" 
-	echo "Working directory: ${PWD}" 
-	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
-	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
-	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
-	fi
-	
-	echo "${PWD}" > ${barcode_id}_test.txt
-	cat ${barcode_id}/*.fastq.gz > ${barcode_id}.fastq.gz
-	cp .command.log guppy_basecaller.log
-
-	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
-	"""
-}
-
-
 process basecalling {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
@@ -190,7 +151,7 @@ process basecalling_single_isolate {
 		path("*.log")
 		path("guppy_basecaller_version.txt")
 	when:
-	params.basecalling & params.gpu & !params.demultiplexing & params.single_sample
+	params.basecalling & params.gpu & !params.demultiplexing
 	script:
 	"""
 	set +eu
@@ -205,7 +166,6 @@ process basecalling_single_isolate {
 	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
 	"""
 }
-
 
 process basecalling_cpu {
     cpus "${params.guppy_num_callers}"
@@ -250,7 +210,7 @@ process basecalling_cpu_single_isolate {
 		path("*.log")
 		path("guppy_basecaller_version.txt")
 	when:
-	params.basecalling & !params.gpu & !params.demultiplexing & params.single_sample
+	params.basecalling & !params.gpu & !params.demultiplexing
 	script:
 	"""
 	set +eu
@@ -448,7 +408,7 @@ process FASTQC {
 
     script:
     """
-    fastqc -t ${params.fastqc_threads} ${long_reads} 
+    fastqc -t 4 ${long_reads} 
     cp .command.log ${sample}_fastqc.log
     """
 }
@@ -462,13 +422,10 @@ process MULTIQC {
     tag( "${inputfiles}" )
 
     input:
-    	path( inputfiles )
+    path( inputfiles )
 
     output:
-    	path "multiqc_report.html", emit: multiqc_report
-
-	when:
-		!params.skip_qc
+    path "multiqc_report.html", emit: multiqc_report
 
     script:
     """
@@ -641,7 +598,7 @@ process medaka_cpu {
     input:
 	tuple val(barcode), path(filtered), val(sample), path(draft)
 	output:
-	tuple val(barcode), path(filtered), val(sample), path("consensus.fasta"), emit: polished_medaka
+	tuple val(barcode), path(filtered), val(sample), path ("consensus.fasta"), emit: polished_medaka
 	path("medaka.log")
 	path("medaka_version.txt")
 	when:
@@ -894,191 +851,8 @@ workflow assembly {
 
 //Workflow testing 
 workflow {
-	//basecall and assembly workflow (multiple samples)
-	if (!params.single_sample && !params.demultiplexing){
-		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-		.splitCsv(header:true, sep:',')
-		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
-		.set { ch_samplesheet_basecall_demuxed }
-
-		if ( !params.skip_illumina ) {
-			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-			.splitCsv(header:true, sep:',')          
-			.map { row -> tuple(row.sample_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
-			.set { ch_samplesheet_illumina }
-			ch_samplesheet_illumina.view()
-		}
-		ch_sample = ch_samplesheet_basecall_demuxed.map { it[0] }
-
-		ch_sl=ch_sample.toList()
-		
-		if( params.gpu ) {
-			basecall_demultiplexed(ch_sl)
-			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} else { //FIXME: What is the difference?
-		//FIXME: Where I add or remove gpu flag
-			basecalling_demultiplexed(ch_sl)
-			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			ch_bdxfq = Channel.of( basecall_demultiplexed.out.basecalled_fastq )
-			//ch_bdxfq.view()
-			ch_fastq=ch_bdxfq.map() { file -> tuple(file.simpleName, file) }.transpose()
-			ch_fastq.view()
-			//ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		}
-//	} //comment out later
-//} //comment out later
-		ch_fastq.view()
-		if ( !params.skip_illumina ) {
-			ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
-			ch_data.view()
-			assembly( ch_data, ch_samplesheet_illumina )
-		} else {
-			ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
-			ch_data.view()
-			assembly( ch_data, Channel.empty() )
-		}
-	} else {
-		//basecalling, demultiplexing and assembly workflow
-		if( params.basecalling && params.demultiplexing) {
-			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-			.splitCsv(header:true, sep:',')
-			.map { row -> tuple(row.barcode_id, row.sample_id, row.genome_size) }
-			.set { ch_samplesheet_basecalling }
-			ch_samplesheet_basecalling.view()
-			if ( !params.skip_illumina ) {
-				Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-				.splitCsv(header:true, sep:',')          
-				.map { row -> tuple(row.barcode_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
-				.set { ch_samplesheet_illumina }
-				ch_samplesheet_illumina.view()
-			}
-			fast5 = Channel.fromPath("${params.fast5}", checkIfExists: true )
-			if( params.demultiplexer == "qcat") {
-				if( params.gpu ) {
-					basecalling(fast5)
-					demultiplexing_qcat(basecalling.out.basecalled_fastq)
-					pycoqc(basecalling.out.sequencing_summary)
-				} else {
-					basecalling_cpu(fast5)
-					demultiplexing_qcat(basecalling_cpu.out.basecalled_fastq)
-					pycoqc(basecalling_cpu.out.sequencing_summary)
-				}
-				ch_fastq=demultiplexing_qcat.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-				ch_fastq.view()
-				ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
-				ch_data.view()
-			} else if (params.demultiplexer == "guppy") {
-				if( params.gpu ) {
-					basecalling_demultiplexing_guppy(fast5)
-					pycoqc(basecalling_demultiplexing_guppy.out.sequencing_summary)
-					ch_fastq=basecalling_demultiplexing_guppy.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-				} else {
-					basecalling_demultiplexing_guppy_cpu(fast5)
-					pycoqc(basecalling_demultiplexing_guppy_cpu.out.sequencing_summary)
-					ch_fastq=basecalling_demultiplexing_guppy_cpu.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-				}
-				ch_fastq.view()
-				ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
-			}
-			if ( !params.skip_illumina ) {
-				assembly( ch_data, ch_samplesheet_illumina)
-			} else {
-				assembly( ch_data, Channel.empty() )
-			}
-		//basecalling and assembly workflow (single isolate)
-		} else if( params.basecalling && !params.demultiplexing) {
-			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-			.splitCsv(header:true, sep:',')
-			.map { row -> tuple(row.sample_id, row.genome_size) }
-			.set { ch_samplesheet_basecalling }
-			ch_samplesheet_basecalling.view()
-			if ( !params.skip_illumina ) {
-				Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-				.splitCsv(header:true, sep:',')          
-				.map { row -> tuple(row.sample_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
-				.set { ch_samplesheet_illumina }
-				ch_samplesheet_illumina.view()
-			}
-			fast5 = Channel.fromPath("${params.fast5}", checkIfExists: true )
-			ch_sample = ch_samplesheet_basecalling.first().map { it[0] }
-			ch_fast5 = fast5.concat( ch_sample ).collect()
-			ch_fast5.view()
-			if( params.gpu ) {
-				basecalling_single_isolate(ch_fast5)
-				pycoqc(basecalling_single_isolate.out.sequencing_summary)
-				ch_fastq=basecalling_single_isolate.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-			} else {
-				basecalling_cpu_single_isolate(ch_fast5)
-				pycoqc(basecalling_cpu_single_isolate.out.sequencing_summary)
-				ch_fastq=basecalling_cpu_single_isolate.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-			}
-			ch_fastq.view()
-			if ( !params.skip_illumina ) {
-				ch_data = ch_fastq.concat( ch_samplesheet_basecalling ).collect()
-				ch_data.view()
-				assembly( ch_data, ch_samplesheet_illumina )
-			} else {
-				ch_data = ch_fastq.concat( ch_samplesheet_basecalling ).collect()
-				ch_data.view()
-				assembly( ch_data, Channel.empty() )
-			}
-		//demultiplexing and assembly workflow
-		} else if ( !params.basecalling && params.demultiplexing ){
-			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-			.splitCsv(header:true, sep:',')
-			.map { row -> tuple(row.barcode_id, row.sample_id, row.genome_size) }
-			.set { ch_samplesheet_basecalling }
-			ch_samplesheet_basecalling.view()
-			if ( !params.skip_illumina ) {
-				Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-				.splitCsv(header:true, sep:',')          
-				.map { row -> tuple(row.barcode_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
-				.set { ch_samplesheet_illumina }
-				ch_samplesheet_illumina.view()
-			}
-			fastq = Channel.fromPath("${params.fastq}", checkIfExists: true )
-			if( params.demultiplexer == "qcat") {
-				demultiplexing_qcat(fastq)
-				ch_fastq=demultiplexing_qcat.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-			} else if (params.demultiplexer == "guppy") { 
-				if( params.gpu ) {
-					demultiplexing_guppy(fastq)
-					ch_fastq=demultiplexing_guppy.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-				} else {
-					demultiplexing_guppy_cpu(fastq)
-					ch_fastq=demultiplexing_guppy_cpu.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-				}
-			}
-			ch_fastq.view()
-			ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
-			ch_data.view()
-			if ( !params.skip_illumina ) {
-				assembly( ch_data, ch_samplesheet_illumina)
-			} else {
-				assembly( ch_data, Channel.empty() )
-			}
-		//assembly only workflow
-		} else if ( !params.basecalling && !params.demultiplexing ) {
-			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-			.splitCsv(header:true, sep:',')
-			.map { row -> tuple(row.barcode_id, file(row.long_fastq, checkIfExists: true), row.sample_id, row.genome_size) }
-			.set { ch_samplesheet }
-			ch_samplesheet.view()
-			if ( !params.skip_illumina ) {
-				Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-				.splitCsv(header:true, sep:',')          
-				.map { row -> tuple(row.barcode_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
-				.set { ch_samplesheet_illumina }
-				ch_samplesheet_illumina.view()
-				assembly( ch_samplesheet, ch_samplesheet_illumina )
-			} else {
-				assembly( ch_samplesheet, Channel.empty() )
-			}
-		}
-	}
 	//basecalling, demultiplexing and assembly workflow
-	/*if( params.basecalling && params.demultiplexing) {
+	if( params.basecalling && params.demultiplexing) {
 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple(row.barcode_id, row.sample_id, row.genome_size) }
@@ -1108,7 +882,7 @@ workflow {
 			ch_data.view()
 		} else if (params.demultiplexer == "guppy") {
 			if( params.gpu ) {
-				basecalling_demultiplexing_guppy(fast5) | collect
+				basecalling_demultiplexing_guppy(fast5)
 				pycoqc(basecalling_demultiplexing_guppy.out.sequencing_summary)
 				ch_fastq=basecalling_demultiplexing_guppy.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 			} else {
@@ -1158,7 +932,7 @@ workflow {
 			assembly( ch_data, ch_samplesheet_illumina )
 		} else {
 			ch_data = ch_fastq.concat( ch_samplesheet_basecalling ).collect()
-		ch_data.view()
+			ch_data.view()
 			assembly( ch_data, Channel.empty() )
 		}
 	//demultiplexing and assembly workflow
@@ -1213,5 +987,5 @@ workflow {
 		} else {
 			assembly( ch_samplesheet, Channel.empty() )
 		}
-	}*/
+	}
 }
