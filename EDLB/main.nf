@@ -106,6 +106,38 @@ if (params.help){
     exit 0
 }
 
+process basecall_multiple_isolate {
+	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
+    publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
+	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
+
+	input:
+	   each barcode_id
+	output:
+		path "sequencing_summary.txt", emit: sequencing_summary
+		path "*fastq.gz", emit: basecalled_fastq
+		path("*log")
+		path("guppy_basecaller_version.txt")
+    
+	when:
+	   params.basecalling & params.gpu & !params.demultiplexing & !params.single_sample
+	script:
+	"""
+	set +eu
+	echo "Barcode: ${barcode_id}" 
+	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
+	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
+	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
+		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
+	fi
+
+	cat ${barcode_id}/*.fastq.gz > ${barcode_id}.fastq.gz
+	cp .command.log guppy_basecaller.log
+
+	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
+	"""
+}
+
 process basecall_demultiplexed {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
@@ -119,7 +151,6 @@ process basecall_demultiplexed {
 		each barcode_id 
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary
-		//path "*_test.txt", emit: basecalled_fastq
 		path "*fastq.gz", emit: basecalled_fastq
 		path("*log")
 		path("guppy_basecaller_version.txt")
@@ -781,6 +812,15 @@ process quast {
 	quast.py -o \$PWD -t ${params.quast_threads} -l ${sample} ${polished} ${params.quast_args}
 	quast --version > quast_version.txt
 	"""
+}
+
+
+workflow griddy {
+	main:
+	ch_barcodes=Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
+	basecall_multiple_isolate(ch_barcodes)
+	emit:
+	   ch_basecalled_fastq = basecall_multiple_isolate.out
 }
 
 workflow assembly {
