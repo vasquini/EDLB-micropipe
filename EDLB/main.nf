@@ -817,7 +817,24 @@ process quast {
 
 workflow griddy {
 	main:
-	ch_barcodes=Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
+	if (!params.single_sample && !params.demultiplexing){
+		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+		.splitCsv(header:true, sep:',')
+		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size, row.coverage) }
+		.set { ch_samplesheet_basecall_demuxed }
+		//we should add coverages to samplesheet as input?
+
+		ch_barcodes = ch_samplesheet_basecall_demuxed.map { it[0] }
+		ch_bl=ch_sample.toList()
+		ch_samples=ch_samplesheet_basecall_demuxed.map { it[1]}
+		ch_sl.toList()
+		ch_covs=ch_samplesheet_basecall_demuxed.map { it[2]} //FIXME: Not the right column
+		ch_covs.isEmpty() // add if statement to check if coverage column is empty
+		
+		basecalling_single_isolate()
+
+	}
+	//Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
 	basecall_multiple_isolate(ch_barcodes)
 	emit:
 	   ch_basecalled_fastq = basecall_multiple_isolate.out
@@ -958,12 +975,9 @@ workflow {
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 		} else { //FIXME: What is the difference?
 		//FIXME: Where I add or remove gpu flag
-			basecalling_demultiplexed(ch_sl)
+			basecall_demultiplexed(ch_sl)
 			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			ch_bdxfq = Channel.of( basecall_demultiplexed.out.basecalled_fastq )
-			//ch_bdxfq.view()
-			ch_fastq=ch_bdxfq.map() { file -> tuple(file.simpleName, file) }.transpose()
-			ch_fastq.view()
+			//ch_fastq.view()
 			//ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 		}
 //	} //comment out later
