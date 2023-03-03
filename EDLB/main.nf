@@ -107,7 +107,7 @@ if (params.help){
 }
 
 process basecall_multiple_isolate {
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
+	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.fastq*'
     publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 
@@ -116,6 +116,7 @@ process basecall_multiple_isolate {
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary
 		path "*fastq.gz", emit: basecalled_fastq
+		path "*.fastq", emit: fastqs
 		path("*log")
 		path("guppy_basecaller_version.txt")
     
@@ -148,7 +149,7 @@ process basecall_demultiplexed {
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
 	input:
-		each barcode_id 
+		each barcode_id
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary
 		path "*fastq.gz", emit: basecalled_fastq
@@ -815,30 +816,42 @@ process quast {
 }
 
 
-workflow griddy {
-	main:
-	if (!params.single_sample && !params.demultiplexing){
-		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-		.splitCsv(header:true, sep:',')
-		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size, row.coverage) }
-		.set { ch_samplesheet_basecall_demuxed }
-		//we should add coverages to samplesheet as input?
+// workflow griddy { // workflow to pass barcodes list and samplesheet to basecalling_Single_isolate
+// 	take:
+// 	ch_samplesheet_basecall_demuxed
+// 	ch_sl
+// // input I need: tuple path(fast5_dir), val(sample)
+// 	main:
+// 	if (!params.single_sample && !params.demultiplexing){
+// 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+// 			.splitCsv(header:true, sep:',')
+// 			.map { row -> tuple(row.sample_id, row.genome_size) }
+// 			.set { ch_samplesheet_basecalling }
+// 			ch_samplesheet_basecalling.view()
+			
+// 		fast5 = Channel.fromPath("${params.fast5}", checkIfExists: true )
+// 		ch_sample = ch_samplesheet_basecalling.first().map { it[0] }
+// 		ch_fast5 = fast5.concat( ch_sample ).collect()
+// 		ch_fast5.view()
+// 		//we should add coverages to samplesheet as input?
 
-		ch_barcodes = ch_samplesheet_basecall_demuxed.map { it[0] }
-		ch_bl=ch_sample.toList()
-		ch_samples=ch_samplesheet_basecall_demuxed.map { it[1]}
-		ch_sl.toList()
-		ch_covs=ch_samplesheet_basecall_demuxed.map { it[2]} //FIXME: Not the right column
-		ch_covs.isEmpty() // add if statement to check if coverage column is empty
+// 		ch_barcodes = ch_samplesheet_basecall_demuxed.map { it[0] }
+// 		ch_bl=ch_sample.toList()
+
+// 		basecall_demultiplexed(ch_bl)
+// 		// ch_samples=ch_samplesheet_basecall_demuxed.map { it[1]}
+// 		// ch_sl.toList()
+// 		// ch_covs=ch_samplesheet_basecall_demuxed.map { it[2]} //FIXME: Not the right column
+// 		// ch_covs.isEmpty() // add if statement to check if coverage column is empty
 		
-		basecalling_single_isolate()
+// 		basecalling_single_isolate()
 
-	}
-	//Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
-	basecall_multiple_isolate(ch_barcodes)
-	emit:
-	   ch_basecalled_fastq = basecall_multiple_isolate.out
-}
+// 	}
+// 	//Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
+// 	basecall_multiple_isolate(ch_barcodes)
+// 	emit:
+// 	   ch_basecalled_fastq = basecall_multiple_isolate.out
+// }
 
 workflow assembly {
 	take: 
@@ -957,7 +970,7 @@ workflow {
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
 		.set { ch_samplesheet_basecall_demuxed }
-
+		// FIXME: I am thinking we should have a coverage column and check if empty or not
 		if ( !params.skip_illumina ) {
 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 			.splitCsv(header:true, sep:',')          
@@ -966,7 +979,6 @@ workflow {
 			ch_samplesheet_illumina.view()
 		}
 		ch_sample = ch_samplesheet_basecall_demuxed.map { it[0] }
-
 		ch_sl=ch_sample.toList()
 		
 		if( params.gpu ) {
