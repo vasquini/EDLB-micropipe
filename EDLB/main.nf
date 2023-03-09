@@ -163,9 +163,9 @@ process basecall_demultiplexed {
 	echo "Barcode: ${barcode_id}" 
 	echo "Working directory: ${PWD}" 
 	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
-	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
+	    ${params.guppy_gpu_folder}guppy_basecaller -i ${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
 	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
+		${params.guppy_gpu_folder}guppy_basecaller -i ${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
 	fi
 	
 	echo "${PWD}" > ${barcode_id}_test.txt
@@ -816,16 +816,15 @@ process quast {
 }
 
 
-// workflow griddy { // workflow to pass barcodes list and samplesheet to basecalling_Single_isolate
-// 	take:
-// 	ch_samplesheet_basecall_demuxed
-// 	ch_sl
-// // input I need: tuple path(fast5_dir), val(sample)
-// 	main:
+// workflow griddy { // workflow to use different coverages for specific samples
+// // 	take:
+// // 	ch_samplesheet_basecall_demuxed
+// // 	ch_sl
+// // // input I need: tuple path(fast5_dir), val(sample)
+// // 	main:
 // 	if (!params.single_sample && !params.demultiplexing){
 // 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 // 			.splitCsv(header:true, sep:',')
-// 			.map { row -> tuple(row.sample_id, row.genome_size) }
 // 			.set { ch_samplesheet_basecalling }
 // 			ch_samplesheet_basecalling.view()
 			
@@ -844,14 +843,14 @@ process quast {
 // 		// ch_covs=ch_samplesheet_basecall_demuxed.map { it[2]} //FIXME: Not the right column
 // 		// ch_covs.isEmpty() // add if statement to check if coverage column is empty
 		
-// 		basecalling_single_isolate()
+// // 		basecalling_single_isolate()
 
-// 	}
-// 	//Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
-// 	basecall_multiple_isolate(ch_barcodes)
-// 	emit:
-// 	   ch_basecalled_fastq = basecall_multiple_isolate.out
-// }
+// // 	}
+// // 	//Channel.fromPath("/scicomp/instruments-pure/23-7-671_Nanopore-GridION-GXB03287/GXB03287-22-16/GXB03287-22-16/20221114_1801_X1_FAV22165_e40d7efb/fast5_pass/barcode*",checkIfExists)
+// // 	basecall_multiple_isolate(ch_barcodes)
+// // 	emit:
+// // 	   ch_basecalled_fastq = basecall_multiple_isolate.out
+//  }
 
 workflow assembly {
 	take: 
@@ -970,7 +969,6 @@ workflow {
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
 		.set { ch_samplesheet_basecall_demuxed }
-		// FIXME: I am thinking we should have a coverage column and check if empty or not
 		if ( !params.skip_illumina ) {
 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 			.splitCsv(header:true, sep:',')          
@@ -978,11 +976,20 @@ workflow {
 			.set { ch_samplesheet_illumina }
 			ch_samplesheet_illumina.view()
 		}
-		ch_sample = ch_samplesheet_basecall_demuxed.map { it[0] }
-		ch_sl=ch_sample.toList()
+
+		//FIXME: Instead of getting from samplesheet get from path
+		dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')
+		dir_ch.view()
+		//ch_sl=dir_ch.toList()
+		//ch_sl.view()
+		//FIXME: Uncommment if ^^ doesn't work 
+		//Also add ${params.fast5_dir to basecall_Demultiplex back}
+		//ch_sample = ch_samplesheet_basecall_demuxed.map { it[0] }
+		//ch_sl=ch_sample.toList() // FIXME: Uncomment if this doesn't work
 		
 		if( params.gpu ) {
-			basecall_demultiplexed(ch_sl)
+			basecall_demultiplexed(dir_ch)
+			//basecall_demultiplexed(ch_sl) //FIXME: Uncomment later
 			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 		} else { //FIXME: What is the difference?
@@ -992,7 +999,7 @@ workflow {
 			//ch_fastq.view()
 			//ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 		}
-//	} //comment out later
+	//} //comment out later
 //} //comment out later
 		ch_fastq.view()
 		if ( !params.skip_illumina ) {
