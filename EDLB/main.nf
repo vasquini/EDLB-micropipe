@@ -948,17 +948,14 @@ workflow {
 		
 		if( params.gpu ) {
 			basecall_demultiplexed(ch_bar)
-			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
+			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} else { //FIXME: What is the difference?
-		//FIXME: Where I add or remove gpu flag
+		} else { //FIXME: What is the difference? Make a cpu version?
 			basecall_demultiplexed(ch_bar)
-			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			//ch_fastq.view()
-			//ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+			pycoqc(basecall_demultiplexed.out.sequencing_summary)
+			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 		}
-	//} //comment out later
-//} //comment out later
+
 		ch_fastq.view()
 		if ( !params.skip_illumina ) {
 			ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
@@ -1108,3 +1105,4 @@ workflow {
 			}
 		}
 	}
+}
