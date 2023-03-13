@@ -45,6 +45,9 @@ Please note that this pipeline does not perform extensive quality assessment of 
 
 `nextflow main.nf --samplesheet /path/to/samples.csv --fastq /path/to/fastq/directory/ --datadir /path/to/datadir/ --outdir /path/to/outdir/`
 
+4. Basecalling and assembly workflow (multiple samples)
+
+`nextflow main.nf --basecalling --samplesheet /path/to/samplesheet --fast5 /path/to/demultiplexed/fast5s --outdir /path/to/outdir/`
 
 # Installation
 
@@ -334,6 +337,7 @@ Basecalling
 *	`--guppy_gpu_device`:	Basecalling device for Guppy: "auto" or "cuda:<device_id>" (default="auto")
 *	`--flowcell`:	Name of the ONT flow cell used for sequencing (default=false). Ignored if '--guppy_config_gpu' or '--guppy_congif_cpu' is specified
 *	`--kit`: Name of the ONT kit used for sequencing (default=false). Ignored if '--guppy_config_gpu' or '--guppy_congif_cpu' is specified
+*	`--single_sample`: Boolean value to denote whether demultiplexed fast5 files are single isolate or multiple samples (default=false)
 
 Quality control:
 * `--skip_pycoqc`: skip the pycoQC step to generate a quality control html report, when --basecalling (default=false)
