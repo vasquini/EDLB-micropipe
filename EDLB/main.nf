@@ -160,12 +160,12 @@ process basecall_demultiplexed {
 	script:
 	"""
 	set +eu
-	echo "Barcode: ${barcode_id}" 
+	echo "Input path: ${barcode_id}" 
 	echo "Working directory: ${PWD}" 
 	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
-	    ${params.guppy_gpu_folder}guppy_basecaller -i ${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
+	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
 	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_gpu_folder}guppy_basecaller -i ${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
+		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
 	fi
 	
 	echo "${PWD}" > ${barcode_id}_test.txt
@@ -979,16 +979,18 @@ workflow {
 
 		//FIXME: Instead of getting from samplesheet get from path
 		dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')
-		dir_ch.view()
+		//dir_ch.view()
 		//ch_sl=dir_ch.toList()
 		//ch_sl.view()
 		//FIXME: Uncommment if ^^ doesn't work 
 		//Also add ${params.fast5_dir to basecall_Demultiplex back}
+		ch_bar=dir_ch.map { file -> file.simpleName }
+		//ch_bar.view()
 		//ch_sample = ch_samplesheet_basecall_demuxed.map { it[0] }
 		//ch_sl=ch_sample.toList() // FIXME: Uncomment if this doesn't work
 		
 		if( params.gpu ) {
-			basecall_demultiplexed(dir_ch)
+			basecall_demultiplexed(ch_bar)
 			//basecall_demultiplexed(ch_sl) //FIXME: Uncomment later
 			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
