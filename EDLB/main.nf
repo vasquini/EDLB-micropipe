@@ -948,7 +948,7 @@ workflow {
 		
 		if( params.gpu ) {
 			basecall_demultiplexed(ch_bar)
-			//pycoqc(basecall_demultiplexed.out.sequencing_summary)
+			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
 		} else { //FIXME: What is the difference? Make a cpu version?
 			basecall_demultiplexed(ch_bar)
@@ -960,11 +960,11 @@ workflow {
 		if ( !params.skip_illumina ) {
 			ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
 			ch_data.view()
-			//assembly( ch_data, ch_samplesheet_illumina )
+			assembly( ch_data, ch_samplesheet_illumina )
 		} else {
 			ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
 			ch_data.view()
-			//assembly( ch_data, Channel.empty() )
+			assembly( ch_data, Channel.empty() )
 		}
 	} else {
 		//basecalling, demultiplexing and assembly workflow
