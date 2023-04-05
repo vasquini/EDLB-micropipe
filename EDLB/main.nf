@@ -148,7 +148,7 @@ process basecall_demultiplexed {
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
-	publishDir "$params.outdir/0_basecalling/", mode: 'copy', pattern: './**/*.fastq.gz'
+
 	input:
 		//FIXME: I need to add the sample id here too!
 		each barcode_id
