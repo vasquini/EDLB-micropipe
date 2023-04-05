@@ -148,7 +148,9 @@ process basecall_demultiplexed {
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
+	publishDir "$params.outdir/0_basecalling/", mode: 'copy', pattern: './**/*.fastq.gz'
 	input:
+		//FIXME: I need to add the sample id here too!
 		each barcode_id
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary
@@ -160,15 +162,12 @@ process basecall_demultiplexed {
 	script:
 	"""
 	set +eu
-	echo "Input path: ${barcode_id}" 
-	echo "Working directory: ${PWD}" 
 	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
 	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
 	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
 		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
 	fi
-	
-	echo "${PWD}" > ${barcode_id}_test.txt
+    
 	cat ${barcode_id}/*.fastq.gz > ${barcode_id}.fastq.gz
 	cp .command.log guppy_basecaller.log
 
@@ -942,8 +941,11 @@ workflow {
 		}
 
 		//Instead of getting from samplesheet get it from path
-		dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')
-		ch_bar=dir_ch.map { file -> file.simpleName }
+		//dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')//_dir}/*/",type:'dir')
+		//ch_bar=dir_ch.map { file -> file.simpleName }
+
+		ch_barcodes=ch_samplesheet_basecall_demuxed.map { it[0]}
+		ch_bar=ch_barcodes.collect()
 
 		
 		if( params.gpu ) {
