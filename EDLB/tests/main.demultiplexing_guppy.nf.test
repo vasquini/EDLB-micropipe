@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process medaka_cpu"
+    name "Test Process demultiplexing_guppy"
     script "main.nf"
-    process "medaka_cpu"
+    process "demultiplexing_guppy"
 
     test("Should run without failures") {
 

@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process medaka_cpu"
+    name "Test Process basecalling_cpu_single_isolate"
     script "main.nf"
-    process "medaka_cpu"
+    process "basecalling_cpu_single_isolate"
 
     test("Should run without failures") {
 

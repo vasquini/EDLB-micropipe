@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process medaka_cpu"
+    name "Test Process pycoqc"
     script "main.nf"
-    process "medaka_cpu"
+    process "pycoqc"
 
     test("Should run without failures") {
 
