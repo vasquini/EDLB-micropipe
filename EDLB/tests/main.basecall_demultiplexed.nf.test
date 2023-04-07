@@ -1,15 +1,15 @@
 nextflow_process {
 
-    name "Test Process medaka_cpu"
+    name "Test Process basecall_demultiplexed"
     script "main.nf"
-    process "medaka_cpu"
+    process "basecall_demultiplexed"
 
     test("Should run without failures") {
 
         when {
             params {
                 // define parameters here. Example:
-                // outdir = "tests/results"
+                outdir = "ModuleTestResults"
             }
             process {
                 """
