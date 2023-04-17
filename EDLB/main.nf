@@ -643,7 +643,8 @@ process racon_cpu {
 		path("racon.log")
 		path("racon_version.txt")
 	when:
-	params.polisher == 'medaka'
+	params.polisher == 'medaka' & !params.skip_racon
+	
 	script:
 	"""
 	set +eu
@@ -876,8 +877,13 @@ workflow assembly {
 		}
 	}
 	if (params.polisher == 'medaka') {
-		racon_cpu(flye.out.assembly_out)
-		medaka_cpu(racon_cpu.out.polished_racon)
+		if (!params.skip_racon){
+			racon_cpu(flye.out.assembly_out)
+			medaka_cpu(racon_cpu.out.polished_racon)
+		} else {
+			medaka_cpu(flye.out.assembly_out)
+		}
+		
 		if (!params.skip_illumina) {
 			nextpolish(medaka_cpu.out.polished_medaka.combine (ch_samplesheet_illumina, by: 0))
 			if (params.skip_fixstart) {
