@@ -933,7 +933,7 @@ workflow assembly {
 //Workflow testing 
 workflow {
 	//basecall and assembly workflow (multiple samples)
-	if (!params.single_sample && !params.demultiplexing){
+	if (!params.single_sample && !params.demultiplexing && params.basecalling){
 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
@@ -953,16 +953,37 @@ workflow {
 		ch_barcodes=ch_samplesheet_basecall_demuxed.map { it[0]}
 		ch_bar=ch_barcodes.collect()
 
-		
+		// if (params.basecalling){
+		// 	if( params.gpu ) {
+		// 		basecall_demultiplexed(ch_bar)
+		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+		// 	} else { //FIXME: What is the difference? Make a cpu version?
+		// 		basecall_demultiplexed(ch_bar)
+		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+		// 	}
+
+		// 	ch_fastq.view()
+		// 	if ( !params.skip_illumina ) {
+		// 		ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
+		// 		ch_data.view()
+		// 		assembly( ch_data, ch_samplesheet_illumina )
+		// 	} else {
+		// 		ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
+		// 		ch_data.view()
+		// 		assembly( ch_data, Channel.empty() )
+		// 	}
+		// }
 		if( params.gpu ) {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} else { //FIXME: What is the difference? Make a cpu version?
-			basecall_demultiplexed(ch_bar)
-			pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		}
+		} // else { //FIXME: What is the difference? Make a cpu version?
+		// 	basecall_demultiplexed(ch_bar)
+		// 	pycoqc(basecall_demultiplexed.out.sequencing_summary)
+		// 	ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+		// }
 
 		ch_fastq.view()
 		if ( !params.skip_illumina ) {
