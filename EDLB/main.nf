@@ -643,7 +643,8 @@ process racon_cpu {
 		path("racon.log")
 		path("racon_version.txt")
 	when:
-	params.polisher == 'medaka'
+	params.polisher == 'medaka' & !params.skip_racon
+	
 	script:
 	"""
 	set +eu
@@ -876,8 +877,13 @@ workflow assembly {
 		}
 	}
 	if (params.polisher == 'medaka') {
-		racon_cpu(flye.out.assembly_out)
-		medaka_cpu(racon_cpu.out.polished_racon)
+		if (!params.skip_racon){
+			racon_cpu(flye.out.assembly_out)
+			medaka_cpu(racon_cpu.out.polished_racon)
+		} else {
+			medaka_cpu(flye.out.assembly_out)
+		}
+		
 		if (!params.skip_illumina) {
 			nextpolish(medaka_cpu.out.polished_medaka.combine (ch_samplesheet_illumina, by: 0))
 			if (params.skip_fixstart) {
@@ -927,7 +933,7 @@ workflow assembly {
 //Workflow testing 
 workflow {
 	//basecall and assembly workflow (multiple samples)
-	if (!params.single_sample && !params.demultiplexing){
+	if (!params.single_sample && !params.demultiplexing && params.basecalling){
 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 		.splitCsv(header:true, sep:',')
 		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
@@ -947,16 +953,37 @@ workflow {
 		ch_barcodes=ch_samplesheet_basecall_demuxed.map { it[0]}
 		ch_bar=ch_barcodes.collect()
 
-		
+		// if (params.basecalling){
+		// 	if( params.gpu ) {
+		// 		basecall_demultiplexed(ch_bar)
+		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+		// 	} else { //FIXME: What is the difference? Make a cpu version?
+		// 		basecall_demultiplexed(ch_bar)
+		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+		// 	}
+
+		// 	ch_fastq.view()
+		// 	if ( !params.skip_illumina ) {
+		// 		ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
+		// 		ch_data.view()
+		// 		assembly( ch_data, ch_samplesheet_illumina )
+		// 	} else {
+		// 		ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
+		// 		ch_data.view()
+		// 		assembly( ch_data, Channel.empty() )
+		// 	}
+		// }
 		if( params.gpu ) {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} else { //FIXME: What is the difference? Make a cpu version?
-			basecall_demultiplexed(ch_bar)
-			pycoqc(basecall_demultiplexed.out.sequencing_summary)
-			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		}
+		} // else { //FIXME: What is the difference? Make a cpu version?
+		// 	basecall_demultiplexed(ch_bar)
+		// 	pycoqc(basecall_demultiplexed.out.sequencing_summary)
+		// 	ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+		// }
 
 		ch_fastq.view()
 		if ( !params.skip_illumina ) {
