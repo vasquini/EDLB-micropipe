@@ -371,6 +371,7 @@ Polishing:
 * `--racon_nb`: number of Racon long-read polishing iterations (default=4)
 * `--racon_args`: Racon optional parameters (default="-m 8 -x -6 -g -8 -w 500"), see [details](https://github.com/isovic/racon#usage)
 * `--racon_threads`: number of threads for Racon (default=4)
+* `--skip_racon`: skip Racon polishing step
 * `--medaka_threads`: number of threads for Medaka (default=4)
 * `--skip_illumina`: skip the short-read polishing step if Illumina reads are not available (not recommended, default=false)
 * `--nextpolish_threads`: number of threads for nextPolish (default=4)
@@ -390,9 +391,11 @@ The pipeline will create several folders corresponding to the different steps of
 The main output folder (`--outdir`) will contain the following folders:
 * **0_basecalling:** Fastq files containing the basecalled reads, Guppy sequencing_summary.txt file
 * **0_pycoQC:** Quality control report (pycoQC.html, see for [example]( https://a-slide.github.io/pycoQC/pycoQC/results/Guppy-2.1.3_basecall-1D_RNA.html))
+* **multiqc_output:** MultiQC report combining fastQC reports (unless --skip_qc)
 * **a folder per sample:** see content below (the folder is named as in the column sample_id in the samplesheet file)
 
 Each sample folder will contain the following folders:
+* **0_fastqc** FastQC Report (unless --skip_qc)
 * **1_filtering:** Fastq files containing filtered reads (sample_id_filtered.fastq.gz) 
 * **2_assembly:** Flye assembly output files (.fasta, .gfa, .gv, .info.txt), see [details](https://github.com/fenderglass/Flye/blob/flye/docs/USAGE.md#-flye-output)
 * **3_polishing_long_reads:** Long-read polished assembly fasta file (sample_id_flye_polishedLR.fasta)
