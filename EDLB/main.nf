@@ -106,51 +106,16 @@ if (params.help){
     exit 0
 }
 
-process basecall_multiple_isolate {
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.fastq*'
-    publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
-
-	input:
-	   each barcode_id
-	output:
-		path "sequencing_summary.txt", emit: sequencing_summary
-		path "*fastq.gz", emit: basecalled_fastq
-		path "*.fastq", emit: fastqs
-		path("*log")
-		path("guppy_basecaller_version.txt")
-    
-	when:
-	   params.basecalling & params.gpu & !params.demultiplexing & !params.single_sample
-	script:
-	"""
-	set +eu
-	echo "Barcode: ${barcode_id}" 
-	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
-	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
-	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
-	fi
-
-	cat ${barcode_id}/*.fastq.gz > ${barcode_id}.fastq.gz
-	cp .command.log guppy_basecaller.log
-
-	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
-	"""
-}
-
 process basecall_demultiplexed {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
 	label "guppy_gpu"
 	containerOptions '--nv'
-	// update the published directory: add sample_id to it?
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
 
 	input:
-		//FIXME: I need to add the sample id here too!
 		each barcode_id
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary

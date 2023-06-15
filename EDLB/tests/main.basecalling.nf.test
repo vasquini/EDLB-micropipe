@@ -9,13 +9,31 @@ nextflow_process {
         when {
             params {
                 // define parameters here. Example:
-                // outdir = "tests/results"
+                outdir = "ModuleTestResults/0_basecalling"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_samplesheet.csv"
+                basecalling = true
+                demultiplexing = true
+                gpu = true
+                executor = "local"
+                single_sample=false
+                //ATTENTION: Make sure to change fast5_dir to the location of fast5_directories!!!
+                fast5_dir="/scicomp/home-pure/suj7/EDLB/test_data/fast5_tiny" 
+                gpu = true
+                fast5 = "/scicomp/home-pure/suj7/EDLB/test_data/fast5_tiny"
+                fastq = false
+	            datadir = false
             }
             process {
                 """
                 // define inputs of the process here. Example:
                 // input[0] = file("test-file.txt")
                 """
+                input[0] = Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+		            .splitCsv(header:true, sep:',')
+		            .map { row -> tuple(row.barcode_id, row.sample_id, row.long_fastq, row.genome_size) }.first().map { it[0] }
+                input[0].view()
+                
+                
             }
         }
 
