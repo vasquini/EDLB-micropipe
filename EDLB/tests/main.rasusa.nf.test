@@ -10,6 +10,9 @@ nextflow_process {
             params {
                 // define parameters here. Example:
                 // outdir = "tests/results"
+                outdir = "ModuleTestResults"
+                skip_rasusa="true"
+                rasusa_coverage=100
             }
             process {
                 """

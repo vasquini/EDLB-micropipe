@@ -31,11 +31,11 @@ nextflow_pipeline {
                 guppy_barcode_kits= "SQK-RBK004"
                 guppy_barcoder_threads = 2
                 qcat_args = ""
-                skip_pycoqc = false
+                skip_pycoqc = true //false
                 skip_qc = true
                 skip_rasusa = true
-                skip_porechop = false
-                skip_filtering = false
+                skip_porechop = true//false
+                skip_filtering = true//false
                 rasusa_coverage = 100
                 filtering = "japsa"
                 porechop_args = ""
