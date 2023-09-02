@@ -106,6 +106,32 @@ if (params.help){
     exit 0
 }
 
+//process to basecall POD5 files with Dorado
+process dorado_basecaller {
+	"""
+	which dorado
+	dorado download --model dna_r10.4.1_e8.2_400bps_sup@v4.2.0 
+    dorado basecaller -r dna_r10.4.1_e8.2_400bps_sup@v4.2.0 --device cuda:0 ${params.pod5} > ${sample}.bam 
+	"""
+
+}
+
+// Process to convert resulting Dorado BAM to Fastq
+process samtools {
+	"""
+	which samtools
+	samtools sort -n gxb015a.bam -o gxb015a_sorted.bam
+	samtools fastq -@ 8 gxb015a_sorted.bam \
+    -1 gxb015_R1.fastq.gz \
+    -2 gxb015_R2.fastq.gz \
+    -0 /dev/null -s /dev/null -n
+	
+	"""
+
+}
+
+
+
 process basecall_demultiplexed {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
