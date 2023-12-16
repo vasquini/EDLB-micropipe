@@ -107,28 +107,62 @@ if (params.help){
 }
 
 //process to basecall POD5 files with Dorado
-process dorado_basecaller {
-	"""
-	which dorado
-	dorado download --model dna_r10.4.1_e8.2_400bps_sup@v4.2.0 
-    dorado basecaller -r dna_r10.4.1_e8.2_400bps_sup@v4.2.0 --device cuda:0 ${params.pod5} > ${sample}.bam 
-	"""
+// process dorado_basecaller {
+// 	cpus "${params.guppy_num_callers}"
+// 	label "gpu"
+// 	label "dorado_gpu"
+// 	containerOptions '--nv'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+// 	input:
+// 		path(pod5_dir)
+// 	output:
+// 		path "*.bam", emit: basecalled_bam
+// 		path("*.log")
+// 		path("dorado_basecaller_version.txt")
+// 	when:
+// 	params.basecalling & params.gpu & params.pod5 
+// 	script:
+// 	"""
+// 	set +eu
+// 	which dorado
+// 	dorado download --model dna_r10.4.1_e8.2_400bps_sup@v4.2.0 
+//     dorado basecaller -r dna_r10.4.1_e8.2_400bps_sup@v4.2.0 --device cuda:0 ${params.pod5_dir} > run.bam 
+// 	cp .command.log guppy_basecaller.log
+// 	${params.dorado_gpu_folder}dorado basecaller --version > guppy_basecaller_version.txt
+// 	"""
 
-}
+// }
 
-// Process to convert resulting Dorado BAM to Fastq
-process samtools {
-	"""
-	which samtools
-	samtools sort -n gxb015a.bam -o gxb015a_sorted.bam
-	samtools fastq -@ 8 gxb015a_sorted.bam \
-    -1 gxb015_R1.fastq.gz \
-    -2 gxb015_R2.fastq.gz \
-    -0 /dev/null -s /dev/null -n
+// // Process to convert resulting Dorado BAM to Fastq
+// process samtools {
+// 	cpus "${params.samtools_num_callers}"
+// 	label "samtools"
+// 	containerOptions '--nv'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+// 	input:
+// 		path(unsorted_bam_file)
+// 	output:
+// 		path "*.bam", emit: sorted_bam
+// 		path "*.fastq.gz", emit: basecalled_fastq
+// 		path("*.log")
+// 		path("samtools_version.txt")
+// 	when:
+// 	params.basecalling & params.gpu & params.pod5 
+// 	script:
+// 	"""
+// 	which samtools
+// 	outname=$(echo $unsorted_bam_file | sed 's/.bam/_sorted/g')
+// 	samtools sort -n "${unsorted_bam_file}" -o "${outname}.bam"
+// 	samtools fastq -@ 8 "${outname}.bam" \
+//     -1 ${outname}_R1.fastq.gz \
+//     -2 ${outname}_R2.fastq.gz \
+//     -0 /dev/null -s /dev/null -n
 	
-	"""
+// 	"""
 
-}
+// }
 
 
 
@@ -921,6 +955,13 @@ workflow assembly {
       //  assembly_out_ch = quast.out.quast_out
 }
 
+// workflow pod5_fastqs {
+// 	if (params.pod5_dir && params.basecalling){
+// 	   dorado_basecaller(basecalled_bam)
+// 	   samtools()
+// 	}	
+// }
+
 //Workflow testing 
 workflow {
 	//basecall and assembly workflow (multiple samples)
@@ -970,7 +1011,13 @@ workflow {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} // else { //FIXME: What is the difference? Make a cpu version?
+		} /*else {
+			
+		}*/
+		
+		
+		
+		// else { //FIXME: What is the difference? Make a cpu version?
 		// 	basecall_demultiplexed(ch_bar)
 		// 	pycoqc(basecall_demultiplexed.out.sequencing_summary)
 		// 	ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
