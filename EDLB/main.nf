@@ -106,51 +106,76 @@ if (params.help){
     exit 0
 }
 
-process basecall_multiple_isolate {
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.fastq*'
-    publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
+//process to basecall POD5 files with Dorado
+// process dorado_basecaller {
+// 	cpus "${params.guppy_num_callers}"
+// 	label "gpu"
+// 	label "dorado_gpu"
+// 	containerOptions '--nv'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+// 	input:
+// 		path(pod5_dir)
+// 	output:
+// 		path "*.bam", emit: basecalled_bam
+// 		path("*.log")
+// 		path("dorado_basecaller_version.txt")
+// 	when:
+// 	params.basecalling & params.gpu & params.pod5 
+// 	script:
+// 	"""
+// 	set +eu
+// 	which dorado
+// 	dorado download --model dna_r10.4.1_e8.2_400bps_sup@v4.2.0 
+//     dorado basecaller -r dna_r10.4.1_e8.2_400bps_sup@v4.2.0 --device cuda:0 ${params.pod5_dir} > run.bam 
+// 	cp .command.log guppy_basecaller.log
+// 	${params.dorado_gpu_folder}dorado basecaller --version > guppy_basecaller_version.txt
+// 	"""
 
-	input:
-	   each barcode_id
-	output:
-		path "sequencing_summary.txt", emit: sequencing_summary
-		path "*fastq.gz", emit: basecalled_fastq
-		path "*.fastq", emit: fastqs
-		path("*log")
-		path("guppy_basecaller_version.txt")
-    
-	when:
-	   params.basecalling & params.gpu & !params.demultiplexing & !params.single_sample
-	script:
-	"""
-	set +eu
-	echo "Barcode: ${barcode_id}" 
-	if [[ "${params.guppy_config_gpu}" != "false" ]]; then
-	    ${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD}  --device ${params.guppy_gpu_device} --config "${params.guppy_config_gpu}" --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
-	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_gpu_folder}guppy_basecaller -i ${params.fast5_dir}/${barcode_id} -s \${PWD} --device ${params.guppy_gpu_device} --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}	
-	fi
+// }
 
-	cat ${barcode_id}/*.fastq.gz > ${barcode_id}.fastq.gz
-	cp .command.log guppy_basecaller.log
+// // Process to convert resulting Dorado BAM to Fastq
+// process samtools {
+// 	cpus "${params.samtools_num_callers}"
+// 	label "samtools"
+// 	containerOptions '--nv'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+// 	input:
+// 		path(unsorted_bam_file)
+// 	output:
+// 		path "*.bam", emit: sorted_bam
+// 		path "*.fastq.gz", emit: basecalled_fastq
+// 		path("*.log")
+// 		path("samtools_version.txt")
+// 	when:
+// 	params.basecalling & params.gpu & params.pod5 
+// 	script:
+// 	"""
+// 	which samtools
+// 	outname=$(echo $unsorted_bam_file | sed 's/.bam/_sorted/g')
+// 	samtools sort -n "${unsorted_bam_file}" -o "${outname}.bam"
+// 	samtools fastq -@ 8 "${outname}.bam" \
+//     -1 ${outname}_R1.fastq.gz \
+//     -2 ${outname}_R2.fastq.gz \
+//     -0 /dev/null -s /dev/null -n
+	
+// 	"""
 
-	${params.guppy_gpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
-	"""
-}
+// }
+
+
 
 process basecall_demultiplexed {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
 	label "guppy_gpu"
 	containerOptions '--nv'
-	// update the published directory: add sample_id to it?
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.txt'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.log'
 	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*fastq.gz'
 
 	input:
-		//FIXME: I need to add the sample id here too!
 		each barcode_id
 	output:
 		path "sequencing_summary.txt", emit: sequencing_summary
@@ -238,64 +263,64 @@ process basecalling_single_isolate {
 }
 
 
-process basecalling_cpu {
-    cpus "${params.guppy_num_callers}"
-    label "cpu"
-    label "guppy_cpu"
-    publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
-    publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
-    input:
-        path(fast5_dir)
-    output:
-    	path "sequencing_summary.txt", emit: sequencing_summary
-    	path "fastq_runid*fastq", emit: basecalled_fastq
-		path("*.log")
-		path("guppy_basecaller_version.txt")
-    when:
-	params.basecalling & !params.gpu & params.demultiplexer == 'qcat'
-	script:
-	"""
-	set +eu
-	if [[ "${params.guppy_config_cpu}" != "false" ]] ; then
-		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --config ${params.guppy_config_cpu} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
-	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --flowcell ${params.flowcell} --kit ${params.kit} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
-	fi
-	cp .command.log guppy_basecaller.log
-	${params.guppy_cpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
-	"""
-}
+// process basecalling_cpu {
+//     cpus "${params.guppy_num_callers}"
+//     label "cpu"
+//     label "guppy_cpu"
+//     publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+//     publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+//     input:
+//         path(fast5_dir)
+//     output:
+//     	path "sequencing_summary.txt", emit: sequencing_summary
+//     	path "fastq_runid*fastq", emit: basecalled_fastq
+// 		path("*.log")
+// 		path("guppy_basecaller_version.txt")
+//     when:
+// 	params.basecalling & !params.gpu & params.demultiplexer == 'qcat'
+// 	script:
+// 	"""
+// 	set +eu
+// 	if [[ "${params.guppy_config_cpu}" != "false" ]] ; then
+// 		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --config ${params.guppy_config_cpu} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
+// 	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
+// 		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --flowcell ${params.flowcell} --kit ${params.kit} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
+// 	fi
+// 	cp .command.log guppy_basecaller.log
+// 	${params.guppy_cpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
+// 	"""
+// }
 
-process basecalling_cpu_single_isolate {
-	cpus "${params.guppy_num_callers}"
-	label "cpu"
-	label "guppy_cpu"
-	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
-	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
-	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*fastq.gz'
-	input:
-		tuple path(fast5_dir), val(sample)
-	output:
-		path "sequencing_summary.txt", emit: sequencing_summary
-		path "*fastq.gz", emit: basecalled_fastq
-		path("*.log")
-		path("guppy_basecaller_version.txt")
-	when:
-	params.basecalling & !params.gpu & !params.demultiplexing & params.single_sample
-	script:
-	"""
-	set +eu
-	if [[ "${params.guppy_config_cpu}" != "false" ]] ; then
-		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --config ${params.guppy_config_cpu} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
-	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --flowcell ${params.flowcell} --kit ${params.kit} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
-	fi
-	cp .command.log guppy_basecaller.log
-	cat *.fastq > ${sample}.fastq
-	gzip ${sample}.fastq
-	${params.guppy_cpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
-	"""
-}
+// process basecalling_cpu_single_isolate {
+// 	cpus "${params.guppy_num_callers}"
+// 	label "cpu"
+// 	label "guppy_cpu"
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
+// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*fastq.gz'
+// 	input:
+// 		tuple path(fast5_dir), val(sample)
+// 	output:
+// 		path "sequencing_summary.txt", emit: sequencing_summary
+// 		path "*fastq.gz", emit: basecalled_fastq
+// 		path("*.log")
+// 		path("guppy_basecaller_version.txt")
+// 	when:
+// 	params.basecalling & !params.gpu & !params.demultiplexing & params.single_sample
+// 	script:
+// 	"""
+// 	set +eu
+// 	if [[ "${params.guppy_config_cpu}" != "false" ]] ; then
+// 		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --config ${params.guppy_config_cpu} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
+// 	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
+// 		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --flowcell ${params.flowcell} --kit ${params.kit} --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args}
+// 	fi
+// 	cp .command.log guppy_basecaller.log
+// 	cat *.fastq > ${sample}.fastq
+// 	gzip ${sample}.fastq
+// 	${params.guppy_cpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
+// 	"""
+// }
 
 process demultiplexing_qcat {
 	cpus 1
@@ -358,36 +383,36 @@ process basecalling_demultiplexing_guppy {
 	"""
 }
 
-process basecalling_demultiplexing_guppy_cpu {
-	cpus "${params.guppy_num_callers}"
-	label "cpu"
-	label "guppy_cpu"
-	publishDir "$params.outdir/0_demultiplexing", mode: 'copy'
-	input:
-		path(fast5_dir)
-	output:
-		path "sequencing_summary.txt", emit: sequencing_summary
-		path "*fastq.gz", emit: demultiplexed_fastq
-		path("*log")
-		path("guppy_basecaller_version.txt")
-	when:
-	params.basecalling & !params.gpu & params.demultiplexer == 'guppy'
-	script:
-	"""
-	set +eu
-	if [[ "${params.guppy_config_gpu}" != "false" ]] ; then
-		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --config "${params.guppy_config_cpu}" --compress_fastq --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
-	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
-		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD  --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
-	fi
-	cp .command.log guppy_basecaller.log
-	for dir in barc*/ uncl*/; do
-		barcode_id=\${dir%*/}
-		cat \${dir}/*.fastq.gz > \${barcode_id}.fastq.gz
-	done
-	${params.guppy_cpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
-	"""
-}
+// process basecalling_demultiplexing_guppy_cpu {
+// 	cpus "${params.guppy_num_callers}"
+// 	label "cpu"
+// 	label "guppy_cpu"
+// 	publishDir "$params.outdir/0_demultiplexing", mode: 'copy'
+// 	input:
+// 		path(fast5_dir)
+// 	output:
+// 		path "sequencing_summary.txt", emit: sequencing_summary
+// 		path "*fastq.gz", emit: demultiplexed_fastq
+// 		path("*log")
+// 		path("guppy_basecaller_version.txt")
+// 	when:
+// 	params.basecalling & !params.gpu & params.demultiplexer == 'guppy'
+// 	script:
+// 	"""
+// 	set +eu
+// 	if [[ "${params.guppy_config_gpu}" != "false" ]] ; then
+// 		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD --config "${params.guppy_config_cpu}" --compress_fastq --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
+// 	elif [[ "${params.flowcell}" != "false" ]] && [[ "${params.kit}" != "false" ]]; then
+// 		${params.guppy_cpu_folder}guppy_basecaller -i ${fast5_dir} -s \$PWD  --flowcell ${params.flowcell} --kit ${params.kit} --compress_fastq --num_callers ${params.guppy_num_callers} --cpu_threads_per_caller ${params.guppy_cpu_threads_per_caller} ${params.guppy_basecaller_args} --barcode_kits ${params.guppy_barcode_kits}
+// 	fi
+// 	cp .command.log guppy_basecaller.log
+// 	for dir in barc*/ uncl*/; do
+// 		barcode_id=\${dir%*/}
+// 		cat \${dir}/*.fastq.gz > \${barcode_id}.fastq.gz
+// 	done
+// 	${params.guppy_cpu_folder}guppy_basecaller --version > guppy_basecaller_version.txt
+// 	"""
+// }
 
 process demultiplexing_guppy {
 	cpus "${params.guppy_barcoder_threads}"
@@ -417,32 +442,32 @@ process demultiplexing_guppy {
 	"""
 }
 
-process demultiplexing_guppy_cpu {
-    cpus "${params.guppy_barcoder_threads}"
-    label "cpu"
-    label "guppy_cpu"
-    publishDir "$params.outdir/0_demultiplexing", mode: 'copy'
-    input:
-		path(fastq_dir)
-    output:
-    	path "*fastq.gz", emit: demultiplexed_fastq
-		path("*log")
-		path "barcoding_summary.txt"
-		path("guppy_barcoder_version.txt")
-	when:
-	params.demultiplexer == 'guppy' & params.demultiplexing & !params.gpu
-	script:
-	"""
-	set +eu
-	${params.guppy_cpu_folder}guppy_barcoder -i ${fastq_dir} -s \$PWD --compress_fastq ${params.guppy_barcoder_args} --barcode_kits ${params.guppy_barcode_kits} --worker_threads ${params.guppy_barcoder_threads}
-	cp .command.log guppy_barcoder.log
-	for dir in barc*/ uncl*/; do
-		barcode_id=\${dir%*/}
-		cat \${dir}/*.fastq.gz > \${barcode_id}.fastq.gz
-	done
-	${params.guppy_cpu_folder}guppy_barcoder --version > guppy_barcoder_version.txt
-	"""
-}
+// process demultiplexing_guppy_cpu {
+//     cpus "${params.guppy_barcoder_threads}"
+//     label "cpu"
+//     label "guppy_cpu"
+//     publishDir "$params.outdir/0_demultiplexing", mode: 'copy'
+//     input:
+// 		path(fastq_dir)
+//     output:
+//     	path "*fastq.gz", emit: demultiplexed_fastq
+// 		path("*log")
+// 		path "barcoding_summary.txt"
+// 		path("guppy_barcoder_version.txt")
+// 	when:
+// 	params.demultiplexer == 'guppy' & params.demultiplexing & !params.gpu
+// 	script:
+// 	"""
+// 	set +eu
+// 	${params.guppy_cpu_folder}guppy_barcoder -i ${fastq_dir} -s \$PWD --compress_fastq ${params.guppy_barcoder_args} --barcode_kits ${params.guppy_barcode_kits} --worker_threads ${params.guppy_barcoder_threads}
+// 	cp .command.log guppy_barcoder.log
+// 	for dir in barc*/ uncl*/; do
+// 		barcode_id=\${dir%*/}
+// 		cat \${dir}/*.fastq.gz > \${barcode_id}.fastq.gz
+// 	done
+// 	${params.guppy_cpu_folder}guppy_barcoder --version > guppy_barcoder_version.txt
+// 	"""
+// }
 
 process pycoqc {
 	cpus 1
@@ -930,6 +955,13 @@ workflow assembly {
       //  assembly_out_ch = quast.out.quast_out
 }
 
+// workflow pod5_fastqs {
+// 	if (params.pod5_dir && params.basecalling){
+// 	   dorado_basecaller(basecalled_bam)
+// 	   samtools()
+// 	}	
+// }
+
 //Workflow testing 
 workflow {
 	//basecall and assembly workflow (multiple samples)
@@ -979,7 +1011,13 @@ workflow {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} // else { //FIXME: What is the difference? Make a cpu version?
+		} /*else {
+			
+		}*/
+		
+		
+		
+		// else { //FIXME: What is the difference? Make a cpu version?
 		// 	basecall_demultiplexed(ch_bar)
 		// 	pycoqc(basecall_demultiplexed.out.sequencing_summary)
 		// 	ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
