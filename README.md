@@ -57,6 +57,20 @@ NOTE: Make sure that you change the required paths to your paths. A quick way is
 
 **0. Requirements**
 
+Dorado basecaller is required for flowcells R.10.4.1+.
+
+Make sure to specify the paths to the installations. On the DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation.
+
+`dorado_gpu_folder = "/apps/x86_64/dorado/0.3.4/bin/"
+	guppy_gpu_folder = "/apps/x86_64/guppy/6.4.6-gpu/bin/"
+	dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+	dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+	dorado_modified_bases = '5mC 6mA'
+	dorado_device = 'cuda:0'
+`
+
+
+
 * [Nextflow](https://www.nextflow.io/) >= 20.10.0
 
 Nextflow can be used on any POSIX compatible system (Linux, OS X, etc). It requires Bash 3.2 (or later) and Java 8 (or later, up to 15) to be installed.
