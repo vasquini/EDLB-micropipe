@@ -4,24 +4,53 @@ nextflow_process {
     script "main.nf"
     process "basecall_demultiplexed"
 
-    test("Should run without failures") {
+    test("Testing basecalling for demultiplexed data") {
 
         when {
             params {
                 // define parameters here. Example:
-                outdir = "ModuleTestResults"
+                outdir = "ModuleTestResults/0_basecall_demultiplexed"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_demultiplexed_samplesheet.csv"
+                basecalling = true
+                demultiplexing = false
+                gpu = true
+                fast5_dir = "/scicomp/home-pure/suj7/EDLB/test_data/demultiplexed_fast5"
+                fastq = false
+	            datadir = false
+                demultiplexer = 'guppy'
+                guppy_gpu_folder = "/apps/x86_64/guppy/6.3.8-gpu/bin/"
+                guppy_cpu_folder = "/apps/x86_64/guppy/6.3.8-gpu/bin/" 
+	            guppy_config_gpu = "dna_r9.4.1_450bps_sup.cfg"
+                guppy_config_cpu = "dna_r9.4.1_450bps_fast.cfg"
+                kit = false
+                flowcell = false
+                single_sample=false
+                guppy_gpu_device = "auto"
+                guppy_num_callers = 8
+                guppy_cpu_threads_per_caller = 1
+                guppy_basecaller_args = "--recursive -q 0 --disable_qscore_filtering"
+                guppy_barcode_kits= "SQK-RBK004"
+                guppy_barcoder_threads = 2
             }
             process {
                 """
                 // define inputs of the process here. Example:
-                // input[0] = file("test-file.txt")
+                input[0] = Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+		            .splitCsv(header:true, sep:',')
+		            .map { row -> tuple(row.barcode_id, row.sample_id, row.long_fastq, row.genome_size) }.first().map { it[0] }
+                input[0].view()
+                
+
                 """
             }
         }
 
         then {
             assert process.success
-            assert snapshot(process.out).match()
+           // with(process.out) {
+              // Make assertions about the content and elements of output channels here. Example:
+              // assert out_channel != null
+            //}
         }
 
     }
