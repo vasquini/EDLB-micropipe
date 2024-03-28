@@ -38,6 +38,7 @@ def helpMessage() {
     
 	Basecalling:
 		--basecalling				Flag to run the basecalling step (default=false)
+		--pod5                  Flag to run Dorado basecaller instead of Guppy for POD5 files (Default=false)
 		--fast5					Path to the directory containing the ONT fast5 files
 		--gpu					Use the GPU node to run the Guppy basecalling and/or demultiplexing step (default=false) 
 		--guppy_basecaller_args			Guppy basecaller parameters (default="--recursive --trim_barcodes -q 0")
@@ -107,64 +108,47 @@ if (params.help){
 }
 
 //process to basecall POD5 files with Dorado
-// process dorado_basecaller {
-// 	cpus "${params.guppy_num_callers}"
-// 	label "gpu"
-// 	label "dorado_gpu"
-// 	containerOptions '--nv'
-// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
-// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
-// 	input:
-// 		path(pod5_dir)
-// 	output:
-// 		path "*.bam", emit: basecalled_bam
-// 		path("*.log")
-// 		path("dorado_basecaller_version.txt")
-// 	when:
-// 	params.basecalling & params.gpu & params.pod5 
-// 	script:
-// 	"""
-// 	set +eu
-// 	which dorado
-// 	dorado download --model dna_r10.4.1_e8.2_400bps_sup@v4.2.0 
-//     dorado basecaller -r dna_r10.4.1_e8.2_400bps_sup@v4.2.0 --device cuda:0 ${params.pod5_dir} > run.bam 
-// 	cp .command.log guppy_basecaller.log
-// 	${params.dorado_gpu_folder}dorado basecaller --version > guppy_basecaller_version.txt
-// 	"""
-
-// }
-
-// // Process to convert resulting Dorado BAM to Fastq
-// process samtools {
-// 	cpus "${params.samtools_num_callers}"
-// 	label "samtools"
-// 	containerOptions '--nv'
-// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.txt'
-// 	publishDir "$params.outdir/0_basecalling",  mode: 'copy', pattern: '*.log'
-// 	input:
-// 		path(unsorted_bam_file)
-// 	output:
-// 		path "*.bam", emit: sorted_bam
-// 		path "*.fastq.gz", emit: basecalled_fastq
-// 		path("*.log")
-// 		path("samtools_version.txt")
-// 	when:
-// 	params.basecalling & params.gpu & params.pod5 
-// 	script:
-// 	"""
-// 	which samtools
-// 	outname=$(echo $unsorted_bam_file | sed 's/.bam/_sorted/g')
-// 	samtools sort -n "${unsorted_bam_file}" -o "${outname}.bam"
-// 	samtools fastq -@ 8 "${outname}.bam" \
-//     -1 ${outname}_R1.fastq.gz \
-//     -2 ${outname}_R2.fastq.gz \
-//     -0 /dev/null -s /dev/null -n
+process BASECALL_DORADO {
+	tag "Dorado on ${sample_id}"
+	errorStrategy = 'ignore'
 	
-// 	"""
+	input:
+	tuple val(sample_id), path(reads)
+	
+	output:
+	tuple val(sample_id), path("${sample_id}.bam")
+	
+	script:
+	"""
+	${params.dorado_gpu_folder}/dorado download --model ${params.dorado_model}
+	${params.dorado_gpu_folder}/dorado basecaller -r -x ${params.dorado_device} ${params.dorado_basecaller} ${reads}  > ${sample_id}.bam
+	"""
+}
 
-// }
 
-
+process READSGET {
+	tag "Formatting reads for ${sample_id}"
+	publishDir(
+		path: "${params.outdir}/${sample_id}/",
+		mode: 'copy',
+		saveAs: { filename ->
+					if (filename.endsWith('.fastq')) "$filename"
+					else null
+		}
+	)
+	errorStrategy = 'ignore'
+	
+	input:
+	tuple val(sample_id), path(bamfile)
+	
+	output:
+	tuple val(sample_id), path("${sample_id}.fastq")
+	
+	script:
+	"""
+	samtools bam2fq ${bamfile} > "${sample_id}.fastq"
+	"""
+}
 
 process basecall_demultiplexed {
 	cpus "${params.guppy_num_callers}"
@@ -955,12 +939,25 @@ workflow assembly {
       //  assembly_out_ch = quast.out.quast_out
 }
 
-// workflow pod5_fastqs {
-// 	if (params.pod5_dir && params.basecalling){
-// 	   dorado_basecaller(basecalled_bam)
-// 	   samtools()
-// 	}	
-// }
+//Workflow for POD5 inputs
+workflow pod5_processing {
+	main_dir = params.pod5
+	all_dirs = file(main_dir)
+	//println all_dirs
+	all_subdirs = all_dirs.listFiles()
+	//println all_subdirs
+	
+	Channel //set channel for POD5s
+		.of(all_subdirs)
+		.map{ file -> tuple(file.SimpleName, file) }
+		//.view()
+		.set{pod5_ch}
+
+	bam_ch = BASECALL_DORADO(pod5_ch)
+		.map{ outTuple -> outTuple[0,1] }
+	fastq_ch = READSGET(bam_ch)
+	assembly(fastq_ch)
+}
 
 //Workflow testing 
 workflow {
@@ -1011,17 +1008,7 @@ workflow {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} /*else {
-			
-		}*/
-		
-		
-		
-		// else { //FIXME: What is the difference? Make a cpu version?
-		// 	basecall_demultiplexed(ch_bar)
-		// 	pycoqc(basecall_demultiplexed.out.sequencing_summary)
-		// 	ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		// }
+		} 
 
 		ch_fastq.view()
 		if ( !params.skip_illumina ) {
