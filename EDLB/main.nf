@@ -941,7 +941,7 @@ workflow assembly {
 
 //Workflow for POD5 inputs
 workflow pod5_processing {
-	main_dir = params.pod5
+	main_dir = params.pod5_dir
 	all_dirs = file(main_dir)
 	//println all_dirs
 	all_subdirs = all_dirs.listFiles()
@@ -961,12 +961,15 @@ workflow pod5_processing {
 
 //Workflow testing 
 workflow {
-	//basecall and assembly workflow (multiple samples)
-	if (!params.single_sample && !params.demultiplexing && params.basecalling){
-		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
-		.splitCsv(header:true, sep:',')
-		.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
-		.set { ch_samplesheet_basecall_demuxed }
+    // for POD5 inputs
+	if (params.pod5){
+		pod5_processing()
+	} else{
+		if (!params.single_sample && !params.demultiplexing && params.basecalling){
+			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+			.splitCsv(header:true, sep:',')
+			.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
+			.set { ch_samplesheet_basecall_demuxed }
 		if ( !params.skip_illumina ) {
 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
 			.splitCsv(header:true, sep:',')          
@@ -975,35 +978,9 @@ workflow {
 			ch_samplesheet_illumina.view()
 		}
 
-		//Instead of getting from samplesheet get it from path
-		//dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')//_dir}/*/",type:'dir')
-		//ch_bar=dir_ch.map { file -> file.simpleName }
-
 		ch_barcodes=ch_samplesheet_basecall_demuxed.map { it[0]}
 		ch_bar=ch_barcodes.collect()
 
-		// if (params.basecalling){
-		// 	if( params.gpu ) {
-		// 		basecall_demultiplexed(ch_bar)
-		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
-		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		// 	} else { //FIXME: What is the difference? Make a cpu version?
-		// 		basecall_demultiplexed(ch_bar)
-		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
-		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		// 	}
-
-		// 	ch_fastq.view()
-		// 	if ( !params.skip_illumina ) {
-		// 		ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
-		// 		ch_data.view()
-		// 		assembly( ch_data, ch_samplesheet_illumina )
-		// 	} else {
-		// 		ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
-		// 		ch_data.view()
-		// 		assembly( ch_data, Channel.empty() )
-		// 	}
-		// }
 		if( params.gpu ) {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
@@ -1159,4 +1136,206 @@ workflow {
 			}
 		}
 	}
+
+
+	//}
+
+	//basecall and assembly workflow (multiple samples)
+	// if (!params.single_sample && !params.demultiplexing && params.basecalling){
+	// 	Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 	.splitCsv(header:true, sep:',')
+	// 	.map { row -> tuple( row.barcode_id, row.sample_id,row.genome_size) }
+	// 	.set { ch_samplesheet_basecall_demuxed }
+	// 	if ( !params.skip_illumina ) {
+	// 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 		.splitCsv(header:true, sep:',')          
+	// 		.map { row -> tuple(row.sample_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
+	// 		.set { ch_samplesheet_illumina }
+	// 		ch_samplesheet_illumina.view()
+	// 	}
+
+	// 	//Instead of getting from samplesheet get it from path
+	// 	//dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')//_dir}/*/",type:'dir')
+	// 	//ch_bar=dir_ch.map { file -> file.simpleName }
+
+	// 	ch_barcodes=ch_samplesheet_basecall_demuxed.map { it[0]}
+	// 	ch_bar=ch_barcodes.collect()
+
+	// 	// if (params.basecalling){
+	// 	// 	if( params.gpu ) {
+	// 	// 		basecall_demultiplexed(ch_bar)
+	// 	// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+	// 	// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 	// 	} else { //FIXME: What is the difference? Make a cpu version?
+	// 	// 		basecall_demultiplexed(ch_bar)
+	// 	// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+	// 	// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 	// 	}
+
+	// 	// 	ch_fastq.view()
+	// 	// 	if ( !params.skip_illumina ) {
+	// 	// 		ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
+	// 	// 		ch_data.view()
+	// 	// 		assembly( ch_data, ch_samplesheet_illumina )
+	// 	// 	} else {
+	// 	// 		ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
+	// 	// 		ch_data.view()
+	// 	// 		assembly( ch_data, Channel.empty() )
+	// 	// 	}
+	// 	// }
+	// 	if( params.gpu ) {
+	// 		basecall_demultiplexed(ch_bar)
+	// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
+	// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 	} 
+
+	// 	ch_fastq.view()
+	// 	if ( !params.skip_illumina ) {
+	// 		ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
+	// 		ch_data.view()
+	// 		assembly( ch_data, ch_samplesheet_illumina )
+	// 	} else {
+	// 		ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
+	// 		ch_data.view()
+	// 		assembly( ch_data, Channel.empty() )
+	// 	}
+	// } else {
+	// 	//basecalling, demultiplexing and assembly workflow
+	// 	if( params.basecalling && params.demultiplexing) {
+	// 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 		.splitCsv(header:true, sep:',')
+	// 		.map { row -> tuple(row.barcode_id, row.sample_id, row.genome_size) }
+	// 		.set { ch_samplesheet_basecalling }
+	// 		ch_samplesheet_basecalling.view()
+	// 		if ( !params.skip_illumina ) {
+	// 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 			.splitCsv(header:true, sep:',')          
+	// 			.map { row -> tuple(row.barcode_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
+	// 			.set { ch_samplesheet_illumina }
+	// 			ch_samplesheet_illumina.view()
+	// 		}
+	// 		fast5 = Channel.fromPath("${params.fast5}", checkIfExists: true )
+	// 		if( params.demultiplexer == "qcat") {
+	// 			if( params.gpu ) {
+	// 				basecalling(fast5)
+	// 				demultiplexing_qcat(basecalling.out.basecalled_fastq)
+	// 				pycoqc(basecalling.out.sequencing_summary)
+	// 			} else {
+	// 				basecalling_cpu(fast5)
+	// 				demultiplexing_qcat(basecalling_cpu.out.basecalled_fastq)
+	// 				pycoqc(basecalling_cpu.out.sequencing_summary)
+	// 			}
+	// 			ch_fastq=demultiplexing_qcat.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 			ch_fastq.view()
+	// 			ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
+	// 			ch_data.view()
+	// 		} else if (params.demultiplexer == "guppy") {
+	// 			if( params.gpu ) {
+	// 				basecalling_demultiplexing_guppy(fast5)
+	// 				pycoqc(basecalling_demultiplexing_guppy.out.sequencing_summary)
+	// 				ch_fastq=basecalling_demultiplexing_guppy.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 			} else {
+	// 				basecalling_demultiplexing_guppy_cpu(fast5)
+	// 				pycoqc(basecalling_demultiplexing_guppy_cpu.out.sequencing_summary)
+	// 				ch_fastq=basecalling_demultiplexing_guppy_cpu.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 			}
+	// 			ch_fastq.view()
+	// 			ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
+	// 		}
+	// 		if ( !params.skip_illumina ) {
+	// 			assembly( ch_data, ch_samplesheet_illumina)
+	// 		} else {
+	// 			assembly( ch_data, Channel.empty() )
+	// 		}
+	// 	//basecalling and assembly workflow (single isolate)
+	// 	} else if( params.basecalling && !params.demultiplexing) {
+	// 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 		.splitCsv(header:true, sep:',')
+	// 		.map { row -> tuple(row.sample_id, row.genome_size) }
+	// 		.set { ch_samplesheet_basecalling }
+	// 		ch_samplesheet_basecalling.view()
+	// 		if ( !params.skip_illumina ) {
+	// 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 			.splitCsv(header:true, sep:',')          
+	// 			.map { row -> tuple(row.sample_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
+	// 			.set { ch_samplesheet_illumina }
+	// 			ch_samplesheet_illumina.view()
+	// 		}
+	// 		fast5 = Channel.fromPath("${params.fast5}", checkIfExists: true )
+	// 		ch_sample = ch_samplesheet_basecalling.first().map { it[0] }
+	// 		ch_fast5 = fast5.concat( ch_sample ).collect()
+	// 		ch_fast5.view()
+	// 		if( params.gpu ) {
+	// 			basecalling_single_isolate(ch_fast5)
+	// 			pycoqc(basecalling_single_isolate.out.sequencing_summary)
+	// 			ch_fastq=basecalling_single_isolate.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 		} else {
+	// 			basecalling_cpu_single_isolate(ch_fast5)
+	// 			pycoqc(basecalling_cpu_single_isolate.out.sequencing_summary)
+	// 			ch_fastq=basecalling_cpu_single_isolate.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 		}
+	// 		ch_fastq.view()
+	// 		if ( !params.skip_illumina ) {
+	// 			ch_data = ch_fastq.concat( ch_samplesheet_basecalling ).collect()
+	// 			ch_data.view()
+	// 			assembly( ch_data, ch_samplesheet_illumina )
+	// 		} else {
+	// 			ch_data = ch_fastq.concat( ch_samplesheet_basecalling ).collect()
+	// 			ch_data.view()
+	// 			assembly( ch_data, Channel.empty() )
+	// 		}
+	// 	//demultiplexing and assembly workflow
+	// 	} else if ( !params.basecalling && params.demultiplexing ){
+	// 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 		.splitCsv(header:true, sep:',')
+	// 		.map { row -> tuple(row.barcode_id, row.sample_id, row.genome_size) }
+	// 		.set { ch_samplesheet_basecalling }
+	// 		ch_samplesheet_basecalling.view()
+	// 		if ( !params.skip_illumina ) {
+	// 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 			.splitCsv(header:true, sep:',')          
+	// 			.map { row -> tuple(row.barcode_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
+	// 			.set { ch_samplesheet_illumina }
+	// 			ch_samplesheet_illumina.view()
+	// 		}
+	// 		fastq = Channel.fromPath("${params.fastq}", checkIfExists: true )
+	// 		if( params.demultiplexer == "qcat") {
+	// 			demultiplexing_qcat(fastq)
+	// 			ch_fastq=demultiplexing_qcat.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 		} else if (params.demultiplexer == "guppy") { 
+	// 			if( params.gpu ) {
+	// 				demultiplexing_guppy(fastq)
+	// 				ch_fastq=demultiplexing_guppy.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 			} else {
+	// 				demultiplexing_guppy_cpu(fastq)
+	// 				ch_fastq=demultiplexing_guppy_cpu.out.demultiplexed_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
+	// 			}
+	// 		}
+	// 		ch_fastq.view()
+	// 		ch_data=ch_fastq.combine(ch_samplesheet_basecalling, by: 0)
+	// 		ch_data.view()
+	// 		if ( !params.skip_illumina ) {
+	// 			assembly( ch_data, ch_samplesheet_illumina)
+	// 		} else {
+	// 			assembly( ch_data, Channel.empty() )
+	// 		}
+	// 	//assembly only workflow
+	// 	} else if ( !params.basecalling && !params.demultiplexing ) {
+	// 		Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 		.splitCsv(header:true, sep:',')
+	// 		.map { row -> tuple(row.barcode_id, file(row.long_fastq, checkIfExists: true), row.sample_id, row.genome_size) }
+	// 		.set { ch_samplesheet }
+	// 		ch_samplesheet.view()
+	// 		if ( !params.skip_illumina ) {
+	// 			Channel.fromPath( "${params.samplesheet}", checkIfExists:true )
+	// 			.splitCsv(header:true, sep:',')          
+	// 			.map { row -> tuple(row.barcode_id, file(row.short_fastq_1, checkIfExists: true), file(row.short_fastq_2, checkIfExists: true)) }
+	// 			.set { ch_samplesheet_illumina }
+	// 			ch_samplesheet_illumina.view()
+	// 			assembly( ch_samplesheet, ch_samplesheet_illumina )
+	// 		} else {
+	// 			assembly( ch_samplesheet, Channel.empty() )
+	// 		}
+	// 	}
+	// }
 }
