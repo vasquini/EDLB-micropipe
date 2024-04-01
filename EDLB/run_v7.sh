@@ -21,6 +21,7 @@ which guppy_barcoder
 ml nextflow/22.10.6
 which nextflow
 which samtools
+ml dorado/0.5.1
 which dorado
 cd ~/EDLB
 #guppy_barcoder -i ~/DoradoRuns/fastq -s GXB014_Demux --device auto --compress_fastq  --barcode_kits "SQK-NBD114-24" --worker_threads 2
