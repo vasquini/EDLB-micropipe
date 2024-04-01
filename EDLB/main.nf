@@ -120,8 +120,8 @@ process BASECALL_DORADO {
 	
 	script:
 	"""
-	${params.dorado_gpu_folder}/dorado download --model ${params.dorado_model}
-	${params.dorado_gpu_folder}/dorado basecaller -r -x ${params.dorado_device} ${params.dorado_basecaller} ${reads}  > ${sample_id}.bam
+	dorado download --model ${params.dorado_model}
+	dorado basecaller -r -x ${params.dorado_device} ${params.dorado_basecaller} ${reads}  > ${sample_id}.bam
 	"""
 }
 

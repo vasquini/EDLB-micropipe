@@ -12,8 +12,8 @@ source /etc/profile
 #$ -l h_rt=24:00:00
 #$ -l h_vmem=200G
 # Specify where standard output and error are stored
-#$ -o test.out
-#$ -e test.err
+#$ -o test_con.out
+#$ -e test_con.err
 
 module load guppy/6.4.6-gpu
 which guppy_basecaller
@@ -21,7 +21,7 @@ which guppy_barcoder
 ml nextflow/22.10.6
 which nextflow
 which samtools
-ml dorado/0.5.1
+#ml dorado/0.5.1
 which dorado
 cd ~/EDLB
 #guppy_barcoder -i ~/DoradoRuns/fastq -s GXB014_Demux --device auto --compress_fastq  --barcode_kits "SQK-NBD114-24" --worker_threads 2
