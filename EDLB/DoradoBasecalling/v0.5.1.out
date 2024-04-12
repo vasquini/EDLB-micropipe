@@ -1,0 +1,78 @@
+/apps/x86_64/nextflow/22.10.6/nextflow
+/apps/x86_64/dorado/0.5.1/bin/dorado
+N E X T F L O W  ~  version 22.10.6
+Launching `doradobasecaller.nf` [spontaneous_borg] DSL2 - revision: fdea0017d1
+[-        ] process > BASECALL_DORADO -
+[-        ] process > READSGET        -
+
+executor >  local (2)
+[0f/1c2b79] process > BASECALL_DORADO (Dorado on ... [  0%] 0 of 6
+[-        ] process > READSGET                       -
+
+executor >  local (3)
+[e5/302cca] process > BASECALL_DORADO (Dorado on ... [ 16%] 1 of 6, failed: 1
+[-        ] process > READSGET                       -
+[10/d3414d] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (134) -- Error is ignored
+
+executor >  local (3)
+[e5/302cca] process > BASECALL_DORADO (Dorado on ... [ 16%] 1 of 6, failed: 1
+[-        ] process > READSGET                       -
+[10/d3414d] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (134) -- Error is ignored
+
+executor >  local (4)
+[49/c51149] process > BASECALL_DORADO (Dorado on ... [ 33%] 2 of 6, failed: 1
+[-        ] process > READSGET                       [  0%] 0 of 1
+
+
+executor >  local (5)
+[b2/869e81] process > BASECALL_DORADO (Dorado on ... [ 50%] 3 of 6, failed: 1
+[-        ] process > READSGET                       [  0%] 0 of 2
+
+
+executor >  local (6)
+[4c/e70fa6] process > BASECALL_DORADO (Dorado on ... [ 66%] 4 of 6, failed: 1
+[-        ] process > READSGET                       [  0%] 0 of 3
+
+executor >  local (7)
+[4c/e70fa6] process > BASECALL_DORADO (Dorado on ... [ 83%] 5 of 6, failed: 1
+[70/fc1bf8] process > READSGET (Formatting reads ... [  0%] 0 of 4
+
+executor >  local (8)
+[4c/e70fa6] process > BASECALL_DORADO (Dorado on ... [ 83%] 5 of 6, failed: 1
+[70/fc1bf8] process > READSGET (Formatting reads ... [ 25%] 1 of 4
+
+executor >  local (9)
+[4c/e70fa6] process > BASECALL_DORADO (Dorado on ... [ 83%] 5 of 6, failed: 1
+[01/913e48] process > READSGET (Formatting reads ... [ 50%] 2 of 4
+
+executor >  local (10)
+[4c/e70fa6] process > BASECALL_DORADO (Dorado on ... [ 83%] 5 of 6, failed: 1
+[2e/0786de] process > READSGET (Formatting reads ... [ 75%] 3 of 4
+
+executor >  local (10)
+[4c/e70fa6] process > BASECALL_DORADO (Dorado on ... [ 83%] 5 of 6, failed: 1
+[2e/0786de] process > READSGET (Formatting reads ... [100%] 4 of 4
+
+executor >  local (11)
+[e5/302cca] process > BASECALL_DORADO (Dorado on ... [100%] 6 of 6, failed: 1 ✔
+[1f/88f7a8] process > READSGET (Formatting reads ... [ 80%] 4 of 5
+
+executor >  local (11)
+[e5/302cca] process > BASECALL_DORADO (Dorado on ... [100%] 6 of 6, failed: 1 ✔
+[1f/88f7a8] process > READSGET (Formatting reads ... [ 80%] 4 of 5
+
+executor >  local (11)
+[e5/302cca] process > BASECALL_DORADO (Dorado on ... [100%] 6 of 6, failed: 1 ✔
+[1f/88f7a8] process > READSGET (Formatting reads ... [100%] 5 of 5 ✔
+
+executor >  local (11)
+[e5/302cca] process > BASECALL_DORADO (Dorado on ... [100%] 6 of 6, failed: 1 ✔
+[1f/88f7a8] process > READSGET (Formatting reads ... [100%] 5 of 5 ✔
+Completed at: 22-Mar-2024 07:12:59
+Duration    : 8h 2m 47s
+CPU hours   : 90.6 (0.1% failed)
+Succeeded   : 10
+Ignored     : 1
+Failed      : 1
+
+

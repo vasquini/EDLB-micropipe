@@ -1,0 +1,79 @@
+/apps/x86_64/nextflow/22.10.6/nextflow
+/apps/x86_64/dorado/0.5.1/bin/dorado
+N E X T F L O W  ~  version 22.10.6
+Launching `doradobasecaller.nf` [sleepy_wescoff] DSL2 - revision: 3b35d868c1
+[-        ] process > BASECALL_DORADO -
+[-        ] process > READSGET        -
+
+executor >  local (2)
+[3e/dd237d] process > BASECALL_DORADO (Dorado on ... [  0%] 0 of 6
+[-        ] process > READSGET                       -
+
+executor >  local (3)
+[45/67dfd5] process > BASECALL_DORADO (Dorado on ... [ 16%] 1 of 6, failed: 1
+[-        ] process > READSGET                       -
+[45/67dfd5] NOTE: Process `BASECALL_DORADO (Dorado on 05_2015C-3882)` terminated with an error exit status (1) -- Error is ignored
+
+executor >  local (3)
+[45/67dfd5] process > BASECALL_DORADO (Dorado on ... [ 16%] 1 of 6, failed: 1
+[-        ] process > READSGET                       -
+[45/67dfd5] NOTE: Process `BASECALL_DORADO (Dorado on 05_2015C-3882)` terminated with an error exit status (1) -- Error is ignored
+
+executor >  local (4)
+[85/ee8a28] process > BASECALL_DORADO (Dorado on ... [ 33%] 2 of 6, failed: 2
+[-        ] process > READSGET                       -
+[45/67dfd5] NOTE: Process `BASECALL_DORADO (Dorado on 05_2015C-3882)` terminated with an error exit status (1) -- Error is ignored
+[3e/dd237d] NOTE: Process `BASECALL_DORADO (Dorado on 02_2014C-4056)` terminated with an error exit status (1) -- Error is ignored
+
+executor >  local (5)
+[2f/49c86d] process > BASECALL_DORADO (Dorado on ... [ 50%] 3 of 6, failed: 3
+[-        ] process > READSGET                       -
+[45/67dfd5] NOTE: Process `BASECALL_DORADO (Dorado on 05_2015C-3882)` terminated with an error exit status (1) -- Error is ignored
+[3e/dd237d] NOTE: Process `BASECALL_DORADO (Dorado on 02_2014C-4056)` terminated with an error exit status (1) -- Error is ignored
+[7c/e4a6ad] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (1) -- Error is ignored
+
+executor >  local (5)
+[2f/49c86d] process > BASECALL_DORADO (Dorado on ... [ 50%] 3 of 6, failed: 3
+[-        ] process > READSGET                       -
+[45/67dfd5] NOTE: Process `BASECALL_DORADO (Dorado on 05_2015C-3882)` terminated with an error exit status (1) -- Error is ignored
+[3e/dd237d] NOTE: Process `BASECALL_DORADO (Dorado on 02_2014C-4056)` terminated with an error exit status (1) -- Error is ignored
+[7c/e4a6ad] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (1) -- Error is ignored
+
+executor >  local (6)
+[58/446a2b] process > BASECALL_DORADO (Dorado on ... [ 66%] 4 of 6, failed: 4
+[-        ] process > READSGET                       -
+[7c/e4a6ad] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (1) -- Error is ignored
+[85/ee8a28] NOTE: Process `BASECALL_DORADO (Dorado on 04_2015C-3881)` terminated with an error exit status (1) -- Error is ignored
+
+
+
+executor >  local (6)
+[58/446a2b] process > BASECALL_DORADO (Dorado on ... [ 66%] 4 of 6, failed: 4
+[-        ] process > READSGET                       -
+[7c/e4a6ad] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (1) -- Error is ignored
+[85/ee8a28] NOTE: Process `BASECALL_DORADO (Dorado on 04_2015C-3881)` terminated with an error exit status (1) -- Error is ignored
+
+
+
+executor >  local (6)
+[2f/49c86d] process > BASECALL_DORADO (Dorado on ... [ 83%] 5 of 6, failed: 5
+[-        ] process > READSGET                       -
+[7c/e4a6ad] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (1) -- Error is ignored
+[85/ee8a28] NOTE: Process `BASECALL_DORADO (Dorado on 04_2015C-3881)` terminated with an error exit status (1) -- Error is ignored
+[2f/49c86d] NOTE: Process `BASECALL_DORADO (Dorado on 06_2015C-3883)` terminated with an error exit status (1) -- Error is ignored
+
+executor >  local (6)
+[58/446a2b] process > BASECALL_DORADO (Dorado on ... [100%] 6 of 6, failed: 6 ✔
+[-        ] process > READSGET                       -
+[85/ee8a28] NOTE: Process `BASECALL_DORADO (Dorado on 04_2015C-3881)` terminated with an error exit status (1) -- Error is ignored
+[2f/49c86d] NOTE: Process `BASECALL_DORADO (Dorado on 06_2015C-3883)` terminated with an error exit status (1) -- Error is ignored
+[58/446a2b] NOTE: Process `BASECALL_DORADO (Dorado on 03_2015C-3265)` terminated with an error exit status (1) -- Error is ignored
+
+Completed at: 02-Apr-2024 12:12:00
+Duration    : 1m 47s
+CPU hours   : 0.5 (100% failed)
+Succeeded   : 0
+Ignored     : 6
+Failed      : 6
+
+

@@ -1,0 +1,420 @@
+Mar-21 13:59:53.844 [main] DEBUG nextflow.cli.Launcher - $> nextflow doradobasecaller.nf -c doradobasecaller.config
+Mar-21 13:59:53.900 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.10.6
+Mar-21 13:59:53.928 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/scicomp/home-pure/suj7/.nextflow/plugins; core-plugins: nf-amazon@1.11.3,nf-azure@0.14.2,nf-codecommit@0.1.2,nf-console@1.0.4,nf-ga4gh@1.0.4,nf-google@1.4.5,nf-tower@1.5.6,nf-wave@0.5.3
+Mar-21 13:59:53.942 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Mar-21 13:59:53.943 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Mar-21 13:59:53.946 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Mar-21 13:59:53.955 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Mar-21 13:59:53.975 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /scicomp/home-pure/suj7/EDLB/DoradoBasecalling/doradobasecaller.config
+Mar-21 13:59:53.975 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /scicomp/home-pure/suj7/EDLB/DoradoBasecalling/doradobasecaller.config
+Mar-21 13:59:53.993 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Mar-21 13:59:54.598 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Mar-21 13:59:54.633 [main] INFO  nextflow.cli.CmdRun - Launching `doradobasecaller.nf` [agitated_almeida] DSL2 - revision: fdea0017d1
+Mar-21 13:59:54.634 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Mar-21 13:59:54.634 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Mar-21 13:59:54.643 [main] DEBUG nextflow.secret.LocalSecretsProvider - Secrets store: /scicomp/home-pure/suj7/.nextflow/secrets/store.json
+Mar-21 13:59:54.646 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@50fb33a] - activable => nextflow.secret.LocalSecretsProvider@50fb33a
+Mar-21 13:59:54.713 [main] DEBUG nextflow.Session - Session UUID: c3cc1231-018d-439f-a6d3-a5c10ab95845
+Mar-21 13:59:54.713 [main] DEBUG nextflow.Session - Run name: agitated_almeida
+Mar-21 13:59:54.713 [main] DEBUG nextflow.Session - Executor pool size: 20
+Mar-21 13:59:54.722 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=60; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Mar-21 13:59:54.772 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 22.10.6 build 5843
+  Created: 23-01-2023 23:20 UTC (18:20 EDT)
+  System: Linux 3.10.0-1160.108.1.el7.x86_64
+  Runtime: Groovy 3.0.13 on Java HotSpot(TM) 64-Bit Server VM 17.0.8+9-LTS-211
+  Encoding: UTF-8 (UTF-8)
+  Process: 27103@node274.hpc.biotech.cdc.gov [10.128.45.24]
+  CPUs: 20 - Mem: 125.7 GB (95.6 GB) - Swap: 20 GB (20 GB)
+Mar-21 13:59:54.809 [main] DEBUG nextflow.Session - Work-dir: /scicomp/scratch/suj7/nextflow/work [nfs]
+Mar-21 13:59:54.810 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /scicomp/home-pure/suj7/EDLB/DoradoBasecalling/bin
+Mar-21 13:59:54.825 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Mar-21 13:59:54.837 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Mar-21 13:59:54.860 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Mar-21 13:59:54.876 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 21; maxThreads: 1000
+Mar-21 13:59:54.979 [main] DEBUG nextflow.Session - Session start
+Mar-21 13:59:55.327 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Mar-21 13:59:55.470 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Mar-21 13:59:55.470 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Mar-21 13:59:55.476 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Mar-21 13:59:55.481 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=20; memory=125.7 GB; capacity=20; pollInterval=100ms; dumpInterval=5m
+Mar-21 13:59:55.544 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:READSGET` matches process READSGET
+Mar-21 13:59:55.545 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Mar-21 13:59:55.545 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Mar-21 13:59:55.549 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: BASECALL_DORADO, READSGET
+Mar-21 13:59:55.550 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+Mar-21 13:59:55.550 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BASECALL_DORADO
+Mar-21 13:59:55.551 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > READSGET
+Mar-21 13:59:55.551 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Mar-21 13:59:55.551 [main] DEBUG nextflow.Session - Session await
+Mar-21 13:59:55.694 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 13:59:55.696 [Task submitter] INFO  nextflow.Session - [0c/a4d4af] Submitted process > BASECALL_DORADO (Dorado on 01_2014C-4055)
+Mar-21 13:59:55.704 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 13:59:55.704 [Task submitter] INFO  nextflow.Session - [1f/1c2780] Submitted process > BASECALL_DORADO (Dorado on 03_2015C-3265)
+Mar-21 14:00:38.407 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: BASECALL_DORADO (Dorado on 01_2014C-4055); status: COMPLETED; exit: 134; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/0c/a4d4af76949c787db452a3ccb2ec9c]
+Mar-21 14:00:38.412 [Task monitor] INFO  nextflow.processor.TaskProcessor - [0c/a4d4af] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (134) -- Error is ignored
+Mar-21 14:00:38.415 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 14:00:38.416 [Task submitter] INFO  nextflow.Session - [98/306baa] Submitted process > BASECALL_DORADO (Dorado on 02_2014C-4056)
+Mar-21 14:04:55.648 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:04:56.448 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:09:55.658 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:09:56.481 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:14:55.674 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:14:56.512 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:19:55.689 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:19:56.542 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:24:55.700 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:24:56.571 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:29:55.713 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:29:56.601 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:34:55.723 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:34:56.631 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:39:55.735 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:39:56.661 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:44:55.750 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:44:56.692 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:49:55.755 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:49:56.723 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:54:55.766 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:54:56.755 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 14:59:55.778 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 14:59:56.787 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 15:04:55.793 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 15:04:56.817 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 15:09:55.804 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 15:09:56.848 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 15:14:47.641 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1f/1c27807b01fd652466e961323f3972]
+Mar-21 15:14:47.649 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 15:14:47.650 [Task submitter] INFO  nextflow.Session - [48/75c118] Submitted process > BASECALL_DORADO (Dorado on 04_2015C-3881)
+Mar-21 15:14:47.665 [Actor Thread 20] INFO  nextflow.container.SingularityCache - Pulling Singularity image docker://staphb/samtools:1.17 [cache /scicomp/scratch/suj7/singularity.cache/staphb-samtools-1.17.img]
+Mar-21 15:14:55.848 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:14:57.651 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 2 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 15:15:19.556 [Actor Thread 20] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=docker://staphb/samtools:1.17 path=/scicomp/scratch/suj7/singularity.cache/staphb-samtools-1.17.img
+Mar-21 15:19:55.873 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:19:57.683 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:24:55.883 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:24:57.714 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:29:55.892 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:29:57.743 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:34:55.902 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:34:57.774 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:39:55.912 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:39:57.804 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:44:55.920 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:44:57.831 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:49:55.931 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:49:57.860 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:54:55.942 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:54:57.893 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 15:59:55.943 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 15:59:57.922 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 16:04:55.958 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 16:04:57.952 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 16:09:55.966 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 16:09:57.984 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 16:14:56.066 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 16:14:58.015 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 16:19:56.080 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 16:19:58.048 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 16:24:56.090 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 16:24:58.080 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 16:28:14.948 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/48/75c1183106aaf68710a92e35ba5cd1]
+Mar-21 16:28:14.956 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 16:28:14.957 [Task submitter] INFO  nextflow.Session - [f1/170121] Submitted process > BASECALL_DORADO (Dorado on 06_2015C-3883)
+Mar-21 16:29:56.119 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+Mar-21 16:29:58.968 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 16:34:56.129 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+Mar-21 16:34:58.995 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 16:39:56.134 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+Mar-21 16:39:59.022 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 16:44:56.141 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+Mar-21 16:44:59.052 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 16:49:56.145 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+Mar-21 16:49:59.079 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 16:52:08.188 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/98/306baa119fbfe53bab6107d0b15f4f]
+Mar-21 16:52:08.195 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 16:52:08.195 [Task submitter] INFO  nextflow.Session - [88/d86b81] Submitted process > BASECALL_DORADO (Dorado on 05_2015C-3882)
+Mar-21 16:54:56.203 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 16:54:59.212 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 16:59:56.211 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 16:59:59.242 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:04:56.219 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:04:59.272 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:09:56.229 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:09:59.301 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:14:56.241 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:14:59.333 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:19:56.341 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:19:59.361 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:24:56.352 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:24:59.392 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:29:56.353 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:29:59.424 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:34:56.357 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:34:59.455 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:39:56.364 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:39:59.487 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:44:56.461 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:44:59.517 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:49:56.466 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:49:59.546 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 3 -- tasks to be submitted are shown below
+~> TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:54:33.961 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/f1/17012129ea57fd6041538e0e6557d1]
+Mar-21 17:54:33.991 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 17:54:33.991 [Task submitter] INFO  nextflow.Session - [1d/801eeb] Submitted process > READSGET (Formatting reads for 03_2015C-3265)
+Mar-21 17:54:54.486 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: READSGET (Formatting reads for 03_2015C-3265); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/1d/801eebed1ad8ceb624cd4e6dd0e027]
+Mar-21 17:54:54.493 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 17:54:54.493 [Task submitter] INFO  nextflow.Session - [68/41598e] Submitted process > READSGET (Formatting reads for 04_2015C-3881)
+Mar-21 17:54:54.498 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=60; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Mar-21 17:54:56.488 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
+~> TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+~> TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: RUNNING; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 17:55:00.495 [Task submitter] DEBUG n.processor.TaskPollingMonitor - %% executor local > tasks in the submission queue: 2 -- tasks to be submitted are shown below
+~> TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+~> TaskHandler[id: 10; name: READSGET (Formatting reads for 06_2015C-3883); status: NEW; exit: -; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/9f/1cac4069a2be30b7677619ad3d8765]
+Mar-21 17:55:08.136 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: READSGET (Formatting reads for 04_2015C-3881); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/68/41598e539a248a778eed5fb1699cc8]
+Mar-21 17:55:08.143 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 17:55:08.143 [Task submitter] INFO  nextflow.Session - [4e/d59859] Submitted process > READSGET (Formatting reads for 02_2014C-4056)
+Mar-21 17:55:20.034 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: READSGET (Formatting reads for 02_2014C-4056); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/4e/d598590bbf170eeeeacdadcc865fdc]
+Mar-21 17:55:20.042 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 17:55:20.043 [Task submitter] INFO  nextflow.Session - [9f/1cac40] Submitted process > READSGET (Formatting reads for 06_2015C-3883)
+Mar-21 17:55:35.946 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: READSGET (Formatting reads for 06_2015C-3883); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/9f/1cac4069a2be30b7677619ad3d8765]
+Mar-21 17:55:37.897 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/88/d86b816025964189eaa951dc9a11f1]
+Mar-21 17:55:37.927 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Mar-21 17:55:37.927 [Task submitter] INFO  nextflow.Session - [31/46fcdd] Submitted process > READSGET (Formatting reads for 05_2015C-3882)
+Mar-21 17:55:44.707 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: READSGET (Formatting reads for 05_2015C-3882); status: COMPLETED; exit: 0; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/31/46fcddb599c46c80ebe4825a4ffc8d]
+Mar-21 17:55:44.710 [main] DEBUG nextflow.Session - Session await > all processes finished
+Mar-21 17:55:44.712 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Mar-21 17:55:45.713 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Mar-21 17:55:45.718 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=10; failedCount=1; ignoredCount=1; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=2d 14h 45m 46s; failedDuration=5m 41s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=16; peakMemory=0; ]
+Mar-21 17:55:45.761 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Mar-21 17:55:45.806 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Mar-21 17:55:45.806 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

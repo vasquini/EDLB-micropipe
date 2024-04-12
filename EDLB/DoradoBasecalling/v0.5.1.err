@@ -1,0 +1,2 @@
+Your Nextflow temporary/cache files will be placed in /scicomp/scratch/suj7/nextflow/ by default
+Use the command `printenv | grep NXF` to view Nextflow-specific environment variables

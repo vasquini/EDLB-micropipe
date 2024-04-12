@@ -12,16 +12,17 @@ source /etc/profile
 #$ -l h_rt=24:00:00
 #$ -l h_vmem=200G
 # Specify where standard output and error are stored
-#$ -o test_con.out
-#$ -e test_con.err
+#$ -o test_0409b.out
+#$ -e test_0409b.err
 
 module load guppy/6.4.6-gpu
 which guppy_basecaller
 which guppy_barcoder
-ml nextflow/22.10.6
+module load nextflow/23.10.1
+#ml nextflow/22.10.6
 which nextflow
 which samtools
-#ml dorado/0.5.1
+ml dorado
 which dorado
 cd ~/EDLB
 #guppy_barcoder -i ~/DoradoRuns/fastq -s GXB014_Demux --device auto --compress_fastq  --barcode_kits "SQK-NBD114-24" --worker_threads 2
@@ -30,7 +31,7 @@ cd ~/EDLB
 # Dorado test
 nextflow main.nf --skip_illumina --skip_qc --samplesheet ~/gxb03287-22-014_samplesheet.csv \
  --medaka_model "r1041_e82_400bps_sup_g615" --pod5_dir /scicomp/groups/OID/NCEZID/DFWED/EDLB/projects/the-chunnel/mariana_pod5s/pod5_pass/ \
- --outdir v7_Output --flye_args "--asm-coverage 50" 
+ --outdir v7_Output --flye_args "--asm-coverage 50" -c nextflow.config
 #Past test
 #nextflow main.nf --skip_illumina --skip_qc --samplesheet ~/gxb03287-22-014_samplesheet.csv \
 # --medaka_model "r1041_e82_400bps_sup_g615" --fastq /scicomp/home-pure/suj7/EDLB/GXB014_Demux/fastq \

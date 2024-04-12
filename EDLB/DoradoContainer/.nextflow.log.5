@@ -1,0 +1,93 @@
+Apr-01 15:56:12.066 [main] DEBUG nextflow.cli.Launcher - $> nextflow doradobasecaller.nf -c doradobasecaller.config
+Apr-01 15:56:12.150 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.10.6
+Apr-01 15:56:12.174 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/scicomp/home-pure/suj7/.nextflow/plugins; core-plugins: nf-amazon@1.11.3,nf-azure@0.14.2,nf-codecommit@0.1.2,nf-console@1.0.4,nf-ga4gh@1.0.4,nf-google@1.4.5,nf-tower@1.5.6,nf-wave@0.5.3
+Apr-01 15:56:12.187 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Apr-01 15:56:12.188 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Apr-01 15:56:12.191 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Apr-01 15:56:12.202 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Apr-01 15:56:12.221 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /scicomp/home-pure/suj7/EDLB/DoradoContainer/doradobasecaller.config
+Apr-01 15:56:12.221 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /scicomp/home-pure/suj7/EDLB/DoradoContainer/doradobasecaller.config
+Apr-01 15:56:12.239 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Apr-01 15:56:12.851 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Apr-01 15:56:12.881 [main] INFO  nextflow.cli.CmdRun - Launching `doradobasecaller.nf` [desperate_davinci] DSL2 - revision: e5ed22a9d4
+Apr-01 15:56:12.882 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Apr-01 15:56:12.882 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Apr-01 15:56:12.891 [main] DEBUG nextflow.secret.LocalSecretsProvider - Secrets store: /scicomp/home-pure/suj7/.nextflow/secrets/store.json
+Apr-01 15:56:12.894 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@8bd86c8] - activable => nextflow.secret.LocalSecretsProvider@8bd86c8
+Apr-01 15:56:12.960 [main] DEBUG nextflow.Session - Session UUID: 38898ec3-f51a-4373-abb2-927a412168dc
+Apr-01 15:56:12.960 [main] DEBUG nextflow.Session - Run name: desperate_davinci
+Apr-01 15:56:12.960 [main] DEBUG nextflow.Session - Executor pool size: 20
+Apr-01 15:56:12.969 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=60; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Apr-01 15:56:13.000 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 22.10.6 build 5843
+  Created: 23-01-2023 23:20 UTC (18:20 EDT)
+  System: Linux 3.10.0-1160.108.1.el7.x86_64
+  Runtime: Groovy 3.0.13 on Java HotSpot(TM) 64-Bit Server VM 17.0.8+9-LTS-211
+  Encoding: UTF-8 (UTF-8)
+  Process: 28506@node97.hpc.biotech.cdc.gov [10.128.44.97]
+  CPUs: 20 - Mem: 125.5 GB (86.5 GB) - Swap: 20 GB (20 GB)
+Apr-01 15:56:13.033 [main] DEBUG nextflow.Session - Work-dir: /scicomp/scratch/suj7/nextflow/work [nfs]
+Apr-01 15:56:13.034 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /scicomp/home-pure/suj7/EDLB/DoradoContainer/bin
+Apr-01 15:56:13.048 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Apr-01 15:56:13.059 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Apr-01 15:56:13.080 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Apr-01 15:56:13.101 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 21; maxThreads: 1000
+Apr-01 15:56:13.204 [main] DEBUG nextflow.Session - Session start
+Apr-01 15:56:13.508 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-01 15:56:13.652 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BASECALL_DORADO` matches process BASECALL_DORADO
+Apr-01 15:56:13.657 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Apr-01 15:56:13.657 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-01 15:56:13.662 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Apr-01 15:56:13.667 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=20; memory=125.5 GB; capacity=20; pollInterval=100ms; dumpInterval=5m
+Apr-01 15:56:13.731 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:READSGET` matches process READSGET
+Apr-01 15:56:13.731 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Apr-01 15:56:13.731 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-01 15:56:13.735 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: BASECALL_DORADO, READSGET
+Apr-01 15:56:13.735 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+Apr-01 15:56:13.736 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BASECALL_DORADO
+Apr-01 15:56:13.736 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > READSGET
+Apr-01 15:56:13.736 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Apr-01 15:56:13.737 [main] DEBUG nextflow.Session - Session await
+Apr-01 15:56:13.812 [Actor Thread 20] INFO  nextflow.container.SingularityCache - Pulling Singularity image docker://nanoporetech/dorado:sha1433bfc3146fd0dc94ad9648452364f2327cf1b0 [cache /scicomp/scratch/suj7/singularity.cache/nanoporetech-dorado-sha1433bfc3146fd0dc94ad9648452364f2327cf1b0.img]
+Apr-01 16:01:13.794 [Task monitor] DEBUG n.processor.TaskPollingMonitor - No more task to compute -- The following nodes are still active:
+[process] BASECALL_DORADO
+  status=ACTIVE
+  port 0: (queue) closed; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+[process] READSGET
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+Apr-01 16:04:05.422 [Actor Thread 20] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=docker://nanoporetech/dorado:sha1433bfc3146fd0dc94ad9648452364f2327cf1b0 path=/scicomp/scratch/suj7/singularity.cache/nanoporetech-dorado-sha1433bfc3146fd0dc94ad9648452364f2327cf1b0.img
+Apr-01 16:04:05.514 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-01 16:04:05.516 [Task submitter] INFO  nextflow.Session - [38/35296f] Submitted process > BASECALL_DORADO (Dorado on 02_2014C-4056)
+Apr-01 16:04:05.524 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-01 16:04:05.524 [Task submitter] INFO  nextflow.Session - [38/4d4a25] Submitted process > BASECALL_DORADO (Dorado on 04_2015C-3881)
+Apr-01 16:04:21.561 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: BASECALL_DORADO (Dorado on 04_2015C-3881); status: COMPLETED; exit: 1; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/38/4d4a2502f0b4bb9234a463b0c03e4d]
+Apr-01 16:04:21.566 [Task monitor] INFO  nextflow.processor.TaskProcessor - [38/4d4a25] NOTE: Process `BASECALL_DORADO (Dorado on 04_2015C-3881)` terminated with an error exit status (1) -- Error is ignored
+Apr-01 16:04:21.570 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-01 16:04:21.571 [Task submitter] INFO  nextflow.Session - [d5/a2bf92] Submitted process > BASECALL_DORADO (Dorado on 03_2015C-3265)
+Apr-01 16:04:21.654 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: BASECALL_DORADO (Dorado on 02_2014C-4056); status: COMPLETED; exit: 1; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/38/35296f20088fb2713223bdca8d393d]
+Apr-01 16:04:21.654 [Task monitor] INFO  nextflow.processor.TaskProcessor - [38/35296f] NOTE: Process `BASECALL_DORADO (Dorado on 02_2014C-4056)` terminated with an error exit status (1) -- Error is ignored
+Apr-01 16:04:21.663 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-01 16:04:21.663 [Task submitter] INFO  nextflow.Session - [45/362c60] Submitted process > BASECALL_DORADO (Dorado on 06_2015C-3883)
+Apr-01 16:04:29.647 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: BASECALL_DORADO (Dorado on 03_2015C-3265); status: COMPLETED; exit: 1; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/d5/a2bf9265c05b7338f24e4b3a6c73fe]
+Apr-01 16:04:29.648 [Task monitor] INFO  nextflow.processor.TaskProcessor - [d5/a2bf92] NOTE: Process `BASECALL_DORADO (Dorado on 03_2015C-3265)` terminated with an error exit status (1) -- Error is ignored
+Apr-01 16:04:29.655 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-01 16:04:29.655 [Task submitter] INFO  nextflow.Session - [30/12010e] Submitted process > BASECALL_DORADO (Dorado on 01_2014C-4055)
+Apr-01 16:04:30.737 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: BASECALL_DORADO (Dorado on 06_2015C-3883); status: COMPLETED; exit: 1; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/45/362c608153637ac07955d4af13f427]
+Apr-01 16:04:30.738 [Task monitor] INFO  nextflow.processor.TaskProcessor - [45/362c60] NOTE: Process `BASECALL_DORADO (Dorado on 06_2015C-3883)` terminated with an error exit status (1) -- Error is ignored
+Apr-01 16:04:30.745 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-01 16:04:30.745 [Task submitter] INFO  nextflow.Session - [2e/862cd0] Submitted process > BASECALL_DORADO (Dorado on 05_2015C-3882)
+Apr-01 16:04:37.717 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: BASECALL_DORADO (Dorado on 01_2014C-4055); status: COMPLETED; exit: 1; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/30/12010ee2e1de9dac0b9275be356c4f]
+Apr-01 16:04:37.718 [Task monitor] INFO  nextflow.processor.TaskProcessor - [30/12010e] NOTE: Process `BASECALL_DORADO (Dorado on 01_2014C-4055)` terminated with an error exit status (1) -- Error is ignored
+Apr-01 16:04:38.704 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: BASECALL_DORADO (Dorado on 05_2015C-3882); status: COMPLETED; exit: 1; error: -; workDir: /scicomp/scratch/suj7/nextflow/work/2e/862cd0234f44707530f3d091549161]
+Apr-01 16:04:38.704 [Task monitor] INFO  nextflow.processor.TaskProcessor - [2e/862cd0] NOTE: Process `BASECALL_DORADO (Dorado on 05_2015C-3882)` terminated with an error exit status (1) -- Error is ignored
+Apr-01 16:04:38.706 [main] DEBUG nextflow.Session - Session await > all processes finished
+Apr-01 16:04:38.802 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Apr-01 16:04:38.806 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=6; ignoredCount=6; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=8m 39s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=16; peakMemory=0; ]
+Apr-01 16:04:38.923 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Apr-01 16:04:38.966 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Apr-01 16:04:38.966 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
