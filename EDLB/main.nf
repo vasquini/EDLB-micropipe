@@ -122,7 +122,7 @@ process BASECALL_DORADO {
 	"""
 	module load dorado
 	dorado download --model ${params.dorado_model}
-	dorado basecaller -r -x ${params.dorado_device} ${params.dorado_model} ${reads}  > ${sample_id}.bam
+	dorado basecaller -b ${params.dorado_batchsize} -r -x ${params.dorado_device} ${params.dorado_model} ${reads}  > ${sample_id}.bam
 	"""
 }
 
