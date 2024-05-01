@@ -58,18 +58,19 @@ NOTE: Make sure that you change the required paths to your paths. A quick way is
 **0. Requirements**
 
 Dorado basecaller is required to basecall pod5 files for flowcells R.10.4.1+. Make sure to load the module for scicomp.
-`module load dorado`
-`which dorado`
-
+```
+module load dorado`
+which dorado
+```
 Make sure to specify the paths to the installations (obtained using "which dorado". On the EDLB/DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell.
-
-`dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"`
- `guppy_gpu_folder = "/apps/x86_64/guppy/x.x.x-gpu/bin/"`
- `dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'`
- `dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'`
- `dorado_modified_bases = '5mC 6mA'`
- `dorado_device = 'cuda:0'`
-
+```
+dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
+guppy_gpu_folder = "/apps/x86_64/guppy/x.x.x-gpu/bin/"
+dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+dorado_modified_bases = '5mC 6mA'
+dorado_device = 'cuda:0'
+```
 If you get an out of memory error, you should adjust the batchsize for dorado basecaller to half of the maximum identified in the error message (e.g.if the error message says 64 is the maximum do 32).
 `batchsize=32`
 
