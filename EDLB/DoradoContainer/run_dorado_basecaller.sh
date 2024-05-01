@@ -1,25 +1,26 @@
 #!/usr/bin/bash
 source /etc/profile 
 # Assign Job-Name instead of defauly which is the name of job-script
-#$ -N monolith 
+#$ -N con 
 # Start the script in the current working directory
 #$ -V -cwd
 # Send to GPU queue (w/out gpu use all.q and uncomment gpu stuff)
-# #GPU lines were commented out
+# #GPU lines were commented out. I changed gpu.q to highmem.q
 #$ -q gpu.q
 #$ -l gpu=1
 # Number of CPUs to use
 #$ -pe smp 1
 #$ -l h_rt=24:00:00
-#$ -l h_vmem=200G
+#I've increased mem from 200G to 300G
+#$ -l h_vmem=400G
 # Specify where standard output and error are stored.
-#$ -o monocon.out
-#$ -e monocon.err
+#$ -o con.out
+#$ -e con.err
 
 ml nextflow/22.10.6
 which nextflow
-ml dorado
-which dorado
+# ml dorado
+# which dorado
 
 #Specify path to your DoradoBasecalling folder
 cd /scicomp/home-pure/suj7/EDLB/DoradoContainer

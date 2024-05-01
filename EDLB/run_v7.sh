@@ -10,10 +10,10 @@ source /etc/profile
 # Number of CPUs to use
 #$ -pe smp 1
 #$ -l h_rt=24:00:00
-#$ -l h_vmem=200G
+#$ -l h_vmem=400G
 # Specify where standard output and error are stored
-#$ -o test_0409b.out
-#$ -e test_0409b.err
+#$ -o gputest.out
+#$ -e gputest.err
 
 module load guppy/6.4.6-gpu
 which guppy_basecaller
@@ -22,7 +22,7 @@ module load nextflow/23.10.1
 #ml nextflow/22.10.6
 which nextflow
 which samtools
-ml dorado
+ml dorado/0.5.1
 which dorado
 cd ~/EDLB
 #guppy_barcoder -i ~/DoradoRuns/fastq -s GXB014_Demux --device auto --compress_fastq  --barcode_kits "SQK-NBD114-24" --worker_threads 2
