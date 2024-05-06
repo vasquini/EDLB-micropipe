@@ -86,7 +86,7 @@ It will create the nextflow main executable file in the current directory. Optio
 
 * [Singularity](https://singularity.lbl.gov/install-linux) >= 2.3 (microPIPE has been tested with version 3.4.1, 3.5.0 and 3.6.3)
 
-* Guppy (6.3.8 is the latest working version)
+* Guppy (6.4.6 is the latest working version)
  
 Due to the Oxford Nanopore Technologies terms and conditions, we are not allowed to redistribute the Guppy software either in its binary form or packaged form e.g. Docker or Singularity images. Therefore users will have to either install Guppy, provide a container image or start the pipeline from the basecalled fastq files.  See [Usage](#usage) section below for instructions. 
 
@@ -362,7 +362,11 @@ Basecalling
 *	`--flowcell`:	Name of the ONT flow cell used for sequencing (default=false). Ignored if '--guppy_config_gpu' or '--guppy_congif_cpu' is specified
 *	`--kit`: Name of the ONT kit used for sequencing (default=false). Ignored if '--guppy_config_gpu' or '--guppy_congif_cpu' is specified
 *	`--single_sample`: Boolean value to denote whether demultiplexed fast5 files are single isolate or multiple samples (default=false)
-
+* `--pod5_dir`: Location of POD5 file directory and tells microPIPE to use Dorado basecaller instead of Guppy.
+* `--dorado_batchsize`: Specify the batchsize for Dorado basecaller. Helps avoid OOM errors.
+* `--dorado_gpu_folder`:
+* `--dorado_modified_bases`: Allow Dorado to look at epigenetic modifications (And specify which kind of modifications e.g. '5mC 6mA')
+* `--dorado_device`: Specify the specific GPUs of your system you want Dorado to run in. Dorado will automatically run in multi-GPU cuda:all mode. If you have a hetrogenous collection of GPUs, select the faster GPUs using the --device flag (e.g --device cuda:0,2). Not doing this will have a detrimental impact on performance.
 Quality control:
 * `--skip_pycoqc`: skip the pycoQC step to generate a quality control html report, when --basecalling (default=false)
 * `--skip_qc`: skip the Fastqc and Multiqc steps to generate a quality control html report
@@ -425,6 +429,8 @@ Each sample folder will contain the following folders:
 * **3_polishing_long_reads:** Long-read polished assembly fasta file (sample_id_flye_polishedLR.fasta)
 * **4_polishing_short_reads:** Final polished assembly fasta file (sample_id_flye_polishedLR_SR_fixstart.fasta)
 * **5_quast:** QUAST quality assessment report, see [details](http://quast.sourceforge.net/docs/manual.html)
+
+# Troubleshooting
 
 # Comments
 
