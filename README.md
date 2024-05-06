@@ -142,7 +142,8 @@ microPIPE only requires the `main.nf` and `nexflow.config` files to run. You wil
 # Usage
 
 **1. Prepare the Dorado Basecaller configuration file**
-Make sure to specify the paths to the installations (obtained using "which dorado". On the **EDLB/DoradoBasecalling** folder, go to the **doradobasecaller.config** file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell. You can determine the installation/module paths using `which dorado`.
+
+If you have POD5 files as input, you'll have to use Dorado basecaller. You may skip this step if you plan to only use Guppy. Make sure to specify the paths to the installations (obtained using "which dorado". On the **EDLB/DoradoBasecalling** folder, go to the **doradobasecaller.config** file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell. You can determine the installation/module paths using `which dorado`.
 
 Also make sure that you specify the correct dorado model to basecall with, the modified bases, and **which GPUs** to use for your specific system.
 ```
