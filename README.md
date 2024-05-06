@@ -41,7 +41,7 @@ Please note that this pipeline does not perform extensive quality assessment of 
 
 `nextflow main.nf --demultiplexing --samplesheet /path/to/samples.csv --fastq /path/to/fastq/directory/ --datadir /path/to/datadir/ --outdir /path/to/outdir/`
 
-3. Assembly only workflow (basecalling and demultiplexing already complete. Fasta inputs.)
+3. Assembly only workflow (basecalling and demultiplexing already complete. Demultiplexed Fastq inputs.)
 
 `nextflow main.nf --samplesheet /path/to/samples.csv --fastq /path/to/fastq/directory/ --datadir /path/to/datadir/ --outdir /path/to/outdir/`
 
@@ -141,7 +141,18 @@ microPIPE only requires the `main.nf` and `nexflow.config` files to run. You wil
 
 # Usage
 
-**1. Prepare microPIPE's Nextflow configuration file**
+**1. Prepare the Dorado Basecaller configuration file**
+Make sure to specify the paths to the installations (obtained using "which dorado". On the **EDLB/DoradoBasecalling** folder, go to the **doradobasecaller.config** file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell. You can determine the installation/module paths using `which dorado`.
+
+Also make sure that you specify the correct dorado model to basecall with, the modified bases, and **which GPUs** to use for your specific system.
+```
+dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
+dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+dorado_modified_bases = '5mC 6mA'
+dorado_device = 'cuda:0'
+```
+
+**2. Prepare microPIPE's Nextflow configuration file**
 
 When a Nexflow pipeline script is launched, Nextflow looks for a file named **nextflow.config** in the current directory. The configuration file defines default parameters values for the pipeline and cluster settings such as the executor (e.g. "slurm", "local") and queues to be used (https://www.nextflow.io/docs/latest/config.html). 
 
@@ -193,17 +204,6 @@ An example configuration file can be found in this [repository](https://github.c
 Two versions of the configuration file are available and correspond to microPIPE v0.8 (utilizing Guppy v3.4.3) and v0.9 (utilizing Guppy v3.6.1), as referenced in the paper.  
 
 **NOTE:** to use **GPU** resources for basecalling and demultiplexing, use the `--gpu` flag.
-
-**2. Prepare the Dorado Basecaller configuration file**
-Make sure to specify the paths to the installations (obtained using "which dorado". On the EDLB/DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell.
-
-Also make sure that you specify the correct dorado model to basecall with, the modified bases, and which GPUs to use for your specific system.
-```
-dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
-dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
-dorado_modified_bases = '5mC 6mA'
-dorado_device = 'cuda:0'
-```
 
 **3. Prepare the samplesheet file (csv)**
 
