@@ -133,14 +133,14 @@ which nf-test
 echo "-------------------------------------------------------------------------"
 cd ~/EDLB/
 nf-test test
-# You may add the micropipe commands here:
-# nextflow EDLB/main.nf --basecalling --demultiplexing --samplesheet path/to/samplesheet --outdir /path/to/output --skip_illumina --fast5 /path/to/fast5/ --guppy_barcode_kits "EXP-NBD114" --flye_args "--asm-coverage 100"
+# You may add the micropipe commands here. Foe example:
+# nextflow EDLB/main.nf --basecalling --demultiplexing --samplesheet path/to/samplesheet --outdir /path/to/output --skip_illumina --fast5 /path/to/fast5/ --guppy_barcode_kits "EXP-NBD114" --flye_args "--asm-coverage 50"
 ```
 **1. Installing microPIPE**
 
 Download the microPIPE repository using the command:
 ``` 
-git clone https://github.com/BeatsonLab-MicrobialGenomics/micropipe.git
+git clone https://github.com/vasquini/EDLB-micropipe.git
 ```
 microPIPE only requires the `main.nf` and `nexflow.config` files to run. You will also need to provide a samplesheet (explained below). 
 
@@ -431,6 +431,10 @@ Each sample folder will contain the following folders:
 * **5_quast:** QUAST quality assessment report, see [details](http://quast.sourceforge.net/docs/manual.html)
 
 # Troubleshooting
+
+* If encountering an OOM error on the Dorado basecalling step, restrict the `--dorado_batchsize` parameter to half of what the error message deems the maximum. [source] https://github.com/nanoporetech/dorado/issues/752
+
+* Make sure you have your system's best practices in mind when selecting the `--dorado_device` parameter. 
 
 # Comments
 
