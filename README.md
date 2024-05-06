@@ -33,19 +33,19 @@ Please note that this pipeline does not perform extensive quality assessment of 
 
 # Quickstart
 
-1. Basecalling, demultiplexing and assembly workflow
+1. Basecalling, demultiplexing and assembly workflow (for non-demultiplexed fast5 inputs with Guppy as basecaller)
 
 `nextflow main.nf --basecalling --demultiplexing --samplesheet /path/to/samples.csv --fast5 /path/to/fast5/directory/ --datadir /path/to/datadir/ --outdir /path/to/outdir/`
 
-2. Demultiplexing and assembly workflow (basecalling already complete)
+2. Demultiplexing and assembly workflow (basecalling of non-demultiplexed fast5s already complete; uses Guppy as demultiplexer)
 
 `nextflow main.nf --demultiplexing --samplesheet /path/to/samples.csv --fastq /path/to/fastq/directory/ --datadir /path/to/datadir/ --outdir /path/to/outdir/`
 
-3. Assembly only workflow (basecalling and demultiplexing already complete)
+3. Assembly only workflow (basecalling and demultiplexing already complete. Fasta inputs.)
 
 `nextflow main.nf --samplesheet /path/to/samples.csv --fastq /path/to/fastq/directory/ --datadir /path/to/datadir/ --outdir /path/to/outdir/`
 
-4. Basecalling and assembly workflow (multiple samples)
+4. Basecalling and assembly workflow (multiple samples that were demultiplexed but NOT basecalled. Uses Guppy.)
 
 `nextflow main.nf --basecalling --samplesheet /path/to/samplesheet --fast5 /path/to/demultiplexed/fast5s --outdir /path/to/outdir/`
 
@@ -53,7 +53,7 @@ Please note that this pipeline does not perform extensive quality assessment of 
 
 microPIPE has been built using Nextflow and Singularity to enable ease of use and installation across different platforms. 
 
-NOTE: Make sure that you change the required paths to your paths. A quick way is to use :%s/patternToReplace/OldPattern/g on vim editor and then save with :wq.
+NOTE: Make sure that you change the required paths to your paths. A quick way is to use `:%s/patternToReplace/OldPattern/g` on vim editor and then save with Esc`:wq`.
 
 **0. Requirements**
 
@@ -65,13 +65,9 @@ which dorado
 Make sure to specify the paths to the installations (obtained using "which dorado". On the EDLB/DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell.
 ```
 dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
-dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
-dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
-dorado_modified_bases = '5mC 6mA'
-dorado_device = 'cuda:0'
 ```
 If you get an out of memory error, you should adjust the batchsize for dorado basecaller to half of the maximum identified in the error message (e.g.if the error message says 64 is the maximum do 32).
-`batchsize=32`
+`dorado_batchsize=32`
 
 * [Nextflow](https://www.nextflow.io/) >= 20.10.0
 
@@ -200,10 +196,11 @@ Two versions of the configuration file are available and correspond to microPIPE
 
 **2. Prepare the Dorado Basecaller configuration file**
 Make sure to specify the paths to the installations (obtained using "which dorado". On the EDLB/DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell.
+
+Also make sure that you specify the correct dorado model to basecall with, the modified bases, and which GPUs to use for your specific system.
 ```
 dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
 dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
-dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
 dorado_modified_bases = '5mC 6mA'
 dorado_device = 'cuda:0'
 ```
