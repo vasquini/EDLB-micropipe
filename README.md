@@ -65,7 +65,6 @@ which dorado
 Make sure to specify the paths to the installations (obtained using "which dorado". On the EDLB/DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell.
 ```
 dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
-guppy_gpu_folder = "/apps/x86_64/guppy/x.x.x-gpu/bin/"
 dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
 dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
 dorado_modified_bases = '5mC 6mA'
@@ -133,7 +132,7 @@ which nf-test
 echo "-------------------------------------------------------------------------"
 cd ~/EDLB/
 nf-test test
-# You may add the micropipe commands here. Foe example:
+# You may add the micropipe commands here. For example:
 # nextflow EDLB/main.nf --basecalling --demultiplexing --samplesheet path/to/samplesheet --outdir /path/to/output --skip_illumina --fast5 /path/to/fast5/ --guppy_barcode_kits "EXP-NBD114" --flye_args "--asm-coverage 50"
 ```
 **1. Installing microPIPE**
@@ -146,7 +145,7 @@ microPIPE only requires the `main.nf` and `nexflow.config` files to run. You wil
 
 # Usage
 
-**1. Prepare the Nextflow configuration file**
+**1. Prepare microPIPE's Nextflow configuration file**
 
 When a Nexflow pipeline script is launched, Nextflow looks for a file named **nextflow.config** in the current directory. The configuration file defines default parameters values for the pipeline and cluster settings such as the executor (e.g. "slurm", "local") and queues to be used (https://www.nextflow.io/docs/latest/config.html). 
 
@@ -199,8 +198,17 @@ Two versions of the configuration file are available and correspond to microPIPE
 
 **NOTE:** to use **GPU** resources for basecalling and demultiplexing, use the `--gpu` flag.
 
+**2. Prepare the Dorado Basecaller configuration file**
+Make sure to specify the paths to the installations (obtained using "which dorado". On the EDLB/DoradoBasecalling folder, go to the doradobasecaller.config file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell.
+```
+dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
+dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+dorado_basecaller = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
+dorado_modified_bases = '5mC 6mA'
+dorado_device = 'cuda:0'
+```
 
-**2. Prepare the samplesheet file (csv)**
+**3. Prepare the samplesheet file (csv)**
 
 The samplesheet file (comma-separated values) defines the input fastq files (Illumina [short] and Nanopore [long], and their directory path), barcode number, sample ID, and the estimated genome size (for Flye assembly). The header line should match the header line in the examples below:
 
@@ -235,7 +243,7 @@ barcode01,S24,barcode01.fastq.gz,5.5m
 barcode02,S34,barcode02.fastq.gz,5.5m
 ```
 
-**3. Run the pipeline**
+**4. Run the pipeline**
 
 The pipeline can be used to run:
 * **Processing POD5 files (R.10.4.1+ flowcells)**
@@ -415,6 +423,11 @@ Assembly evaluation:
 
 # Structure of the output folders
 
+Structure after running Dorado basecaller:
+* **YourFolderName** Uses the name that was specified as the output directory. It cointains folders with the names of your samples. The POD5 files given were already demultiplexed before being basecalled.
+Under each sample folder:
+* contains the Fastq files belonging to the sample.
+
 The pipeline will create several folders corresponding to the different steps of the pipeline. 
 The main output folder (`--outdir`) will contain the following folders:
 * **0_basecalling:** Fastq files containing the basecalled reads, Guppy sequencing_summary.txt file
@@ -429,6 +442,7 @@ Each sample folder will contain the following folders:
 * **3_polishing_long_reads:** Long-read polished assembly fasta file (sample_id_flye_polishedLR.fasta)
 * **4_polishing_short_reads:** Final polished assembly fasta file (sample_id_flye_polishedLR_SR_fixstart.fasta)
 * **5_quast:** QUAST quality assessment report, see [details](http://quast.sourceforge.net/docs/manual.html)
+
 
 # Troubleshooting
 
