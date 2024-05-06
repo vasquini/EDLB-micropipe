@@ -10,7 +10,7 @@ nextflow_process {
             params {
                 // define parameters here. Example:
                 outdir = "ModuleTestResults"
-                samplesheet="/scicomp/home-pure/suj7/EDLB/racon_test_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_data/racon_test_samplesheet.csv"
                 racon_nb = 4
                 racon_args = "-m 8 -x -6 -g -8 -w 500"
                 racon_threads = 4

@@ -10,7 +10,7 @@ nextflow_process {
             params {
                 // define parameters here. Example:
                 outdir="ModuleTestResults/${sample_id}/1_filtering"
-                samplesheet="/scicomp/home-pure/suj7/EDLB/qc_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_data/qc_samplesheet.csv"
                 skip_porechop=true
                 porechop_args = ""
                 porechop_threads = 4

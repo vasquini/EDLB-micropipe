@@ -10,7 +10,7 @@ nextflow_process {
             params {
                 // define parameters here. Example:
                 outdir = "ModuleTestResults/0_basecall_demultiplexed"
-                samplesheet="/scicomp/home-pure/suj7/EDLB/test_demultiplexed_samplesheet.csv"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_data/test_demultiplexed_samplesheet.csv"
                 basecalling = true
                 demultiplexing = false
                 gpu = true
