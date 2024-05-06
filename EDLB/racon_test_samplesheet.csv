@@ -1,2 +1,0 @@
-barcode,filtered,sample,assembly,info,gfa,gv
-barcode01,/scicomp/home-pure/suj7/EDLB/test_data/GXB01322_20181217_FAK35493_GA10000_filtered.fastq.gz,GXB01322,/scicomp/home-pure/suj7/EDLB/ModuleTestResults/GXB01322/2_assembly/GXB01322_assembly.fasta,/scicomp/home-pure/suj7/EDLB/ModuleTestResults/GXB01322/2_assembly/GXB01322_assembly_info.txt,/scicomp/home-pure/suj7/EDLB/ModuleTestResults/GXB01322/2_assembly/GXB01322_assembly_graph.gfa,/scicomp/home-pure/suj7/EDLB/ModuleTestResults/GXB01322/2_assembly/GXB01322_assembly_graph.gv
