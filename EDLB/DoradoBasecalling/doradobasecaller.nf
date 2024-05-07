@@ -56,7 +56,6 @@ workflow {
 	Channel //set channel for POD5s
 		.of(all_subdirs)
 		.map{ file -> tuple(file.SimpleName, file) }
-		//.view()
 		.set{pod5_ch}
 
 	bam_ch = BASECALL_DORADO(pod5_ch)
