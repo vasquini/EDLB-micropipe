@@ -23,13 +23,8 @@ which dorado
 
 #Specify path to your DoradoBasecalling folder
 cd /scicomp/home-pure/suj7/EDLB/DoradoBasecalling
-#cd /scicomp/groups/OID/NCEZID/DFWED/EDLB/projects/the-chunnel/vasquez_samplesheet
 
-#This works!! (next 3 lines)
-#dorado download --model dna_r10.4.1_e8.2_400bps_sup@v4.2.0 
-#dorado basecaller -r -x cuda:0 dna_r10.4.1_e8.2_400bps_sup@v4.2.0 /scicomp/groups/OID/NCEZID/DFWED/EDLB/projects/the-chunnel/mariana_pod5s/pod5_pass/ >dorado_test.bam
-#nextflow doradobasecaller.nf -c doradobasecaller.config 
-
+#Run the Dorado basecaller Nextflow script
 nextflow doradobasecaller.nf -c doradobasecaller.config 
 
 
