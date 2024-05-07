@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 source /etc/profile 
+#Script Example to run the Dorado basecaller NextFlow script
 # Assign Job-Name instead of defauly which is the name of job-script
 #$ -N v0.5.1
 # Start the script in the current working directory
