@@ -1,0 +1,21 @@
+nextflow_pipeline {
+
+    name "Test Workflow doradobasecaller.nf"
+    script "doradobasecaller.nf"
+
+    test("Dorado Basecalling Workflow") {
+
+        when {
+            params {
+                // define parameters here. Example: 
+                // outdir = "tests/results"
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}
