@@ -53,7 +53,7 @@ def helpMessage() {
 
 	Quality control:
 		--skip_pycoqc				Skip the pycoQC step to generate a quality control html report (when --basecalling)
-        --skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
+        	--skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
 	Demultiplexing:
 		--demultiplexing			Flag to run the demultiplexing (default=false)
 		--fastq					Path to the directory containing the ONT fastq files (gzip compressed)
