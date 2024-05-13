@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Test Pipeline main.nf (Assembly-only)"
+    name "Whole Pipeline Test (Assembly-only)"
     script "main.nf"
 
     test("Whole Pipeline Test: Should run without failures") {
