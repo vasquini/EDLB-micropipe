@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Test Pipeline main.nf"
+    name "Test Pipeline main.nf (Assembly-only)"
     script "main.nf"
 
     test("Whole Pipeline Test: Should run without failures") {
@@ -8,13 +8,14 @@ nextflow_pipeline {
         when {
             params {
                 // define parameters here. MAKE SURE PATHS MATCH YOUR OWN!!!
-                outdir = "WholePipelineTestResults"
-                samplesheet="/scicomp/home-pure/suj7/EDLB/test_samplesheet.csv"
-                basecalling = true
+                outdir = "microPIPE_pipeline_test_results"
+                samplesheet="/scicomp/home-pure/suj7/EDLB/test_data/assembly_test_samplesheet.csv"
+                basecalling = false
                 demultiplexing = false
                 gpu = true
-                fast5 = "/scicomp/home-pure/suj7/EDLB/test_data/fast5_tiny"
-                fastq = false
+                fast5 = false 
+                fast5_dir = false 
+                fastq = "/scicomp/home-pure/suj7/EDLB/test_data/"
 	            datadir = false
                 demultiplexer = 'guppy'
                 guppy_gpu_folder = "/apps/x86_64/guppy/6.3.8-gpu/bin/"
@@ -31,11 +32,11 @@ nextflow_pipeline {
                 guppy_barcode_kits= "SQK-RBK004"
                 guppy_barcoder_threads = 2
                 qcat_args = ""
-                skip_pycoqc = true //false
+                skip_pycoqc = true
                 skip_qc = true
                 skip_rasusa = true
-                skip_porechop = true//false
-                skip_filtering = true//false
+                skip_porechop = true
+                skip_filtering = true
                 rasusa_coverage = 100
                 filtering = "japsa"
                 porechop_args = ""
