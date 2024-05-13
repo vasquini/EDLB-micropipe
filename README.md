@@ -144,7 +144,7 @@ nf-test test
 ```
 I also have an example of a script without tests for running the pipeline in the script **run_v6.sh**.
 
-**Nf-test Test Data**
+* **Nf-test Test Data**
 
 This can be found under the **test_data** folder. 
 
