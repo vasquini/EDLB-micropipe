@@ -98,8 +98,18 @@ params {
 }
 ```
 * Nf-test
+For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located [here](https://code.askimed.com/nf-test/getting-started/)
 
-For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located here: https://code.askimed.com/nf-test/getting-started/
+* Nf-test requirements to run properly
+  * Make sure you have loaded the latest version of java:
+   `ml java/latest`
+  * Load nextflow:
+    `ml nextflow`
+  * Test the installation:
+    'nf-test version`
+    
+**If there is a java error contact scicomp.**
+
 It's recommended that nf-test be installed on a folder called ~/bin. Create that folder if non-existent.  
 ```
 mkdir ~/bin
@@ -142,7 +152,9 @@ nf-test test
 # You may add the micropipe commands here. For example:
 # nextflow EDLB/main.nf --basecalling --demultiplexing --samplesheet path/to/samplesheet --outdir /path/to/output --skip_illumina --fast5 /path/to/fast5/ --guppy_barcode_kits "EXP-NBD114" --flye_args "--asm-coverage 50"
 ```
-I also have an example of a script without tests for running the pipeline in the script **run_v6.sh**.
+I also have an example of a script without tests for running the pipeline in the script **run_v6.sh**. 
+
+**WARNING: Some HPC clusters like Rosalind can't run GPU processes on GPU nodes. Dorado and Guppy need GPU nodes to run. In such cases, it is recommended to separate GPU processes (Dorado or Guppy processes) from the rest of the pipeline, and run the rest of the pipeline as an Assembly-only run in non-GPU node.**
 
 * **Nf-test Test Data**
 
@@ -474,7 +486,9 @@ Each sample folder will contain the following folders:
 
 * If encountering an OOM error on the Dorado basecalling step, restrict the `--dorado_batchsize` parameter to half of what the error message deems the maximum. [source] https://github.com/nanoporetech/dorado/issues/752
 
-* Make sure you have your system's best practices in mind when selecting the `--dorado_device` parameter. 
+* Make sure you have your system's best practices in mind when selecting the `--dorado_device` parameter.
+
+* **WARNING: Some HPC clusters like Rosalind can't run GPU processes on GPU nodes. Dorado and Guppy need GPU nodes to run. In such cases, it is recommended to separate GPU processes (Dorado or Guppy processes) from the rest of the pipeline, and run the rest of the pipeline as an Assembly-only run in non-GPU node.**
 
 # Comments
 
