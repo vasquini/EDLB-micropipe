@@ -100,16 +100,19 @@ params {
 * Nf-test
 
 For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located here: https://code.askimed.com/nf-test/getting-started/
-It's recommended that nf-test be installed on a folder called ~/bin. Create that folder if non-existent.  I included an example .bashrc file you can use the source command to add the ~/bin folder to the path. And an example script to test the pipeline in run_test.sh.
+It's recommended that nf-test be installed on a folder called ~/bin. Create that folder if non-existent.  
 ```
 mkdir ~/bin
 cd ~/EDLB
-source ~./bashrc
+# Add ~/bin to path
+export PATH="$HOME/bin:$PATH"
+
 ```
 * Bash script example
 This is an example of the bash script I use to submit the test to the pipeline:
 ```
 #!/usr/bin/bash -l
+source /etc/profile
 # Assign Job-Name instead of defauly which is the name of job-script
 #$ -N Nf-test
 # Start the script in the current working directory
@@ -121,16 +124,41 @@ This is an example of the bash script I use to submit the test to the pipeline:
 #$ -e nftest.err
 
 echo "-------------------------------------------------------------------------"
-module load guppy
+module unload
+ml java/latest
+which java
+ml nextflow
+which nextflow
+which nf-test
+nf-test version # Checks to see if installation works.
+ml guppy
 which guppy_basecaller
-source ~/.bashrc
+which guppy_barcoder
 which nf-test
 echo "-------------------------------------------------------------------------"
+# Go to dir where tests folder located 
 cd ~/EDLB/
 nf-test test
 # You may add the micropipe commands here. For example:
 # nextflow EDLB/main.nf --basecalling --demultiplexing --samplesheet path/to/samplesheet --outdir /path/to/output --skip_illumina --fast5 /path/to/fast5/ --guppy_barcode_kits "EXP-NBD114" --flye_args "--asm-coverage 50"
 ```
+I also have an example of a script without tests for running the pipeline in the script **run_v6.sh**.
+
+**Nf-test Test Data**
+
+This can be found under the **test_data** folder. 
+
+Folder structure:
+
+-**fast5_tiny**: folder with non-demultiplexed fast5 small file (Guppy processes and tests that involve these)
+-GXB01322_20181217_FAK35493_GA10000_filtered.fastq.gz: Filtered fastq file to test a simple Assembly-only pipeline test.
+-**test samplesheets**:
+  -test_samplesheet.csv: Samplesheet for testing the whole pipeline (Guppy as basecaller and demultiplexer). 
+  -assembly_test_samplesheet.csv: Samplesheet for testing Assembly-only pipeline (Simplest test that doesn't depend on GPUs).
+  -test_demultiplexed_samplesheet.csv: Samplesheet for testing Demultiplexing and Assembly pipeline.
+  -medaka_test_samplesheet.csv: Samplesheet for the single process Medaka test.
+  -racon_test_samplesheet.csv: Samplesheet for the single process Racon test.
+
 **1. Installing microPIPE**
 
 Download the microPIPE repository using the command:
