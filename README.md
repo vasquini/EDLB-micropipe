@@ -150,14 +150,14 @@ This can be found under the **test_data** folder.
 
 Folder structure:
 
-***fast5_tiny**: folder with non-demultiplexed fast5 small file (Guppy processes and tests that involve these)
-*GXB01322_20181217_FAK35493_GA10000_filtered.fastq.gz: Filtered fastq file to test a simple Assembly-only pipeline test.
-***test samplesheets**:
-  *test_samplesheet.csv: Samplesheet for testing the whole pipeline (Guppy as basecaller and demultiplexer). 
-  *assembly_test_samplesheet.csv: Samplesheet for testing Assembly-only pipeline (Simplest test that doesn't depend on GPUs).
-  *test_demultiplexed_samplesheet.csv: Samplesheet for testing Demultiplexing and Assembly pipeline.
-  *medaka_test_samplesheet.csv: Samplesheet for the single process Medaka test.
-  *racon_test_samplesheet.csv: Samplesheet for the single process Racon test.
+* **fast5_tiny**: folder with non-demultiplexed fast5 small file (Guppy processes and tests that involve these)
+* GXB01322_20181217_FAK35493_GA10000_filtered.fastq.gz: Filtered fastq file to test a simple Assembly-only pipeline test.
+* **test samplesheets**:
+  * test_samplesheet.csv: Samplesheet for testing the whole pipeline (Guppy as basecaller and demultiplexer). 
+  * assembly_test_samplesheet.csv: Samplesheet for testing Assembly-only pipeline (Simplest test that doesn't depend on GPUs).
+  * test_demultiplexed_samplesheet.csv: Samplesheet for testing Demultiplexing and Assembly pipeline.
+  * medaka_test_samplesheet.csv: Samplesheet for the single process Medaka test.
+  * racon_test_samplesheet.csv: Samplesheet for the single process Racon test.
 
 **1. Installing microPIPE**
 
