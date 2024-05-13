@@ -53,7 +53,7 @@ def helpMessage() {
 
 	Quality control:
 		--skip_pycoqc				Skip the pycoQC step to generate a quality control html report (when --basecalling)
-        	--skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
+        --skip_qc			        Skip the fastqc and multiqc steps to generate qc reports.
 	Demultiplexing:
 		--demultiplexing			Flag to run the demultiplexing (default=false)
 		--fastq					Path to the directory containing the ONT fastq files (gzip compressed)
@@ -106,6 +106,7 @@ if (params.help){
     exit 0
 }
 
+// IF you have demultiplexed Fast5 files as input
 process basecall_demultiplexed {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
@@ -140,7 +141,7 @@ process basecall_demultiplexed {
 	"""
 }
 
-
+//Non-demultiplexed Fast5 files as input.
 process basecalling {
 	cpus "${params.guppy_num_callers}"
 	label "gpu"
@@ -203,6 +204,7 @@ process basecalling_single_isolate {
 }
 
 
+/* Commented out because they're CPU processes and we'e only interested in GPU for these.*/
 // process basecalling_cpu {
 //     cpus "${params.guppy_num_callers}"
 //     label "cpu"
@@ -323,6 +325,7 @@ process basecalling_demultiplexing_guppy {
 	"""
 }
 
+/* Commented out because they're CPU-based and we're not interested in these.*/
 // process basecalling_demultiplexing_guppy_cpu {
 // 	cpus "${params.guppy_num_callers}"
 // 	label "cpu"
@@ -382,6 +385,7 @@ process demultiplexing_guppy {
 	"""
 }
 
+/* Commented out because they're CPU-based and we're not interested in these.*/
 // process demultiplexing_guppy_cpu {
 //     cpus "${params.guppy_barcoder_threads}"
 //     label "cpu"
@@ -564,7 +568,7 @@ process filtlong {
 }
 
 process flye {
-    errorStrategy 'ignore' //MV:Added this to try to get Flye to finish
+    errorStrategy 'ignore' //Added this to try to get Flye to finish all the way in all cases
 	cpus "${params.flye_threads}"
 	tag "${sample}"
 	label "cpu"
@@ -895,12 +899,6 @@ workflow assembly {
       //  assembly_out_ch = quast.out.quast_out
 }
 
-// workflow pod5_fastqs {
-// 	if (params.pod5_dir && params.basecalling){
-// 	   dorado_basecaller(basecalled_bam)
-// 	   samtools()
-// 	}	
-// }
 
 //Workflow testing 
 workflow {
@@ -918,50 +916,15 @@ workflow {
 			ch_samplesheet_illumina.view()
 		}
 
-		//Instead of getting from samplesheet get it from path
-		//dir_ch=Channel.fromPath("${params.fast5_dir}/*/",type:'dir')//_dir}/*/",type:'dir')
-		//ch_bar=dir_ch.map { file -> file.simpleName }
 
 		ch_barcodes=ch_samplesheet_basecall_demuxed.map { it[0]}
 		ch_bar=ch_barcodes.collect()
 
-		// if (params.basecalling){
-		// 	if( params.gpu ) {
-		// 		basecall_demultiplexed(ch_bar)
-		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
-		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		// 	} else { //FIXME: What is the difference? Make a cpu version?
-		// 		basecall_demultiplexed(ch_bar)
-		// 		pycoqc(basecall_demultiplexed.out.sequencing_summary)
-		// 		ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		// 	}
-
-		// 	ch_fastq.view()
-		// 	if ( !params.skip_illumina ) {
-		// 		ch_data = ch_fastq.concat( ch_samplesheet_basecall_demuxed ).collect()
-		// 		ch_data.view()
-		// 		assembly( ch_data, ch_samplesheet_illumina )
-		// 	} else {
-		// 		ch_data=ch_fastq.join( ch_samplesheet_basecall_demuxed )
-		// 		ch_data.view()
-		// 		assembly( ch_data, Channel.empty() )
-		// 	}
-		// }
 		if( params.gpu ) {
 			basecall_demultiplexed(ch_bar)
 			pycoqc(basecall_demultiplexed.out.sequencing_summary)
 			ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		} /*else {
-			
-		}*/
-		
-		
-		
-		// else { //FIXME: What is the difference? Make a cpu version?
-		// 	basecall_demultiplexed(ch_bar)
-		// 	pycoqc(basecall_demultiplexed.out.sequencing_summary)
-		// 	ch_fastq=basecall_demultiplexed.out.basecalled_fastq.map { file -> tuple(file.simpleName, file) }.transpose()
-		// }
+		} 
 
 		ch_fastq.view()
 		if ( !params.skip_illumina ) {
