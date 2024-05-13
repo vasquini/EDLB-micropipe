@@ -97,7 +97,7 @@ params {
         guppy_basecaller_args = "--recursive -q 0 --disable_qscore_filtering"
 }
 ```
-* Nf-test
+* **Nf-test**
 For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located [here](https://code.askimed.com/nf-test/getting-started/)
 
 * Nf-test requirements to run properly
@@ -106,7 +106,7 @@ For unit module testing, nf-test needs to be installed. Instructions to install 
   * Load nextflow:
     `ml nextflow`
   * Test the installation:
-    'nf-test version`
+    `nf-test version`
     
 **If there is a java error contact scicomp.**
 
@@ -185,7 +185,12 @@ microPIPE only requires the `main.nf` and `nexflow.config` files to run. You wil
 
 If you have POD5 files as input, you'll have to use Dorado basecaller. You may skip this step if you plan to only use Guppy. Make sure to specify the paths to the installations (obtained using "which dorado". On the **EDLB/DoradoBasecalling** folder, go to the **doradobasecaller.config** file and change the paths to match your dorado installation and the appropriate models for your kit and flowcell. You can determine the installation/module paths using `which dorado`.
 
-Also make sure that you specify the correct dorado model to basecall with, the modified bases, and **which GPUs** to use for your specific system.
+Also make sure that you specify the correct dorado model to basecall with, the modified bases, and **which GPUs** to use for your specific system. In the following example, the GPUs are specified in the **dorado_device** parameter as 'cuda:0'.
+
+The parameter **dorado_modified_bases** refers to epigenetic modifications. There are different kinds of these that may be basecalled with Dorado.
+The parameter **dorado_gpu_folder** refers to the path for the installation of Dorado. In this case it's a module that's loaded.
+For more in-depth usage information on Dorado read [here](https://github.com/nanoporetech/dorado/).
+
 ```
 dorado_gpu_folder = "/apps/x86_64/dorado/x.x.x/bin/"
 dorado_model = 'dna_r10.4.1_e8.2_400bps_sup@v4.2.0'
@@ -206,7 +211,7 @@ singularity {
 }
 ```
 
-The **nextflow.config** file should be modified to specify the location of Guppy using one of the following options:
+The **nextflow.config** file should be modified to specify the location of Guppy (If you're using Guppy) using one of the following options:
 
 * Download and unpack the Guppy .tar.gz archive file. Provide the path to the Guppy binary folder in the params section and comment the following lines in the process section: 
    ```
