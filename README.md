@@ -170,6 +170,7 @@ Folder structure:
   * test_demultiplexed_samplesheet.csv: Samplesheet for testing Demultiplexing and Assembly pipeline.
   * medaka_test_samplesheet.csv: Samplesheet for the single process Medaka test.
   * racon_test_samplesheet.csv: Samplesheet for the single process Racon test.
+  * r10_samplesheet.csv: Samplesheet example for R10.4.1 data of 6 samples.
 
 **1. Installing microPIPE**
 
@@ -467,7 +468,7 @@ Assembly evaluation:
 # Structure of the output folders
 
 Structure after running Dorado basecaller:
-* **YourFolderName** Uses the name that was specified as the output directory. It cointains folders with the names of your samples. The POD5 files given were already demultiplexed before being basecalled.
+* **dorado_results/** Uses the name that was specified as the output directory (default name is **dorado_results** can be editted in doradobasecaller.config). It cointains folders with the names of your samples. The POD5 files given were already demultiplexed before being basecalled.
 Under each sample folder:
 * contains the Fastq files belonging to the sample.
 
