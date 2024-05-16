@@ -8,7 +8,7 @@ Nextflow workflow for ONT basecalling using Dorado basecaller
 process BASECALL_DORADO {
 	tag "Dorado on ${sample_id}"
 	errorStrategy = 'ignore'
-	publishDir "$params.outdir/0_basecalling/",  mode: 'copy', pattern: '*.bam'
+	publishDir "$params.outdir/",  mode: 'copy', pattern: '*.bam'
 	input:
 	tuple val(sample_id), path(reads)
 	
@@ -18,14 +18,14 @@ process BASECALL_DORADO {
 	script:
 	"""
 	${params.dorado_gpu_folder}/dorado download --model ${params.dorado_model}
-	${params.dorado_gpu_folder}/dorado basecaller -b ${params.dorado_batchsize} -r -x ${params.dorado_device} ${params.dorado_basecaller} ${reads}  > ${params.outdir}/0_basecalling/${sample_id}.bam
+	${params.dorado_gpu_folder}/dorado basecaller -b ${params.dorado_batchsize} -r -x ${params.dorado_device} ${params.dorado_basecaller} ${reads}  > ${params.outdir}/${sample_id}.bam
 	"""
 }
 
 process READSGET {
 	tag "Formatting reads for ${sample_id}"
 	publishDir(
-		path: "${params.outdir}/0_basecalling/${sample_id}/",
+		path: "${params.outdir}/${sample_id}/",
 		mode: 'copy',
 		saveAs: { filename ->
 					if (filename.endsWith('.fastq')) "$filename"
