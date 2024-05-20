@@ -510,6 +510,8 @@ Do not forget to delete the /work directory created by Nextflow once the pipelin
 
 Planned upgrades:
 - Enabling GPU resource for Racon and Medaka processes.
+- More single-process unit tests.
+  
 
 # Citation
 
