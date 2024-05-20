@@ -469,8 +469,8 @@ Assembly evaluation:
 
 Structure after running Dorado basecaller:
 * **dorado_basecalling/** Uses the name that was specified as the output directory (default name is **dorado_basecalling** can be editted in doradobasecaller.config). It cointains folders with the names of your samples. The POD5 files given were already demultiplexed before being basecalled.
-Under each sample folder:
-* contains the Fastq files belonging to the sample.
+Each sample folder (E.g. SAL2014K):
+  * contains the Fastq files belonging to the sample.
 
 The pipeline will create several folders corresponding to the different steps of the pipeline. 
 The main output folder (`--outdir`) will contain the following folders:
