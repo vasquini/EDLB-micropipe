@@ -509,8 +509,9 @@ The pipeline has been tested using the following grid based executors: SLURM, PB
 Do not forget to delete the /work directory created by Nextflow once the pipeline has completed.
 
 Planned upgrades:
-- Enabling GPU resource for Racon and Medaka processes.
-- More single-process unit tests.
+- More single-process unit tests (including GPU-dependent processes).
+- More pipeline tests for different input options.
+- Separate GPU processes from non-GPU processes.
   
 
 # Citation
