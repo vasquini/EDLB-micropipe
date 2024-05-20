@@ -97,7 +97,17 @@ params {
         guppy_basecaller_args = "--recursive -q 0 --disable_qscore_filtering"
 }
 ```
-* **Nf-test**
+
+**1. Installing microPIPE**
+
+Download the microPIPE repository using the command:
+``` 
+git clone https://github.com/vasquini/EDLB-micropipe.git
+```
+microPIPE only requires the `main.nf` and `nexflow.config` files to run. You will also need to provide a samplesheet (explained below). 
+
+**2. Unit testing with Nf-test**
+
 For unit module testing, nf-test needs to be installed. Instructions to install nf-test are located [here](https://code.askimed.com/nf-test/getting-started/)
 
 * Nf-test requirements to run properly
@@ -108,7 +118,7 @@ For unit module testing, nf-test needs to be installed. Instructions to install 
   * Test the installation:
     `nf-test version`
     
-**If there is a java error contact scicomp.**
+**If there is a java version error contact scicomp for administrator permissions and help.**
 
 It's recommended that nf-test be installed on a folder called ~/bin. Create that folder if non-existent.  
 ```
@@ -172,13 +182,6 @@ Folder structure:
   * racon_test_samplesheet.csv: Samplesheet for the single process Racon test.
   * r10_samplesheet.csv: Samplesheet example for R10.4.1 data of 6 samples.
 
-**1. Installing microPIPE**
-
-Download the microPIPE repository using the command:
-``` 
-git clone https://github.com/vasquini/EDLB-micropipe.git
-```
-microPIPE only requires the `main.nf` and `nexflow.config` files to run. You will also need to provide a samplesheet (explained below). 
 
 # Usage
 
