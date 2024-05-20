@@ -388,20 +388,23 @@ barcode02,S34,barcode02.fastq.gz,S34EC.filtered_1P.fastq.gz,S34EC.filtered_2P.fa
 
 # Example data
 
-To test the pipeline, we have provided some [test data](https://github.com/BeatsonLab-MicrobialGenomics/micropipe/tree/main/test_data). In this directory you will find:
+To test the pipeline, we have provided some [test data](https://github.com/vasquini/EDLB-micropipe/tree/main/EDLB/test_data). In this directory you will find:
 
 File | Description
 ---|---
-S24EC_1P_test.fastq.gz | Illumina reads 1st pair
-S24EC_2P_test.fastq.gz | Illumina reads 2nd pair
-barcode01.fastq.gz | ONT fastq reads 
-samples_1.csv | sample sheet for running assembly-only pipeline
-samples_1_basecalling.csv | sample sheet for full pipeline
-samples_1_basecalling_single_isolate.csv | sample sheet for a single isolate
+fast5_tiny | Directory of Fast5 files (just one) to test that basecalling processes work 
+test_samplesheet.csv | Example samplesheet #1 (single-sample) running from basecalling to the end of pipeline.
+r10_samplesheet.csv | Example samplesheet #2 (multiple samples) running from basecalling to the end of pipeline. 
+assembly_test_samplesheet.csv | sample sheet for running assembly-only pipeline
+test_demultiplexed_samplesheet.csv | Samplesheet for data that has already been demultiplexed.
+racon_test_samplesheet.csv | Samplesheet for the process test for Racon
+medaka_test_samplesheet.csv | Samplesheet for the process test for Medaka
+GXB01322_20181217_FAK35493_GA10000_filtered.fastq.gz | Basecalled, demultiplexed, and filtered fastq to test the assembly-only pipeline
 
-To test the assembly-only pipeline, edit the `sample_1.csv` samplesheet to point to the correct test files. Then run:
+To test the assembly-only pipeline, edit the `assembly_test_samplesheet.csv` samplesheet to point to the correct test files. Then run:
 
-`nextflow main.nf --samplesheet /path/to/samples_1.csv --outdir /path/to/test_outdir/`
+`nextflow main.nf --samplesheet /path/to/assembly_test_samplesheet.csv --outdir /path/to/test_outdir/`
+
 
 
 # Optional parameters
